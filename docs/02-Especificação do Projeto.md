@@ -2,43 +2,85 @@
 
 <span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
 
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
+A definição do problema bem como a ideia de solução abordados neste projeto foram solidificadas através da criação de evidências empíricas do contexto de desigualdade social do nosso país, ampliada pela pandemia de COVID-19, amparadas por pesquisa realizada pelos membros da equipe tendo como fonte os principais portais de notícias do país.
 
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+As particularidades verificadas neste processo serão apresentadas na forma de personas, histórias de usuários, definição de requisitos funcionais e não funcionais além das restrições do projeto.
+
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+Nos quadros abaixo são apresentadas as personas definidas durante o processo de entendimento do problema.
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+|<img src="img/joao.jpg" width="100" height="100">   | **João Mendes** <br> 48 anos   |
+|:---------------------------------------:|:-------------------------------:|
+|**Ocupação** |<br> Publicitário <br> Tem ensino superior em comunicação|
+|**Motivação** |<br>Quer ter uma vida mais saudável e usar menos seu carro
+|**Dispositivos** |Possui um samsung de última geração |
+|**Aplicativos** |Facebook<br>App do G1|
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+<br><br>
+
+|<img src="img/anita.jpg" width="100">  | **Anita Camões** <br> 40 anos   |
+|:---------------------------------------:|:-------------------------------:|
+|**Ocupação** | Gestora do serviço de bicicletas|
+|**Dispositivos** |Tem um Motorola de 2020 |
+|**Aplicativos** |Whatsapp<br>Facebook|
+
+<br><br>
+
+|<img src="img/camila.jpg" width="100" height="100">   | **Camila Themes** <br> 35 anos   |
+|:---------------------------------------:|:-------------------------------:|
+|**Ocupação**| <br> Advogada |
+|**Motivação** | <br> Trabalha de casa e está esperando chegarmos em um alto nível de imunização com as vacinas antes de voltar a vida normal. <br>Assiste a muitas notícias e sente um dever de contribuir, visto que sua situação financeira não foi afetada na pandemia|
+|**Dispositivos** |Tem um iphone de última geração |
+|**Aplicativos** |Facebook|
+
+<br><br>
+
+|<img src="img/otavio.jpg" width="100" height="100">   | **Otávio Cardoso** <br> 20 anos   |
+|:---------------------------------------:|:-------------------------------:|
+|**Ocupação**| <br> Estudante |
+|**Motivação** | <br>  Frequentar parques e museus no centro de São Paulo |
+|**Dispositivos** |Tem um android de segunda mão |
+|**Aplicativos** |instagram, twitter e tik tok|
+
+<br><br>
+
+|<img src="img/fred.jpg" width="100" height="100">   | **Fred Silva** <br> 33 anos   |
+|:---------------------------------------:|:-------------------------------:|
+|**Ocupação**| <br> Desempregado |
+|**Motivação** | <br> Deseja gastar pouco para conseguir se locomover para entrevistas de emprego|
+|**Dispositivos** |Tem um Xiaomi de 2019 |
+|**Aplicativos** |instagram, telegram|
+
+<br><br>
+
+|<img src="img/jessica.jpg" width="100" height="100">   | **Jéssica Prates** <br> 28 anos   |
+|:---------------------------------------:|:-------------------------------:|
+|**Ocupação**| <br> Professora de ginástica |
+|**Motivação** | <br> Tem medo de pegar transportes públicos devido a covid, mas não possui carro|
+|**Dispositivos** |Tem um iphone de última geração |
+|**Aplicativos** |instagram, whatsapp, tik tok|
+
+<br><br>
 
 ## Histórias de Usuários
 
-Com base na análise das personas forma identificadas as seguintes histórias de usuários:
+Com base na análise das personas foram identificadas as seguintes histórias de usuários:
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas           | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões                 | Permitir que possam administrar contas |
+|Usuário  | criar um cadastro como usuário  | acessar a plataforma              |
+|Usuário  | ver bicicletas disponíveis para datas específicas   | reservar uma bicicleta             |
+|Usuário  | filtrar a bicicleta por cor, modelo, avaliação e local   | escolher a melhor bicicleta            |
+|Usuário  | Reservar uma bicicleta   | usar a bicicleta na data marcada              |
+|Gestor  | criar, visualizar, editar e deletar bicicletas   | manter controle do inventário             |
+|Gestor  | criar, visualizar, editar e deletar usuários   | manter controle do acesso às bicicletas             |
+|Gestor  | criar, visualizar, editar e deletar gestores   | manter controle do acesso ao sistema             |
+|Gestor  | ver todos os usuários que reservaram uma bike   | encontrar responsáveis por danos a bicicleta             |
+| Gestor | ver todas as bicicletas que foram reservadas e por quais períodos   | acompanhar necessidade de manutenção            |
 
-Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
-
-> **Links Úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User Stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de Usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 Common User Story Mistakes](https://airfocus.com/blog/user-story-mistakes/)
+<br><br>
 
 ## Modelagem do Processo de Negócio 
 
@@ -73,36 +115,47 @@ Obs.: todas as informações para gerar os indicadores devem estar no diagrama d
 
 ## Requisitos
 
-As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade de requisitos, aplicar uma técnica de priorização de requisitos e detalhar como a técnica foi aplicada.
+As tabelas que se seguem apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto.
+
+<br>
 
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|------|-----------------------------------------|---------|
+|RF-001​​ | Permitir que o usuário crie cadastro​ | ALTA​​ |
+|RF-002 | Permitir que o usuário/gestor efetue login​​ | ALTA​​ |
+|RF-003​​ | Permitir que o usuário/gestor efetue logout​​ | ALTA​​ |
+|RF-004​​ | Permitir que o usuário visualize uma lista das localidades​​ | ALTA |​​
+|RF-005​​ | Permitir que o usuário filtre a lista de bikes​​ | ALTA​​ |
+|RF-006 | Permitir que o usuário reserve uma bike | ALTA |​​
+|RF-007 | Permitir que o usuário veja suas reservas​​ | ALTA |
+|RF-008 | Permitir que o usuário cancele sua reserva | ALTA |
+|RF-009​​ | Permitir que o usuário avalie uma bike | MÉDIA |​
+|RF-010 | Permitir que o gestor crie uma bike | ALTA |​
+|RF-011 | Permitir que o gestor edite uma bike | ALTA |​
+|RF-012 | Permitir que o gestor delete uma bike | ALTA |​
+|RF-013 | Permitir que um gestor crie cadastro para outro gestor ou usuário​ | ALTA​​ |
+|RF-014 | Permitir que o gestor edite um usuário | ALTA |​
+|RF-015 | Permitir que o gestor delete um usuário | ALTA |​
+|RF-016​​ | Permitir que o gestor veja uma lista de usuários | ALTA |
+|RF-017 | Permitir que o gestor veja uma lista de bicicletas​ | ALTA |​
+
+<br>
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|-------|-------------------------|-----------|
+|RNF-001| O sistema deve focado para o uso em mobile (mobile-first) | ALTO | 
+|RNF-002| O sistema deve funcionar nos principais stemas operacionais mobile de forma nativa | ALTO | 
+|RNF-003| Deve seguir os padrões de acessibilidade |  MÉDIO | 
+|RNF-004| O formulário tem que ser de fácil preenchimento permitindo autocompletar| MÉDIO | 
+|RNF-005| As requisições devem ser leves para funcionar bem em áreas mais remotas | BAIXO | 
+|RNF-006| Deve exigir o mínimo de RAM possível para funcionar em aparelhos bem simples |  BAIXO | 
+|RNF-007| O sistema deve ser implementado na linguagem C# utilizando banco de dados MySQL | ALTO |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
+<br><br>
 
 ## Restrições
 
@@ -110,14 +163,16 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
-|01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
+|01| O sistema deve sempre ter pelo menos um gestor |
+|02| O projeto deverá ser entregue até o final do semestre |
+|03| O tamanho de armazenamento e quantidade de usuários deve caber nos planos de hospedagem gratuita        |
+|04| Não pode depender de uma internet rápida        |
+|05| Não pode depender de um hardware potente        |
+|06| O projeto deve seguir as regras de acessibilidade da w3c        |
+|07| A quantidade de trabalho deve caber na rotina compartilhada com família e trabalho        |
+|08| A organização do projeto deve possibilitar o trabalho assíncrono        |
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+<br><br>
 
 ## Diagrama de Casos de Uso
 
@@ -132,19 +187,46 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 > - [Astah](https://astah.net/)
 > - [Diagrams](https://app.diagrams.net/)
 
-# Matriz de Rastreabilidade
+<br><br>
 
-A matriz de rastreabilidade é uma ferramenta usada para facilitar a visualização dos relacionamento entre requisitos e outros artefatos ou objetos, permitindo a rastreabilidade entre os requisitos e os objetivos de negócio. 
+## Descrição dos Casos de Uso
 
-A matriz deve contemplar todos os elementos relevantes que fazem parte do sistema, conforme a figura meramente ilustrativa apresentada a seguir.
+| Caso de Uso     | Descrição      |  
+|:----------------|:---------------|
+| Gerenciar Bicicletas | <p> Permite que o gestor cadastre, altere ou delete uma bicicleta. |
+| Gerenciar Usuários | <p> Permite que o gestor cadastre, altere ou delete um usuário.|
+| Cadastrar Usuário | <p> Permite ao usuário se cadastrar e autenticar no sistema.|
+| Visualizar bicicletas | <p> Permite que o usuário Doador visualize bicicletas.|
+| Buscar bicicletas |<p> Permite que o usuário busque bicicletas por localização, modelo, <br> avaliação ou cor.|
+| Reservar bicicleta | <p> Permite ao usuário reservar uma bicicleta por um período específico.|
+| Avaliar bicicleta | <p> Permite ao usuário avalie a bicicleta com uma nota de 1 a 5.|
 
-![Exemplo de matriz de rastreabilidade](img/02-matriz-rastreabilidade.png)
+<br>
 
-> **Links Úteis**:
-> - [Artigo Engenharia de Software 13 - Rastreabilidade](https://www.devmedia.com.br/artigo-engenharia-de-software-13-rastreabilidade/12822/)
-> - [Verificação da rastreabilidade de requisitos usando a integração do IBM Rational RequisitePro e do IBM ClearQuest Test Manager](https://developer.ibm.com/br/tutorials/requirementstraceabilityverificationusingrrpandcctm/)
-> - [IBM Engineering Lifecycle Optimization – Publishing](https://www.ibm.com/br-pt/products/engineering-lifecycle-optimization/publishing/)
+## Definição dos Atores
 
+
+|    Ator         |  Definição     |  
+|:----------------|:---------------|
+| Usuário | Cidadão reserva e avalia bicicletas|
+| Gestor  | Funcionário que controla o estado das bicicletas assim como o acesso ao sistema por usuários e outros gestores |
+| Sistema | Sistema que mantém cadastro de bicicletas e usuários |
+   
+<br><br>
+
+## Matriz de Rastreabilidade
+
+Com o objetivo de mapear e explicitar as dependências internas e externas do projeto, desenvolvemos uma matriz de rastreabilidade de requisitos (_Requirements Traceability Matrix_ - RTM). 
+
+Esse tipo de ferramenta facilita a visualização do relacionamento entre requisitos, artefatos e stakeholders,  permitindo rastrear a ligação entre eses elementos. Esse rastreamento, por sua vez, é essencial para gerenciar a evolução do projeto, uma vez que permite monitorar, com mais clareza, o impacto gerado por mudanças solicitadas ao longo do desenvolvimento do produto.
+
+A matriz que elaboramos está em constante atualização e será atualizada à medida em que avancemos com nosso projeto.
+
+![image](https://user-images.githubusercontent.com/82478867/158067507-3daaf778-8a0e-4794-b9a3-5a21ad22ece7.png)
+
+Veja [aqui](https://docs.google.com/spreadsheets/d/1IjKcDnUtN5G3vvxWoMcbk0O1e0gSDn-CIqAM-QKRxuE/edit?usp=sharing) nossa RTM completa.
+
+</br></br>
 
 # Gerenciamento de Projeto
 
