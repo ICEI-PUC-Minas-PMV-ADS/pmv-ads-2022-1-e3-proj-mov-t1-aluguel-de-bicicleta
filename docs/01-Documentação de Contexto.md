@@ -1,46 +1,54 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+<span style='font-size: 30px'>Nome do App</span>
+
+Muitas são as dificuldades da mobilidade urbana no Brasil, o transporte público não atende às necessidades da população, o uso massivo do transporte privado causa congestionamento no trânsito, além de serem os automóveis os principais emissores de gases poluentes que contribuem para o aquecimento global e o efeito estufa.
+
+Soma-se a isso o aumento dos preço das passagens e do combustível, que torna os principais meios de transportes urbanos inacessíveis ou inviáveis para muitos cidadãos.
+
+Para mitigar a ausência de políticas públicas efetivas voltadas à mobilidade urbana, a oferta de transportes alternativos como bicicletas e patinetes elétricos compartilhados têm se mostrado opções sustentáveis, de menor custo e que trazem benefícios à saúde e ao meio ambiente, no entanto ainda são pouco acessíveis. 
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
+Com seu acesso a meios de transporte restrito, ou até inexistente, muitas pessoas não tem como se locomover nas grandes cidades. Com isso, muitos não conseguem procurar empregos, acessar locais de lazer, praticar um exercício físico ou até voltar para casa após o trabalho.
 
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+As tarifas nas capitais brasileiras reduz a acessibilidade das populações mais pobres ao sistema de transporte público  de tal maneira, que trabalhadores mesmo tendo casa e família, dormem em abrigos ou nas ruas nos dias de trabalho por não terem condições de custear o deslocamento.
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+Com esse problema em mente, criaremos uma plataforma mobile onde cidadãos de regiões negligenciadas pelo poder público consigam encontrar estações públicas de bicicletas para se locomover. Assim, traremos mais infraestrutura para esses bairros e facilitaremos o acesso dessas comunidades à serviços que são encontrados em regiões próximas. 
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Queremos um lugar onde:
+
+Gestores possam:
+
+Criar, Recuperar, Editar e Deletar Bikes.
+Criar, Recuperar, Editar e Deletar usuários e gestores.
+
+Ver todos os usuários que reservaram uma bicicleta e o período pelo qual eles reservaram.
+
+Ver todas as bikes reservadas filtrando por usuário e o período da reserva. 
+
+Usuários possam: 
+
+Ver uma lista de bicicletas disponíveis para datas específicas.
+
+Filtrar por modelo, cor, localidade ou avaliação.
+
+Reservar uma bike por um período de tempo. 
+
+Avaliar uma bike com uma nota de 1 a 5.
+
+Cancelar uma reserva. 
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
-
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+O que motivou a realização deste trabalho foi a necessidade de amenizar os efeitos do descaso do poder público com regiões mais pobres em grandes centros, diminuir as emissões de gases estufa nas grandes cidades, facilitar o acesso a pontos de cultura e lazer e oferecer uma opção barata de exercício físico.  
 
 ## Público-Alvo
 
-Descreva quem serão as pessoas que usarão a sua aplicação indicando os diferentes perfis. O objetivo aqui não é definir quem serão os clientes ou quais serão os papéis dos usuários na aplicação. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações
-hierárquicas, etc.
+O projeto prevê 2 principais públicos-alvo.
 
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
+- Gestores responsáveis pela manutenção das bicicletas
 
-> **Links Úteis**:
-> - [Público-alvo](https://blog.hotmart.com/pt-br/publico-alvo/)
-> - [Como definir o público alvo](https://exame.com/pme/5-dicas-essenciais-para-definir-o-publico-alvo-do-seu-negocio/)
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+- Cidadãos em regiões de grandes centros com pouco investimento público em infra estrutura.
