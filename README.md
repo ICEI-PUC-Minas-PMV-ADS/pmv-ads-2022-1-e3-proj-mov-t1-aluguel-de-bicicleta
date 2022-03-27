@@ -1,23 +1,25 @@
-# TÍTULO DO PROJETO
+# ALUGUEL DE BICICLETAS
 
-`CURSO`
+`ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
-`DISCIPLINA`
+`PROJETO: DESENVOLVIMENTO DE UMA APLICAÇÃO MÓVEL EM UM ABIENTE DE NEGÓCIO`
 
-`SEMESTRE`
+`3º SEMESTRE`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Este projeto tem como objetivo criar uma plataforma mobile onde cidadãos de regiões negligenciadas pelo poder público consigam encontrar estações públicas de bicicletas para se locomover. 
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Amanda Salles Monteiro
+* Gabriel Miranda Chaves
+* Larysse Gurgel de Oliveira
+* Mariana Marcela Mercier de Oliveira
+* Renê Boaventura Neto
+* Suellen Batista Dias
 
 ## Orientador
 
-* Nome completo do professor 1
+* Will Ricardo dos Santos Machado
 
 ## Instruções de utilização
 
