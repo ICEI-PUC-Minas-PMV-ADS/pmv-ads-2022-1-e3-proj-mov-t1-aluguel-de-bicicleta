@@ -176,16 +176,11 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
+Diagrama que contempla o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Casos de Uso”.
-
-> **Links Úteis**:
-> - [Criando Casos de Uso](https://www.ibm.com/docs/pt-br/elm/6.0?topic=requirements-creating-use-cases)
-> - [Como Criar Diagrama de Caso de Uso: Tutorial Passo a Passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+<p align="center">
+    <img src="img/diagramas/diagrama-casos-de-uso.drawio.png" width="700">
+</p>
 
 <br><br>
 
@@ -196,7 +191,7 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 | Gerenciar Bicicletas | <p> Permite que o gestor cadastre, altere ou delete uma bicicleta. |
 | Gerenciar Usuários | <p> Permite que o gestor cadastre, altere ou delete um usuário.|
 | Cadastrar Usuário | <p> Permite ao usuário se cadastrar e autenticar no sistema.|
-| Visualizar bicicletas | <p> Permite que o usuário Doador visualize bicicletas.|
+| Visualizar bicicletas | <p> Permite que o usuário visualize bicicletas.|
 | Buscar bicicletas |<p> Permite que o usuário busque bicicletas por localização, modelo, <br> avaliação ou cor.|
 | Reservar bicicleta | <p> Permite ao usuário reservar uma bicicleta por um período específico.|
 | Avaliar bicicleta | <p> Permite ao usuário avalie a bicicleta com uma nota de 1 a 5.|
