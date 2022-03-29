@@ -86,23 +86,21 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 
 ### Análise da Situação Atual
 
-Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional. 
+Não existe no mercado uma proposta de negócio que permita que uma pessoa física disponibilize sua bicicleta para aluguel. Atualmente, uma pessoa que deseje pagar pelo uso temporário de uma bike, precisa recorrer a serviços oferecidos através de parcerias entre entidades comerciais e órgãos estatais (Itaú, Estado de São Paulo). Tais serviços são limitados a áreas reduzidas, acessíveis a um público pequeno, e priorizam o uso para o lazer. 
 
 ### Descrição Geral da Proposta
 
 Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
 
-### Processo 1 – NOME DO PROCESSO
+### Processo Atual – ALUGUEL DE BICICLETAS 
 
 Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN. 
 
 ![Processo 1](img/02-bpmn-proc1.png)
 
-### Processo 2 – NOME DO PROCESSO
+### Processo Proposto – NOSSA BIKE
 
 Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em seguida, apresente o modelo do processo 2, descrito no padrão BPMN.
-
-![Processo 2](img/02-bpmn-proc2.png)
 
 ## Indicadores de Desempenho
 
