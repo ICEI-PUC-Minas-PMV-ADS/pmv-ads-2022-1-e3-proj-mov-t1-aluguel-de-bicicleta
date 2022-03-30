@@ -90,17 +90,19 @@ Não existe no mercado uma proposta de negócio que permita que uma pessoa físi
 
 ### Descrição Geral da Proposta
 
-Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
+Nossa proposta adiciona a figura do parceiro, que é uma pessoa física que busca ganhos extras ao disponibilizar sua bike quando esta não está sendo utilizada. Para comparar o processo _as is_ e o processo _to be_, utilizamos como exemplo o serviço de aluguel de bikes oferecido pelo Itaú. De forma sucinta, modelamos o fluxo do processo nas duas opções.  
 
-### Processo Atual – ALUGUEL DE BICICLETAS 
+### Processo Atual – ALUGUEL DE BICICLETAS DO ITAÜ
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN. 
+Neste modelo, a interação se dá entre o Itaú e o usuário, mediada pelo aplicativo.
 
-![Processo 1](img/02-bpmn-proc1.png)
+![Modelo Itaú](https://user-images.githubusercontent.com/82478867/160733760-f0fff8f2-03b5-4dd6-8248-c1d9e526370c.png)
 
 ### Processo Proposto – NOSSA BIKE
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em seguida, apresente o modelo do processo 2, descrito no padrão BPMN.
+Nossa proposta agrega uma terceira entidade principal ao processo, que fornece a bike a ser alugada e recebe por esse serviço. 
+
+![Modelo Nossa Bike](https://user-images.githubusercontent.com/82478867/160733756-e53e24e5-e3a5-4bcb-809f-7f61ebb5af78.png)
 
 ## Indicadores de Desempenho
 
