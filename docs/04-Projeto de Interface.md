@@ -19,22 +19,22 @@ Abaixo apresentamos o detalhamento e descrição dos wireframes mostrados no flu
 - Cabeçalho: Onde fica disponível a opção "voltar" em todas as páginas e, na tela de perfil do usuário, opção para ir à tela de edição de cadastro.   <br> <br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\doc04-Header.png" height="360" hspace="40">
- <img src="img\wireframes\Wireframe atulizado\doc04-Header2.png" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\doc04-Header.jpeg" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\doc04-Header2.jpg" height="360" hspace="40">
 </p>
 <br>
 
 - Logo: Identidade visual do produto, presente em diversas telas.   <br> <br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\doc04-Logo.png" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\doc04-Logo.jpeg" height="360" hspace="40">
 </p>
 <br>
 
 - Título: Sua função principal é de indicar qual tela você está navegando no momento.    <br> <br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\doc04-Titulo.png" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\doc04-Titulo.jpeg" height="360" hspace="40">
 </p>
 
 ### Tela - Menu Principal
@@ -48,7 +48,7 @@ Os componentes encontrados na tela são:
 <br> <br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\MainMenu.png" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\MainMenu.jpeg" height="360" hspace="40">
 </p>
 
 <br>
@@ -77,8 +77,8 @@ Os componentes encontrados na tela são:
 <br><br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\MyBikes1.png" height="360" hspace="40">
- <img src="img\wireframes\Wireframe atulizado\MyBikes2.png" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\MyBikes1.jpeg" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\MyBikes2.jpeg" height="360" hspace="40">
 </p>
 
 <br>
@@ -122,8 +122,8 @@ Os componentes encontrados na tela são:
 <br><br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\Cadastro1.png" height="360" hspace="40">
- <img src="img\wireframes\Wireframe atulizado\Cadastro2.png" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\Cadastro1.jpeg" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\Cadastro2.jpeg" height="360" hspace="40">
 </p>
 
 <br>
@@ -153,5 +153,5 @@ Os componentes encontrados na tela são:
 <br><br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\Login.png" height="360" hspace="40">
+ <img src="img\wireframes\Wireframe atulizado\Login.jpeg" height="360" hspace="40">
 </p>
