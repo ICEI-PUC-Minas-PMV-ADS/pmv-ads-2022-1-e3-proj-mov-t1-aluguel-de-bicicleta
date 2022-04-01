@@ -13,7 +13,7 @@ Tela que abrange todas as visualizações do site, sendo alterado apenas o conte
 <br>
 
 <p>
- <img src="img\wireframes\Wireframe atulizado\Template.png" width="180" hspace="40">
+ <img src="img\Wireframe atulizado\Template.png" width="180" hspace="40">
 </p>
 
 <br><br>
