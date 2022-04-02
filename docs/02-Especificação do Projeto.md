@@ -90,7 +90,7 @@ Não existe no mercado uma proposta de negócio que permita que uma pessoa físi
 
 ### Descrição Geral da Proposta
 
-Nossa proposta adiciona a figura do parceiro, que é uma pessoa física que busca ganhos extras ao disponibilizar sua bike quando esta não está sendo utilizada. Para comparar o processo _as is_ e o processo _to be_, utilizamos como exemplo o serviço de aluguel de bikes oferecido pelo Itaú. De forma sucinta, modelamos o fluxo do processo nas duas opções.  
+Nossa proposta adiciona a figura do parceiro, que é uma pessoa física que busca disponibiliza sua bike quando esta não está sendo utilizada. Para comparar o processo _as is_ e o processo _to be_, utilizamos como exemplo o serviço de aluguel de bikes oferecido pelo Itaú. De forma sucinta, modelamos o fluxo do processo nas duas opções.  
 
 ### Processo Atual – ALUGUEL DE BICICLETAS DO ITAÜ
 
@@ -100,9 +100,9 @@ Neste modelo, a interação se dá entre o Itaú e o usuário, mediada pelo apli
 
 ### Processo Proposto – NOSSA BIKE
 
-Nossa proposta agrega uma terceira entidade principal ao processo, que fornece a bike a ser alugada e recebe por esse serviço. 
+Nossa proposta agrega uma terceira entidade principal ao processo, que fornece a bike. 
 
-![Modelo Nossa Bike](https://user-images.githubusercontent.com/82478867/160733756-e53e24e5-e3a5-4bcb-809f-7f61ebb5af78.png)
+![Modelo Nossa Bike](https://user-images.githubusercontent.com/82478867/161400399-eaef2d5b-a8b9-444e-9f12-81a623a6e7d0.png)
 
 ## Indicadores de Desempenho
 
