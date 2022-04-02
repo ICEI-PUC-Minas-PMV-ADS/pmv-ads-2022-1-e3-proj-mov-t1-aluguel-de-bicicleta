@@ -87,21 +87,6 @@ Os componentes encontrados na tela são:
 
 <br>
 
-### Tela - Cadastro Ponto de Coleta
-Apresenta o formulário de cadastro de ponto de coleta.
-
-Os componentes encontrados na tela são:
- - Formulário de cadastro de ponto de coleta
- - Botão "Salvar" que efetua o cadastro do ponto de coleta na base de dados da aplicação e apresenta mensagem de sucesso
-
-<br><br>
-
-<p>
-A adicionar imagens
-</p>
-
-<br>
-
 ### Tela - Login
 Apresenta o formulário para logar na aplicação
 
