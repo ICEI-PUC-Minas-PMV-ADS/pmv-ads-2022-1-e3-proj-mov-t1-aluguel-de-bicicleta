@@ -102,7 +102,8 @@ Neste modelo, a interação se dá entre o Itaú e o usuário, mediada pelo apli
 
 Nossa proposta agrega uma terceira entidade principal ao processo, que fornece a bike. 
 
-![Modelo Nossa Bike](https://user-images.githubusercontent.com/82478867/161400399-eaef2d5b-a8b9-444e-9f12-81a623a6e7d0.png)
+![Modelo Nossa Bike](https://user-images.githubusercontent.com/82478867/161400537-f406e167-78de-460b-ae3d-76e8dcdb3506.png)
+
 
 ## Indicadores de Desempenho
 
