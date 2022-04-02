@@ -8,11 +8,11 @@ A interface foi projetada utilizando o processo de design centrado no usuário e
 <br><br>
 <img src="img/diagramas/Diagrama de fluxo.svg" width="500">
 <br><br>
-O diagrama acima apresenta as diferentes açoões possíveis por tipo de usuário pela aplicação.
+O diagrama acima apresenta as diferentes ações possíveis por tipo de usuário pela aplicação.
 
 ## Wireframes
 
-Abaixo apresentamos o detalhamento e descrição dos wireframes mostrados no fluxo de usuário. O wireframe interativo pode ser encontrado no [figma](https://www.figma.com/proto/Am9uOV7d5cALEt0lydM26W/Onde-Doar-team-library?node-id=362%3A7376&scaling=min-zoom&page-id=362%3A5861&starting-point-node-id=362%3A7376).
+Abaixo apresentamos o detalhamento e descrição dos wireframes mostrados no fluxo de usuário. O wireframe interativo pode ser encontrado no [MarvelApp](https://marvelapp.com/prototype/i0c4450/screen/85658761).
 
 ### Componentes comuns a todas as telas
 
@@ -53,25 +53,13 @@ Os componentes encontrados na tela são:
 
 <br>
 
-### Tela - Listar Pontos ou Eventos de Coleta
-Apresenta lista de pontos ou eventos de coleta de acordo com a seleção no mapa ou pesquisa realizada.
+
+
+### Tela - Visualizar Dados das Bicicletas
+Apresenta informações de localização e status das bicicletas
 
 Os componentes encontrados na tela são:
- - Campo que permite que o usuário busque por um ponto de coleta
- - Lista que permite selecionar um dos pontos ou eventos próximos
-<br><br>
-
-<p>
-A adicionar imagem
-</p>
-
-<br>
-
-### Tela - Visualizar Pontos ou Bikes alugadas
-Apresenta informações do ponto ou evento de coleta selecionado
-
-Os componentes encontrados na tela são:
- - Dados do ponto ou evento de coleta
+ - Dados da última localização da bicicleta
  - Informações sobre a bicicleta
  - Valores, preços e duração do aluguel
 <br><br>
@@ -79,35 +67,6 @@ Os componentes encontrados na tela são:
 <p>
  <img src="img\wireframes\Wireframe atulizado\MyBikes1.jpeg" height="360" hspace="40">
  <img src="img\wireframes\Wireframe atulizado\MyBikes2.jpeg" height="360" hspace="40">
-</p>
-
-<br>
-
-### Tela - Editar Ponto de Coleta
-Apresenta formulário para edição dos dados do ponto de coleta
-
-Os componentes encontrados na tela são:
- - Formulário de edição
- - Botão "Salvar" que efetua a atualização dos dados do ponto de coleta na base de dados da aplicação e apresenta mensagem de sucesso
-<br><br>
-
-<p>
-A adicionar imagens
-</p>
-
-<br>
-
-### Tela - Deletar Ponto de Coleta
-Apresenta modal de confirmação de exclusão
-
-Os componentes encontrados na tela são:
- - Modal de confirmação de exclusão
- - No modal, Botão "Ok" que efetua a exclusão dos dados do ponto de coleta na base de dados da aplicação e apresenta mensagem de sucesso e
- 'Cancelar' que cancela a ação
-<br><br>
-
-<p>
-A adicionar imagens
 </p>
 
 <br>
