@@ -107,12 +107,15 @@ Nossa proposta agrega uma terceira entidade principal ao processo, que fornece a
 
 ## Indicadores de Desempenho
 
-Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores. 
+| # | Indicador | Objetivos | Descrição | Cálculo | Fonte | Perspectiva|  
+|---|-----------|-----------|-----------|---------|-------|------------|
+| 1 | Downloads | Acompanhar o crescimento do aplicativo | Avaliar a taxa de downloads realizados na loja| nº de downloads / período | Playstore | Crescimento e Aprendizado |
+| 2 | Usuários Cadastrados | Mensurar a quantidade de cadastros efetuados no aplicativo | Avaliar a taxa de cadastros realizados no aplicativo após o download | nº de cadastros / período | Banco de Dados| Crescimento e Aprendizado |
+| 3 | Engajamento | Avaliar o sucesso do aplicativo | O engajamento medirá o tempo em que as pessoas permanecem utilizando o aplicativo e quantas vezes ele é aberto | Realizado pela ferramenta Google Mobile App Analytics | Google Mobile App Analytics | Crescimento e Aprendizado |
+| 4 | Conversão | Mensurar a quantidade de locações efetivas | Avaliar a taxa de locações realizadas via aplicativo | nº de locações / período | Playstore | Clientes | 
+| 5 | Desinstalação | Compreender as razões que levaram à desinstalação | Avaliar o que pode ser mudado para prevenir outras desinstalações do aplicativo | nº de desinstalações / período | Playstore | Processos Internos | 
 
-Usar o seguinte modelo: 
 
-![Indicadores de Desempenho](img/02-indic-desemp.png)
-Obs.: todas as informações para gerar os indicadores devem estar no diagrama de classe a ser apresentado a posteriori. 
 
 ## Requisitos
 
