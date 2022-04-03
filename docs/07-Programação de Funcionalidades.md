@@ -2,14 +2,51 @@
 
 <span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>, <a href="4-Metodologia.md"> Metodologia</a>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>, <a href="5-Arquitetura da Solução.md"> Arquitetura da Solução</a>
 
-Implementação do sistema descritas por meio dos requisitos funcionais e/ou não funcionais. Deve relacionar os requisitos atendidos os artefatos criados (código fonte) além das estruturas de dados utilizadas e as instruções para acesso e verificação da implementação que deve estar funcional no ambiente de hospedagem.
+Nesta seção apresentamos as telas desenvolvidas para cada uma das funcionalidades do sistema.
 
-Para cada requisito funcional, pode ser entregue um artefato desse tipo
+## Home
 
-> **Links Úteis**:
->
-> - [Trabalhando com HTML5 Local Storage e JSON](https://www.devmedia.com.br/trabalhando-com-html5-local-storage-e-json/29045)
-> - [JSON Tutorial](https://www.w3resource.com/JSON)
-> - [JSON Data Set Sample](https://opensource.adobe.com/Spry/samples/data_region/JSONDataSetSample.html)
-> - [JSON - Introduction (W3Schools)](https://www.w3schools.com/js/js_json_intro.asp)
-> - [JSON Tutorial (TutorialsPoint)](https://www.tutorialspoint.com/json/index.htm)
+A página apresenta informações sobre a aplicação e um botão de Login.
+
+<br>
+
+<p>
+<img src="img/telas/home.png" width="300px" hspace="40">
+</p>
+
+### Instrução de Acesso
+1. Abra um navegador de Internet e informe a seguinte URL: http://localhost:19002
+
+<br><br>
+
+## Login 
+
+A página Login apresenta um formulário com dois campos: email e senha, que permite que o usuário inicie uma sessão no sistema.  
+<br>
+
+<p>
+<img src="img/telas/login.png" width="300px" hspace="40">
+</p>
+
+### Requisitos Atendidos
+- RF002 e RF003
+
+### Instrução de Acesso
+1. Na página Home clique no botão "Login"
+
+<br><br>
+
+## Menu
+
+Exibe o menu de navegação através do qual é possível acessar as diversas funcionalidades da aplicação.
+<br>
+
+<p>
+<img src="img/telas/menu-1.png" width="300px" hspace="40">
+<img src="img/telas/menu-2.png" width="300px" hspace="40">
+</p>
+
+### Instrução de Acesso
+1. A página é exibida após realizar login.
+
+<br><br>
