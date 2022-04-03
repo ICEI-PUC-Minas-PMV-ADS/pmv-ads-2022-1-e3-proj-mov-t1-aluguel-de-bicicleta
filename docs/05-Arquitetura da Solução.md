@@ -32,7 +32,7 @@ Esquema que representa o relacionamento entre as tabelas que armazenam os dados 
 
 ## Modelo Físico
 
-Entregar um arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados. Este arquivo deverá ser incluído dentro da pasta src\bd.
+O arquivo banco.sql contendo os scripts de criação das tabelas do banco de dados foi disponibilizado pasta src\bd.
 
 ## Tecnologias Utilizadas
 
@@ -67,14 +67,15 @@ O Visual Studio Code é um editor de código-fonte desenvolvido pela Microsoft p
 
 ## Hospedagem
 
-Explique como a hospedagem e o lançamento da plataforma foi feita.
+O aplicativo Nossa Bike será hospedado na plataforma Heroku. A escolha dessa plataforma se justifica pela possibilidade de realizar o deploy de aplicações construídas com React Native de maneira gratuita, simplificada e rápida.
 
-> **Links Úteis**:
+
+<!-- > **Links Úteis**:
 >
 > - [Website com GitHub Pages](https://pages.github.com/)
 > - [Programação colaborativa com Repl.it](https://repl.it/)
 > - [Getting Started with Heroku](https://devcenter.heroku.com/start)
-> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html)
+> - [Publicando Seu Site No Heroku](http://pythonclub.com.br/publicando-seu-hello-world-no-heroku.html) -->
 
 ## Qualidade de Software
 
