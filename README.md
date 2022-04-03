@@ -2,11 +2,11 @@
 
 `ANÁLISE E DESENVOLVIMENTO DE SISTEMAS`
 
-`PROJETO: DESENVOLVIMENTO DE UMA APLICAÇÃO MÓVEL EM UM ABIENTE DE NEGÓCIO`
+`PROJETO: DESENVOLVIMENTO DE UMA APLICAÇÃO MÓVEL EM UM AMBIENTE DE NEGÓCIO`
 
 `3º SEMESTRE`
 
-Este projeto tem como objetivo criar uma plataforma mobile onde cidadãos de regiões negligenciadas pelo poder público consigam encontrar estações públicas de bicicletas para se locomover. 
+Este projeto tem como objetivo criar uma plataforma mobile onde pessoas consigam disponibilizar para o aluguel ou alugar bicicletas para se locomover, trazendo uma alternativa sustentável para a questão do transporte público nos grande centro urbanos.
 
 ## Integrantes
 
