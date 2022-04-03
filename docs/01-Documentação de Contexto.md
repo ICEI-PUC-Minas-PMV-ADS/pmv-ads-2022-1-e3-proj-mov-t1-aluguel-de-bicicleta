@@ -1,6 +1,6 @@
 # Introdução
 
-<span style='font-size: 30px'>Nome do App</span>
+<span style='font-size: 30px'>Nossa Bike</span>
 
 Muitas são as dificuldades da mobilidade urbana no Brasil, o transporte público não atende às necessidades da população, o uso massivo do transporte privado causa congestionamento no trânsito, além de serem os automóveis os principais emissores de gases poluentes que contribuem para o aquecimento global e o efeito estufa.
 
