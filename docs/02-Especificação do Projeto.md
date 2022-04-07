@@ -86,32 +86,36 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 
 ### Análise da Situação Atual
 
-Apresente aqui os problemas existentes que viabilizam sua proposta. Apresente o modelo do sistema como ele funciona hoje. Caso sua proposta seja inovadora e não existam processos claramente definidos, apresente como as tarefas que o seu sistema pretende implementar são executadas atualmente, mesmo que não se utilize tecnologia computacional. 
+Não existe no mercado uma proposta de negócio que permita que uma pessoa física disponibilize sua bicicleta para aluguel. Atualmente, uma pessoa que deseje pagar pelo uso temporário de uma bike, precisa recorrer a serviços oferecidos através de parcerias entre entidades comerciais e órgãos estatais (Itaú, Estado de São Paulo). Tais serviços são limitados a áreas reduzidas, acessíveis a um público pequeno, e priorizam o uso para o lazer. 
 
 ### Descrição Geral da Proposta
 
-Apresente aqui uma descrição da sua proposta abordando seus limites e suas ligações com as estratégias e objetivos do negócio. Apresente aqui as oportunidades de melhorias.
+Nossa proposta adiciona a figura do parceiro, que é uma pessoa física que busca disponibiliza sua bike quando esta não está sendo utilizada. Para comparar o processo _as is_ e o processo _to be_, utilizamos como exemplo o serviço de aluguel de bikes oferecido pelo Itaú. De forma sucinta, modelamos o fluxo do processo nas duas opções.  
 
-### Processo 1 – NOME DO PROCESSO
+### Processo Atual – ALUGUEL DE BICICLETAS DO ITAÜ
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 1. Em seguida, apresente o modelo do processo 1, descrito no padrão BPMN. 
+Neste modelo, a interação se dá entre o Itaú e o usuário, mediada pelo aplicativo.
 
-![Processo 1](img/02-bpmn-proc1.png)
+![Modelo Itaú](https://user-images.githubusercontent.com/82478867/160733760-f0fff8f2-03b5-4dd6-8248-c1d9e526370c.png)
 
-### Processo 2 – NOME DO PROCESSO
+### Processo Proposto – NOSSA BIKE
 
-Apresente aqui o nome e as oportunidades de melhorias para o processo 2. Em seguida, apresente o modelo do processo 2, descrito no padrão BPMN.
+Nossa proposta agrega uma terceira entidade principal ao processo, que fornece a bike. 
 
-![Processo 2](img/02-bpmn-proc2.png)
+![Modelo Nossa Bike](https://user-images.githubusercontent.com/82478867/161400537-f406e167-78de-460b-ae3d-76e8dcdb3506.png)
+
 
 ## Indicadores de Desempenho
 
-Apresente aqui os principais indicadores de desempenho e algumas metas para o processo. Atenção: as informações necessárias para gerar os indicadores devem estar contempladas no diagrama de classe. Colocar no mínimo 5 indicadores. 
+| # | Indicador | Objetivos | Descrição | Cálculo | Fonte | Perspectiva|  
+|---|-----------|-----------|-----------|---------|-------|------------|
+| 1 | Downloads | Acompanhar o crescimento do aplicativo | Avaliar a taxa de downloads realizados na loja| nº de downloads / período | Playstore | Crescimento e Aprendizado |
+| 2 | Usuários Cadastrados | Mensurar a quantidade de cadastros efetuados no aplicativo | Avaliar a taxa de cadastros realizados no aplicativo após o download | nº de cadastros / período | Banco de Dados| Crescimento e Aprendizado |
+| 3 | Engajamento | Avaliar o sucesso do aplicativo | O engajamento medirá o tempo em que as pessoas permanecem utilizando o aplicativo e quantas vezes ele é aberto | Realizado pela ferramenta Google Mobile App Analytics | Google Mobile App Analytics | Crescimento e Aprendizado |
+| 4 | Conversão | Mensurar a quantidade de locações efetivas | Avaliar a taxa de locações realizadas via aplicativo | nº de locações / período | Playstore | Clientes | 
+| 5 | Desinstalação | Compreender as razões que levaram à desinstalação | Avaliar o que pode ser mudado para prevenir outras desinstalações do aplicativo | nº de desinstalações / período | Playstore | Processos Internos | 
 
-Usar o seguinte modelo: 
 
-![Indicadores de Desempenho](img/02-indic-desemp.png)
-Obs.: todas as informações para gerar os indicadores devem estar no diagrama de classe a ser apresentado a posteriori. 
 
 ## Requisitos
 
@@ -176,16 +180,11 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Diagrama de Casos de Uso
 
-O diagrama de casos de uso é o próximo passo após a elicitação de requisitos, que utiliza um modelo gráfico e uma tabela com as descrições sucintas dos casos de uso e dos atores. Ele contempla a fronteira do sistema e o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
+Diagrama que contempla o detalhamento dos requisitos funcionais com a indicação dos atores, casos de uso e seus relacionamentos. 
 
-As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de Casos de Uso”.
-
-> **Links Úteis**:
-> - [Criando Casos de Uso](https://www.ibm.com/docs/pt-br/elm/6.0?topic=requirements-creating-use-cases)
-> - [Como Criar Diagrama de Caso de Uso: Tutorial Passo a Passo](https://gitmind.com/pt/fazer-diagrama-de-caso-uso.html/)
-> - [Lucidchart](https://www.lucidchart.com/)
-> - [Astah](https://astah.net/)
-> - [Diagrams](https://app.diagrams.net/)
+<p align="center">
+    <img src="img/diagramas/diagrama-casos-de-uso.drawio.png" width="700">
+</p>
 
 <br><br>
 
@@ -196,7 +195,7 @@ As referências abaixo irão auxiliá-lo na geração do artefato “Diagrama de
 | Gerenciar Bicicletas | <p> Permite que o gestor cadastre, altere ou delete uma bicicleta. |
 | Gerenciar Usuários | <p> Permite que o gestor cadastre, altere ou delete um usuário.|
 | Cadastrar Usuário | <p> Permite ao usuário se cadastrar e autenticar no sistema.|
-| Visualizar bicicletas | <p> Permite que o usuário Doador visualize bicicletas.|
+| Visualizar bicicletas | <p> Permite que o usuário visualize bicicletas.|
 | Buscar bicicletas |<p> Permite que o usuário busque bicicletas por localização, modelo, <br> avaliação ou cor.|
 | Reservar bicicleta | <p> Permite ao usuário reservar uma bicicleta por um período específico.|
 | Avaliar bicicleta | <p> Permite ao usuário avalie a bicicleta com uma nota de 1 a 5.|
@@ -236,20 +235,18 @@ De acordo com o PMBoK v6 as dez áreas que constituem os pilares para gerenciar 
 
 Com diagramas bem organizados que permitem gerenciar o tempo nos projetos, o gerente de projetos agenda e coordena tarefas dentro de um projeto para estimar o tempo necessário de conclusão.
 
-![Diagrama de rede simplificado notação francesa (método francês)](img/02-diagrama-rede-simplificado.png)
-
 O gráfico de Gantt ou diagrama de Gantt também é uma ferramenta visual utilizada para controlar e gerenciar o cronograma de atividades de um projeto. Com ele, é possível listar tudo que precisa ser feito para colocar o projeto em prática, dividir em atividades e estimar o tempo necessário para executá-las.
 
-![Gráfico de Gantt](img/02-grafico-gantt.png)
+![Diagrama de Gantt)](img/gerenciamento-de-tempo.png)
 
 ## Gerenciamento de Equipe
 
 O gerenciamento adequado de tarefas contribuirá para que o projeto alcance altos níveis de produtividade. Por isso, é fundamental que ocorra a gestão de tarefas e de pessoas, de modo que os times envolvidos no projeto possam ser facilmente gerenciados. 
 
-![Simple Project Timeline](img/02-project-timeline.png)
+![Simple Project Timeline](img/gerenciamento-de-equipe.png)
 
 ## Gestão de Orçamento
 
 O processo de determinar o orçamento do projeto é uma tarefa que depende, além dos produtos (saídas) dos processos anteriores do gerenciamento de custos, também de produtos oferecidos por outros processos de gerenciamento, como o escopo e o tempo.
 
-![Orçamento](img/02-orcamento.png)
+![Orçamento](img/gestao-de-orcamento.png)
