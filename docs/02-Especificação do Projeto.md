@@ -157,7 +157,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RNF-004| O formulário tem que ser de fácil preenchimento permitindo autocompletar| MÉDIO | 
 |RNF-005| As requisições devem ser leves para funcionar bem em áreas mais remotas | BAIXO | 
 |RNF-006| Deve exigir o mínimo de RAM possível para funcionar em aparelhos bem simples |  BAIXO | 
-|RNF-007| O sistema deve ser implementado na linguagem C# utilizando banco de dados MySQL | ALTO |
+|RNF-007| O sistema deve ser implementado com React-Native | ALTO |
 
 <br><br>
 
