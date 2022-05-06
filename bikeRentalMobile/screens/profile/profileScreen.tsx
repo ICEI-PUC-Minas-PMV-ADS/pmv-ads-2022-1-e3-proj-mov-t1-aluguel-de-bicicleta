@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from '../../common/pageHeader';
+import { FAB } from 'react-native-paper';
+import { StyleSheet } from 'react-native';
+
 
 function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
 
@@ -18,18 +21,22 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
   }, [loggedUser]);
 
   return (
-
     <StyledSelectedUser>
 
-      <PageHeader pageName="Meu Perfil" navigation={navigation} />
+      <PageHeader pageName="My Profile" navigation={navigation} />
 
       <StyledUserName>{user.firstName} {user.lastName}</StyledUserName>
 
       <StyledStrong>email</StyledStrong>
       <StyledUserProp>{user.email}</StyledUserProp>
 
-      <StyledStrong>Gestor</StyledStrong>
-      <StyledUserProp>{user.isManager ? 'Sim' : 'Não'}</StyledUserProp>
+      <StyledStrong>manager</StyledStrong>
+      <StyledUserProp>{user.isManager ? 'Yes' : 'No'}</StyledUserProp>
+
+      <FAB
+        style = {styles.fab}
+        icon = "pencil"
+      />
 
     </StyledSelectedUser>
   );
@@ -42,6 +49,7 @@ const StyledSelectedUser = styled.View`
   display: flex;
   flex-direction: column;
   position: relative;
+  flex: 1;
 `;
 
 const StyledUserName = styled.Text`
@@ -61,4 +69,14 @@ const StyledUserProp = styled.Text`
   color: ${Colors.dark.black};
   margin-bottom: 25px;
 `;
+
+const styles = StyleSheet.create({
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 10,
+    bottom: 10,
+    backgroundColor: `${Colors.dark.yellow}`,
+  }
+});
 

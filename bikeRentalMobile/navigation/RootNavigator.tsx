@@ -4,7 +4,7 @@ import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTagNavigator";
-import Perfil from "../screens/users/perfilScreen";
+import Perfil from "../screens/profile/profileScreen";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
