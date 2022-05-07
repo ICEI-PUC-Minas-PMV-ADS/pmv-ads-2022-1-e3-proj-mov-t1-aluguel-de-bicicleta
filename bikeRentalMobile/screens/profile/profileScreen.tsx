@@ -20,6 +20,10 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
     setUser(loggedUser?.result);
   }, [loggedUser]);
 
+  const handleGoToEditProfile = () => {
+    navigation.navigate("EditProfile");
+  };
+
   return (
     <StyledSelectedUser>
 
@@ -36,6 +40,7 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
       <FAB
         style = {styles.fab}
         icon = "pencil"
+        onPress= {handleGoToEditProfile}
       />
 
     </StyledSelectedUser>
