@@ -65,8 +65,8 @@ function OptionsList(): JSX.Element {
   }
 
   let listData: ItemProps[] = [
-    { text: "My Profile", to: "profile", icon: "person" },
-    { text: "Bikes", to: "bikes", icon: "pedal-bike" },
+    { text: "My Profile ", to: "Perfil", icon: "person" },
+    { text: "Bikes ", to: "bikes", icon: "pedal-bike" },
   ];
 
   if (!userIsLogged) {
@@ -79,7 +79,7 @@ function OptionsList(): JSX.Element {
     );
   } else {
     listData.push({
-      text: "My reservations",
+      text: "My reservations ",
       to: "reservations",
       icon: "calendar-today",
     });
@@ -91,7 +91,7 @@ function OptionsList(): JSX.Element {
       ))}
       {user && (
         <OptionListButton onPress={() => setShowDialog(true)}>
-          <ButtonText>Logout</ButtonText>
+          <ButtonText>Logout </ButtonText>
           <MaterialIcons size={30} name="logout" color="white" />
         </OptionListButton>
       )}
