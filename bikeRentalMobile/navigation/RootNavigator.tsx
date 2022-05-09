@@ -6,6 +6,8 @@ import EditProfileScreen from "../screens/profile/editProfileScreen";
 import ProfileScreen from "../screens/profile/profileScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTagNavigator";
+import Perfil from "../screens/profile/profileScreen";
+
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
  * https://reactnavigation.org/docs/modal
@@ -39,6 +41,11 @@ function RootNavigator() {
         name="NotFound"
         component={NotFoundScreen}
         options={{ title: "Oops!" }}
+      />
+      <Stack.Screen
+        name="Perfil"
+        component={Perfil}
+        options={{ headerShown: false }}
       />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
