@@ -73,9 +73,9 @@ function OptionsList(): JSX.Element {
     listData = [{ text: "Login", to: "Login", icon: "login" }];
   } else if (userIsManager) {
     listData.push(
-      { text: "Users", to: "users", icon: "users" },
-      { text: "Add new Bike", to: "newBike", icon: "plus" },
-      { text: "Add new User", to: "newUser", icon: "plus" }
+      { text: "Users", to: "users", icon: "person-search" },
+      { text: "Add new Bike", to: "newBike", icon: "add" },
+      { text: "Add new User", to: "newUser", icon: "add" }
     );
   } else {
     listData.push({
