@@ -6,72 +6,72 @@ import { StyledInput, StyledLabel } from "../../common/styled";
 import styled from "styled-components/native";
 import Colors from "../../constants/Colors";
 import { useSelector } from "react-redux";
-import { getLoggedInUser } from "../../services/loggedInServices";
 
 import { RadioButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import PageHeader from "../../common/pageHeader";
 
+//TODO:
+  /* precisa descriptografar a senha pra nao ficar
+  ** gigante e o usuario achar estranho o tamanho de caracteres
+  */
 export default function EditProfileScreen() {
-  const selectedUser = {
-    firstName: undefined,
-    lastName: undefined,
-    email: undefined,
-    isManager: false,
-  };
-
-  const [firstName, setFirstName] = useState(selectedUser?.firstName || ``);
-  const [lastName, setLastName] = useState(selectedUser?.lastName || ``);
-  const [email, setEmail] = useState(selectedUser?.email || ``);
-  const [isManager, setIsManager] = useState(selectedUser?.isManager || false);
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-
   const navigator = useNavigation();
 
+  //Using Redux for to recovery user
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
 
-  const recuperaDadosUsuario = async () => {
-    const data = await getLoggedInUser();
-    console.log(`${data.result}`);
+  useEffect(()=> {
+    setUser(loggedUser?.result);
+  }, [loggedUser]);
+  
+  const [user, setUser] = useState(loggedUser?.result);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isManager, setIsManager] = useState(loggedUser?.result?.isManager || false);
+
+  //TODO: falta chamar o redux para atualizar os dados do usuario logado.
+  const handleUpdateUser = () => {
+    const userUpdated = { ...user, isManager: isManager };
+    console.debug(`Data updated user ${JSON.stringify(userUpdated)}`);
+    return navigator.goBack();
   };
 
-  const handleSaveDataUser = () => {
-    //TODO: save
-  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+      <PageHeader pageName="Edit Profile" navigation={navigator} />
+
       <View style={{ flex: 1 }}>
         <View style={styles.input}>
           <StyledLabel>First Name</StyledLabel>
           <StyledInput
             textContentType="name"
-            value={firstName}
-            onChangeText={(value) => setFirstName(value)}
+            value={user?.firstName}
+            onChangeText={(value) => setUser({...user, firstName: value})}
           />
 
           <StyledLabel>Last Name</StyledLabel>
           <StyledInput
             textContentType="name"
-            value={lastName}
-            onChangeText={(value) => setLastName(value)}
+            value={user?.lastName}
+            onChangeText={(value) => setUser({...user, lastName: value})}
           />
 
           <StyledLabel>Email</StyledLabel>
           <StyledInput
             textContentType="emailAddress"
-            value={email}
-            onChangeText={(value) => setEmail(value)}
+            value={user?.email}
+            onChangeText={(value) => setUser({...user, email: value})}
           />
 
           <StyledLabel>Password</StyledLabel>
           <StyledInput
             textContentType="password"
             secureTextEntry={!showPassword}
-            value={password}
-            onChangeText={(value) => setPassword(value)}
+            value={user?.password}
+            onChangeText={(value) => setUser({...user, password: value})}
           />
 
           <View>
@@ -96,7 +96,7 @@ export default function EditProfileScreen() {
         </View>
 
         <View style={styles.containerButtons}>
-          <OptionListButton onPress={() => handleSaveDataUser}>
+          <OptionListButton onPress={handleUpdateUser}>
             <ButtonText>Save</ButtonText>
           </OptionListButton>
           <OptionListButton
