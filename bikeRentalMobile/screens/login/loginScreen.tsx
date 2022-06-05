@@ -55,7 +55,7 @@ function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
         ) : null}
         <StyledSignupLink
           style={{ color: Colors.light["dark-blue"], fontSize: 15 }}
-          onPress={() => navigation.replace(ROUTES.SIGNUP)}
+          onPress={() => navigation.navigate('Signup')}
         >
           Need to create an account? Sign up here!
         </StyledSignupLink>
