@@ -54,7 +54,8 @@ Exibe o menu de navegação através do qual é possível acessar as diversas fu
 
 ## Meu Perfil
 
-A página Meu Perfil apresenta dados do usuário logado como Nome e Email e informa se o perfil é do tipo 'Manager', além disso, exibe um botão que redireciona para a tela Editar Perfil.
+A página Meu Perfil apresenta dados do usuário logado como Nome e Email e informa se o perfil é do tipo 'Manager', além disso são exibidos uma lista
+das reservas ativas do usuário e um botão que redireciona para a tela Editar Perfil.
 <br>
 
 <p>
@@ -70,6 +71,5 @@ A página Meu Perfil apresenta dados do usuário logado como Nome e Email e info
 
 ### Sobre a Implementação
 Responsável: Amanda Salles Monteiro </br>
-Continuidade: Implementação da lista de reservas do usuário que deve ser exibida nesta tela
 
 <br><br>

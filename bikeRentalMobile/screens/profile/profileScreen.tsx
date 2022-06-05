@@ -5,9 +5,10 @@ import { useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from '../../common/pageHeader';
-import { FAB } from 'react-native-paper';
-import { StyleSheet } from 'react-native';
-
+import { FAB, List, Divider } from 'react-native-paper';
+import { StyleSheet, FlatList, ListRenderItem } from 'react-native';
+import { fetchUserReservations } from "../../services/api";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
 
@@ -15,10 +16,45 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
     (state: { loggedUser: UserObject }) => state
   );
   const [user, setUser] = useState(loggedUser?.result);
+  const [userReservations, setUserReservations] = useState<IReservation[]>([]);
 
   useEffect(() => {
-    setUser(loggedUser?.result);
+    setUser(user);
+
+    if (user && user._id) {
+      fetchUserReservations(user._id).then((response) => {
+        console.log(response.data);
+        let data = response.data.filter(
+            x => new Date().getDate() >= new Date(x.startTimestamp).getDate() 
+            && new Date().getDate() <= new Date(x.endTimestamp).getDate()
+        );
+        setUserReservations(data);
+      });
+    }
+
   }, [loggedUser]);
+
+  const renderItem: ListRenderItem<IReservation> = ({ item }) => (
+    <>
+      <List.Item
+        title={item.bikeInfo.model}
+        descriptionNumberOfLines ={3}
+        description={
+        `Location: ${item.bikeInfo.location}\n` + 
+        `From: ${new Date(item.startTimestamp).toLocaleString('pt-br')}\n` + 
+        `To: ${new Date(item.endTimestamp).toLocaleString('pt-br')}`
+        }
+        left={(props) => (
+          <List.Icon
+            {...props}
+            color="#f4bd5a"
+            icon="bike"
+          />
+        )}
+      />
+    <Divider />
+    </>
+  );
 
   const handleGoToEditProfile = () => {
     navigation.navigate("EditProfile");
@@ -37,10 +73,21 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
       <StyledStrong>manager</StyledStrong>
       <StyledUserProp>{user.isManager ? 'Yes' : 'No'}</StyledUserProp>
 
+      <BookingsTitleContainer>
+        <MaterialCommunityIcons name="calendar-check" size={18} color="#457B9D" />
+        <StyledStrong> Current Bookings</StyledStrong>
+      </BookingsTitleContainer>
+
+      <FlatList
+        data={userReservations}
+        renderItem={renderItem}
+        keyExtractor={(reservation) => reservation._id}
+      />
+
       <FAB
-        style = {styles.fab}
-        icon = "pencil"
-        onPress= {handleGoToEditProfile}
+        style={styles.fab}
+        icon="pencil"
+        onPress={handleGoToEditProfile}
       />
 
     </StyledSelectedUser>
@@ -73,6 +120,16 @@ const StyledStrong = styled.Text`
 const StyledUserProp = styled.Text`
   color: ${Colors.dark.black};
   margin-bottom: 25px;
+`;
+
+const BookingsTitleContainer = styled.View`
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: 20px;
 `;
 
 const styles = StyleSheet.create({
