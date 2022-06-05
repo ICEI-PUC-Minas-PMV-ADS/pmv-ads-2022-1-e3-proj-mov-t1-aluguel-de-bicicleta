@@ -18,10 +18,10 @@ import { RootStackScreenProps } from "../../types";
 import Logo from "../img/logo";
 
 function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState(`12345678`);
-  // const [email, setEmail] = useState(``);
-  // const [password, setPassword] = useState(``);
+//  const [email, setEmail] = useState("test@gmail.com");
+//  const [password, setPassword] = useState(`12345678`);
+  const [email, setEmail] = useState(``);
+  const [password, setPassword] = useState(``);
   const [userNotFound, setUserNotFound] = useState(false);
   const dispatch = useDispatch();
   function handleLogin(): void {
