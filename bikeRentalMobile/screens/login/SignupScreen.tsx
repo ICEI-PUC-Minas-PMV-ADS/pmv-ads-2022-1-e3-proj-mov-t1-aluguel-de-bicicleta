@@ -123,6 +123,7 @@ const StyledLoginLink = styled.Text.attrs(() => ({
   height: 100%;
 `;
 
+
 const StyledSignUp = styled.KeyboardAvoidingView`
   padding: ${defaultPadding}px;
   display: flex;
