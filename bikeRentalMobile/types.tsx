@@ -24,6 +24,7 @@ export type RootStackParamList = {
   Perfil: undefined;
   Profile: undefined;
   EditProfile: undefined;
+  AddBike: undefined;
   Signup: undefined;
 };
 
