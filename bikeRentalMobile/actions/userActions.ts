@@ -41,7 +41,7 @@ export const loginUser =
 export const createUser =
   (
     params: ISignupParams,
-    navigation: NativeStackNavigationProp<RootStackParamList, "Login">,
+    navigation: NativeStackNavigationProp<RootStackParamList, "Signup">,
     login?: boolean
   ) =>
   async (dispatch: Dispatch): Promise<void> => {
