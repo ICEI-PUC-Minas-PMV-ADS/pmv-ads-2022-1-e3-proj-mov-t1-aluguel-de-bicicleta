@@ -102,7 +102,7 @@ Os testes funcionais a serem realizados no aplicativo são descritos a seguir.
 
 <br>
 
-|Caso de teste   | CT-011 - Sistema deve permitir que gestores vejam lista de usuários
+|Caso de teste   | CT-011 - Sistema deve permitir que gestores vejam lista de bicicletas
 |------|-----------------------------------------|
 |Requisitos associados | RF-017 - Permitir que o gestor veja uma lista de bicicletas
 |Objetivo do teste | Verificar se o sistema permite que o gestor vizualise lista de usuários
