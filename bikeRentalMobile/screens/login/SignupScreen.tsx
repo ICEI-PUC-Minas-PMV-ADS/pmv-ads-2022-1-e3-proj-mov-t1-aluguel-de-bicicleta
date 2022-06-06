@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { createUser } from "../../actions/userActions";
 import { defaultPadding } from "../../constants/Layout";
 
-
 function SignupScreen({ navigation }): JSX.Element {
   const isFlowLogin = false;
 
