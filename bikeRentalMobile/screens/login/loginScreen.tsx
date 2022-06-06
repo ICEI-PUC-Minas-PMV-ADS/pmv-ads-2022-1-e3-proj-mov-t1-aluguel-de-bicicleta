@@ -18,10 +18,10 @@ import { RootStackScreenProps } from "../../types";
 import Logo from "../img/logo";
 
 function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
-  const [email, setEmail] = useState("test@gmail.com");
-  const [password, setPassword] = useState(`12345678`);
-  // const [email, setEmail] = useState(``);
-  // const [password, setPassword] = useState(``);
+//  const [email, setEmail] = useState("test@gmail.com");
+//  const [password, setPassword] = useState(`12345678`);
+  const [email, setEmail] = useState(``);
+  const [password, setPassword] = useState(``);
   const [userNotFound, setUserNotFound] = useState(false);
   const dispatch = useDispatch();
   function handleLogin(): void {
@@ -55,7 +55,7 @@ function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
         ) : null}
         <StyledSignupLink
           style={{ color: Colors.light["dark-blue"], fontSize: 15 }}
-          onPress={() => navigation.replace(ROUTES.SIGNUP)}
+          onPress={() => navigation.navigate('Signup')}
         >
           Need to create an account? Sign up here!
         </StyledSignupLink>
