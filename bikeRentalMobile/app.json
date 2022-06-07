@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.entrega_3"
+      "package": "com.entrega_4"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

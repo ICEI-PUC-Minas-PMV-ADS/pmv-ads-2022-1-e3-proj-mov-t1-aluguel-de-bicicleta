@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import PageHeader from "../../common/pageHeader";
 import { StyledLabel, StyledInput, StyledForm, SubmitPressable, SubmitPressableText } from "../../common/styled";
 import Colors from "../../constants/Colors";
@@ -24,7 +24,7 @@ function SignupScreen({ navigation }): JSX.Element {
   
   return (
    
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
 
       <StyledSignUp behavior="padding">
         <PageHeader pageName="SignUp" navigation={navigation} />
@@ -93,7 +93,7 @@ function SignupScreen({ navigation }): JSX.Element {
           Already have an account? Login here!
         </StyledLoginLink>
       </StyledSignUp>
-    </View>
+    </SafeAreaView>
   );
 }
 
