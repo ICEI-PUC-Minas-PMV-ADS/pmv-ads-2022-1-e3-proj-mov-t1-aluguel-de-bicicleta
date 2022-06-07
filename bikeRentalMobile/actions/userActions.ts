@@ -47,6 +47,7 @@ export const createUser =
   async (dispatch: Dispatch): Promise<void> => {
     try {
       const { data } = await api.createUser(params);
+      console.log(data)
       dispatch({ type: USERS_REDUCER_OPTIONS.CREATE, payload: [data.result] });
       if (login) {
         dispatch({
@@ -60,10 +61,12 @@ export const createUser =
           "success"
         );
       } else {
-        navigation.replace(ROUTES.USERS);
+        navigation.replace("Root");
         setGlobalNotification(dispatch, `User created sucessfuly`, "success");
       }
     } catch (error) {
+        console.log("inside catch", error)
+
       handleErrors(dispatch, error as AxiosError);
     }
   };
