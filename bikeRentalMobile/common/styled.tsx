@@ -21,9 +21,11 @@ export const StyledInput = styled.TextInput`
   font-size: 16px;
   margin-top: 8px;
   border: 1px solid ${Colors.light.gray};
+  background-color: rgb(222, 222, 222);
   padding: 8px;
   height: 40px;
   width: 100%;
+  border-radius: 6px;
 `;
 //   // TODO: FIX INPUT STATES
 //   &:focus-visible,

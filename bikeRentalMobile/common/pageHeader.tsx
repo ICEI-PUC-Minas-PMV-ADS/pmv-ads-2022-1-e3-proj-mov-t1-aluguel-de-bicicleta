@@ -16,7 +16,7 @@ function PageHeader({ pageName, navigation }: IProps): JSX.Element {
       <StyledBackArrow onPress={() => navigation.goBack()}>
         <AntDesign
           size={40}
-          style={{ marginBottom: -3 }}
+          style={{ marginBottom: -3, paddingLeft: 5 }}
           name="arrowleft"
           color={Colors.light.red}
         />

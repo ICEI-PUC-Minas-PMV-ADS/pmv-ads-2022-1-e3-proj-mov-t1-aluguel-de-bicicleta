@@ -9,23 +9,36 @@ import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
 import { createReservation } from "../../services/api";
-import { Button, Paragraph, Dialog, Portal, Provider, TextInput } from 'react-native-paper';
+import {
+  Button,
+  Paragraph,
+  Dialog,
+  Portal,
+  Provider,
+  TextInput,
+} from "react-native-paper";
 import Alert from "../../components/Alert";
 import { now } from "lodash";
-//import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
+import { black } from "react-native-paper/lib/typescript/styles/colors";
 
-function AddReservations({ navigation }: RootStackScreenProps<"AddReservations">): JSX.Element {
+function AddReservations({
+  navigation,
+}: RootStackScreenProps<"AddReservations">): JSX.Element {
   const dispatch = useDispatch(); // hook for to call action
 
-  const [newReservation, setNewReservation] = useState<PostReservation>({} as PostReservation);
+  const [newReservation, setNewReservation] = useState<PostReservation>(
+    {} as PostReservation
+  );
   const [show, setShow] = useState(false);
-  const [data, setData] = useState(moment(new Date()).format('DD/MM/YYYY'));
+  const [data, setData] = useState(moment(new Date()).format("DD/MM/YYYY"));
 
   const existEmptiesFields = (): boolean =>
-    (newReservation && !newReservation.bikeId) || !newReservation.startTimestamp || !newReservation.endTimestamp;
+    (newReservation && !newReservation.bikeId) ||
+    !newReservation.startTimestamp ||
+    !newReservation.endTimestamp;
 
-    
   const onSaveReservation = () => {
     if (existEmptiesFields()) {
       console.log(
@@ -40,13 +53,16 @@ function AddReservations({ navigation }: RootStackScreenProps<"AddReservations">
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <PageHeader pageName="New Reservation" navigation={navigation} />
-
-      <View style={{ flex: 1 }}>
-        <View style={styles.input}>
-        
-          <StyledLabel>Bike ID</StyledLabel>
+      <PageHeader
+        pageName="New Reservation"
+        navigation={navigation}
+        style={styles.pageHeaderX}
+      />
+      <View style={styles.inputBox}>
+        <View style={styles.containerInputs}>
+          <StyledLabel>Bike ID:</StyledLabel>
           <StyledInput
+            style={styles.sombraChique}
             textContentType="name"
             value={newReservation.bikeId}
             onChangeText={(value) =>
@@ -54,21 +70,46 @@ function AddReservations({ navigation }: RootStackScreenProps<"AddReservations">
             }
           />
         </View>
-
-        <StyledLabel>From</StyledLabel>
+        <View style={styles.containerInputs}>
+          <StyledLabel>To:</StyledLabel>
           <StyledInput
-            mode={'date'}
+            style={styles.sombraChique}
+            mode={"date"}
             value={16546404247}
-            onPressIn={(value) => setNewReservation({ ...newReservation, startTimestamp: value})}
+            onPressIn={(value) =>
+              setNewReservation({ ...newReservation, startTimestamp: value })
+            }
           />
-        <StyledLabel>To</StyledLabel>
-        <StyledInput
-            mode={'date'}
+        </View>
+        <View style={styles.containerInputs}>
+          <StyledLabel>From:</StyledLabel>
+          <StyledInput
+            style={styles.sombraChique}
+            mode={"date"}
             value={1654640424744}
-            onPressIn={(value) => setNewReservation({ ...newReservation, endTimestamp: value})}
-        />
-        
-        {/* <DateTimePicker
+            onPressIn={(value) =>
+              setNewReservation({ ...newReservation, endTimestamp: value })
+            }
+          />
+        </View>
+        <View style={styles.containerButtons}>
+          <OptionListButton
+            onPress={onSaveReservation}
+            style={{ elevation: 10 }}
+          >
+            <ButtonText>Save</ButtonText>
+            <MaterialIcons size={25} name="save" color="white" />
+          </OptionListButton>
+          <OptionListButton
+            style={{ backgroundColor: "gray", elevation: 10 }}
+            onPress={() => navigation.goBack()}
+          >
+            <ButtonText>Cancel</ButtonText>
+          </OptionListButton>
+        </View>
+      </View>
+
+      {/* <DateTimePicker
             testID="dateTimePicker"
             value={newReservation.startTimestamp}
             mode={'date'}
@@ -83,7 +124,7 @@ function AddReservations({ navigation }: RootStackScreenProps<"AddReservations">
             }}
           /> */}
 
-        {/* <TouchableOpacity onPress={() => setShow(true)}>
+      {/* <TouchableOpacity onPress={() => setShow(true)}>
           <Input
             label="Data"
             value={data}
@@ -91,21 +132,6 @@ function AddReservations({ navigation }: RootStackScreenProps<"AddReservations">
             editable={false}
           />
         </TouchableOpacity> */}
-
-        <View style={styles.containerButtons}>
-          <OptionListButton onPress={onSaveReservation}>
-            <ButtonText>Save</ButtonText>
-            <MaterialIcons size={30} name="save" color="white" />
-          </OptionListButton>
-
-          <OptionListButton
-            style={{ backgroundColor: "gray" }}
-            onPress={() => navigation.goBack()}
-          >
-            <ButtonText>Cancel</ButtonText>
-          </OptionListButton>
-        </View>
-      </View>
     </SafeAreaView>
   );
 }
@@ -113,16 +139,33 @@ function AddReservations({ navigation }: RootStackScreenProps<"AddReservations">
 export default AddReservations;
 
 const styles = StyleSheet.create({
-  input: {
-    margin: 8,
+  pageHeaderX: {
+    padding: 10,
   },
   containerButtons: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  containerInputs: {
+    flex: 0.25,
+    borderRadius: 10,
+  },
+  inputBox: {
+    flex: 1,
+    borderRadius: 20,
+    margin: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 60,
+    justifyContent: "center",
+  },
+  sombraChique: {
+    elevation: 10,
+  },
 });
 
 const OptionListButton = styled.Pressable`
+  flex: 1;
   width: 175px;
   padding: 10px;
   background: ${Colors.light.yellow};
@@ -131,11 +174,11 @@ const OptionListButton = styled.Pressable`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 8px;
+  margin: 9px;
 `;
 
 const ButtonText = styled.Text`
   font-size: 15px;
   color: white;
+  padding-right: 10px;
 `;
-
