@@ -7,6 +7,7 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 
 import HomeScreen from "../screens/home/homeScreen";
+import AddReservations from "../screens/reservations/reservation";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import { RootTabParamList } from "../types";
 import { HomeTabBarIcon, TabTwoBarIcon } from "./BottomTabBarIcons";
@@ -37,8 +38,8 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="AddReservations"
+        component={AddReservations}
         options={() => ({
           title: "Tab Two",
           tabBarIcon: TabTwoBarIcon,

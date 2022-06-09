@@ -66,7 +66,7 @@ function OptionsList(): JSX.Element {
 
   let listData: ItemProps[] = [
     { text: "My Profile ", to: "Perfil", icon: "person" },
-    { text: "Bikes ", to: "bikes", icon: "pedal-bike" },
+    { text: "Bikes ", to: "AddBike", icon: "pedal-bike" },
   ];
 
   if (!userIsLogged) {
@@ -80,7 +80,7 @@ function OptionsList(): JSX.Element {
   } else {
     listData.push({
       text: "My reservations ",
-      to: "reservations",
+      to: "AddReservations",
       icon: "calendar-today",
     });
   }
