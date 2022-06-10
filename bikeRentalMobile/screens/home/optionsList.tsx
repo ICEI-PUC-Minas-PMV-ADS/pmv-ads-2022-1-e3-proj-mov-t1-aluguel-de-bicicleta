@@ -92,7 +92,7 @@ function OptionsList(): JSX.Element {
       {user && (
         <OptionListButton onPress={() => setShowDialog(true)}>
           <ButtonText>Logout </ButtonText>
-          <MaterialIcons size={30} name="logout" color="white" />
+          <MaterialIcons size={20} name="logout" color="white" />
         </OptionListButton>
       )}
       {showDialog ? (
@@ -112,7 +112,7 @@ function OptionListItem({ item }: { item: ItemProps }) {
   return (
     <OptionListButton onPress={() => navigation.navigate(item.to)}>
       <ButtonText>{item.text}</ButtonText>
-      <MaterialIcons size={30} name={item.icon} color="white" />
+      <MaterialIcons size={20} name={item.icon} color="white" />
     </OptionListButton>
   );
 }
