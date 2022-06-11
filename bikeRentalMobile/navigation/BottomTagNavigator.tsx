@@ -7,7 +7,8 @@ import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
 
 import HomeScreen from "../screens/home/homeScreen";
-import AddReservations from "../screens/reservations/reservation";
+import AddReservation from "../screens/reservations/addReservation";
+import ReservationList from "../screens/reservations/reservationList";
 import TabTwoScreen from "../screens/TabTwoScreen";
 import { RootTabParamList } from "../types";
 import { HomeTabBarIcon, TabTwoBarIcon } from "./BottomTabBarIcons";
@@ -38,10 +39,10 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="AddReservations"
-        component={AddReservations}
+        name="ReservationList"
+        component={ReservationList}
         options={() => ({
-          title: "Tab Two",
+          title: "Reservations",
           tabBarIcon: TabTwoBarIcon,
           headerRight: TabTwoHeader,
         })}

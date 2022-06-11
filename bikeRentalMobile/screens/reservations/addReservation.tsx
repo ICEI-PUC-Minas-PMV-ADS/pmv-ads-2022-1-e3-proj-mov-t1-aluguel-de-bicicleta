@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import PageHeader from "../../common/pageHeader";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { ListRenderItem, StyleSheet, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyledInput, StyledLabel } from "../../common/styled";
 import styled from "styled-components/native";
@@ -16,16 +16,17 @@ import {
   Portal,
   Provider,
   TextInput,
-} from "react-native-paper";
-import Alert from "../../components/Alert";
-import { now } from "lodash";
+  List,
+} 
+from "react-native-paper";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
 import { black } from "react-native-paper/lib/typescript/styles/colors";
+import { getBikes } from "../../actions/bikeActions";
 
-function AddReservations({
+function AddReservation({
   navigation,
-}: RootStackScreenProps<"AddReservations">): JSX.Element {
+}: RootStackScreenProps<"AddReservation">): JSX.Element {
   const dispatch = useDispatch(); // hook for to call action
 
   const [newReservation, setNewReservation] = useState<PostReservation>(
@@ -33,6 +34,30 @@ function AddReservations({
   );
   const [show, setShow] = useState(false);
   const [data, setData] = useState(moment(new Date()).format("DD/MM/YYYY"));
+  const [allBikes, setAllBikes] =useState<IBike[]>([]);
+ 
+
+  useEffect(() => {        )
+      
+  }
+
+  const renderBikes: ListRenderItem<IBike> = ({ item }) => (
+    <>
+      <List.Item
+        style={styles.listContainer}
+        title={`${item.model} - ${item.color.toLocaleUpperCase}`}
+        descriptionNumberOfLines={3}
+        description={
+          `Location: ${item.location}\n` +
+          `Bike Available: ${item.isAvailable? "Yes":"No"}\n` 
+        }
+        onPress={() =>
+          setNewReservation({ ...newReservation, bikeId: item._id })
+        }
+        left={(props: JSX.IntrinsicAttributes) => <List.Icon {...props} color="#f4bd5a" icon="bike" />}
+      />
+    </>
+  );
 
   const existEmptiesFields = (): boolean =>
     (newReservation && !newReservation.bikeId) ||
@@ -58,8 +83,13 @@ function AddReservations({
         navigation={navigation}
         style={styles.pageHeaderX}
       />
+      <FlatList
+        data={allBikes}
+        renderItem={renderBikes}
+        keyExtractor={(bike: { _id: any; }) => bike._id}
+      />
       <View style={styles.inputBox}>
-        <View style={styles.containerInputs}>
+        {/* <View style={styles.containerInputs}>
           <StyledLabel>Bike ID:</StyledLabel>
           <StyledInput
             style={styles.sombraChique}
@@ -69,7 +99,7 @@ function AddReservations({
               setNewReservation({ ...newReservation, bikeId: value })
             }
           />
-        </View>
+        </View> */}
         <View style={styles.containerInputs}>
           <StyledLabel>To:</StyledLabel>
           <StyledInput
@@ -111,7 +141,7 @@ function AddReservations({
 
       {/* <DateTimePicker
             testID="dateTimePicker"
-            value={newReservation.startTimestamp}
+            value={new Date(newReservation.startTimestamp)}
             mode={'date'}
             is24Hour={true}
             display="default"
@@ -119,12 +149,12 @@ function AddReservations({
             onChange={(event: any, date: any) => {
               setShow(false);
               setData(moment(date).format('DD/MM/YYYY'));
-             // setNewReservation({ ... newReservation, startTimeStamp: Date.parse(value)});
-              //setNewReservation({...newReservation, startTimeStamp: Date.parse(moment(date).format('DD/MM/YYYY'))}),
+             setNewReservation({ ... newReservation, startTimeStamp: Date.parse(value)});
+              setNewReservation({...newReservation, startTimeStamp: Date.parse(moment(date).format('DD/MM/YYYY'))}),
             }}
           /> */}
 
-      {/* <TouchableOpacity onPress={() => setShow(true)}>
+       {/* <TouchableOpacity onPress={() => setShow(true)}>
           <Input
             label="Data"
             value={data}
@@ -136,7 +166,7 @@ function AddReservations({
   );
 }
 
-export default AddReservations;
+export default AddReservation;
 
 const styles = StyleSheet.create({
   pageHeaderX: {
@@ -161,6 +191,12 @@ const styles = StyleSheet.create({
   },
   sombraChique: {
     elevation: 10,
+  },
+  listContainer: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    margin: 5,
+    elevation: 5,
   },
 });
 

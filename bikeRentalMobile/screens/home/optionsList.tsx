@@ -79,8 +79,8 @@ function OptionsList(): JSX.Element {
     );
   } else {
     listData.push({
-      text: "My reservations ",
-      to: "AddReservations",
+      text: "Reservations ",
+      to: "ReservationList",
       icon: "calendar-today",
     });
   }

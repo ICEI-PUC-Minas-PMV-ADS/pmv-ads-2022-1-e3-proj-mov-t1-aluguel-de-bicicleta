@@ -6,11 +6,11 @@ import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
 import { List } from "react-native-paper";
-import { StyleSheet, FlatList, ListRenderItem } from "react-native";
+import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
 import { fetchUserReservations } from "../../services/api";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 
-function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
+function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">): JSX.Element {
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
@@ -46,7 +46,7 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
   return (
     <StyledSelectedUser>
       <PageHeader
-        pageName="My Reservations
+        pageName="Reservations
       "
         navigation={navigation}
       />
@@ -64,11 +64,25 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
         renderItem={renderItem}
         keyExtractor={(reservation) => reservation._id}
       />
+       <View style={styles.containerButtons}>
+          <OptionListButton
+            style={{ elevation: 10 }}
+            onPress={() => navigation.navigate("AddReservation")}
+          >
+          <ButtonText>New Booking</ButtonText>
+          </OptionListButton>
+          <OptionListButton
+            onPress={() => navigation.navigate("Root")}
+          >
+            <ButtonText>Home</ButtonText>
+          </OptionListButton>
+        </View>
     </StyledSelectedUser>
+    
   );
 }
 
-export default Perfil;
+export default ReservationList;
 
 const StyledSelectedUser = styled.View`
   padding: ${defaultPadding}px;
@@ -94,11 +108,50 @@ const BookingsTitleContainer = styled.View`
   margin-bottom: 20px;
 `;
 
+const OptionListButton = styled.Pressable`
+  flex: 1;
+  width: 175px;
+  padding: 10px;
+  background: ${Colors.light.yellow};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 9px;
+`;
+
+const ButtonText = styled.Text`
+  font-size: 15px;
+  color: white;
+  padding-right: 10px;
+`;
+
 const styles = StyleSheet.create({
   listContainer: {
     backgroundColor: "white",
     borderRadius: 10,
     margin: 5,
     elevation: 5,
+  },
+  containerButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  containerInputs: {
+    flex: 0.25,
+    borderRadius: 10,
+  },
+  inputBox: {
+    flex: 1,
+    borderRadius: 20,
+    margin: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 60,
+    justifyContent: "center",
+  },
+  sombraChique: {
+    elevation: 10,
   },
 });
