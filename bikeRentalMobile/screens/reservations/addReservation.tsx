@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import PageHeader from "../../common/pageHeader";
-import { ListRenderItem, StyleSheet, TouchableOpacity, View } from "react-native";
+import { ListRenderItem, StyleSheet, View, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyledInput, StyledLabel } from "../../common/styled";
 import styled from "styled-components/native";
@@ -23,10 +23,9 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import moment from "moment";
 import { black } from "react-native-paper/lib/typescript/styles/colors";
 import { getBikes } from "../../actions/bikeActions";
+import { defaultPadding } from "../../constants/Layout";
 
-function AddReservation({
-  navigation,
-}: RootStackScreenProps<"AddReservation">): JSX.Element {
+function AddReservation({navigation,}: RootStackScreenProps<"AddReservation">): JSX.Element {
   const dispatch = useDispatch(); // hook for to call action
 
   const [newReservation, setNewReservation] = useState<PostReservation>(
@@ -34,13 +33,8 @@ function AddReservation({
   );
   const [show, setShow] = useState(false);
   const [data, setData] = useState(moment(new Date()).format("DD/MM/YYYY"));
-  const [allBikes, setAllBikes] =useState<IBike[]>([]);
- 
-
-  useEffect(() => {        )
-      
-  }
-
+  const [allBikes] = useState<IBike[]>([]);
+   
   const renderBikes: ListRenderItem<IBike> = ({ item }) => (
     <>
       <List.Item
@@ -77,13 +71,15 @@ function AddReservation({
   };
 
   return (
+    
     <SafeAreaView style={{ flex: 1 }}>
+      <StyledCreateReservation>
       <PageHeader
         pageName="New Reservation"
         navigation={navigation}
         style={styles.pageHeaderX}
       />
-      <FlatList
+      <FlatList style
         data={allBikes}
         renderItem={renderBikes}
         keyExtractor={(bike: { _id: any; }) => bike._id}
@@ -162,42 +158,50 @@ function AddReservation({
             editable={false}
           />
         </TouchableOpacity> */}
+      </StyledCreateReservation>
     </SafeAreaView>
   );
 }
 
 export default AddReservation;
 
+const StyledCreateReservation = styled.KeyboardAvoidingView`
+  padding: ${defaultPadding}px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f7d08a;
+`;
+
 const styles = StyleSheet.create({
-  pageHeaderX: {
-    padding: 10,
-  },
-  containerButtons: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  containerInputs: {
-    flex: 0.25,
-    borderRadius: 10,
-  },
-  inputBox: {
-    flex: 1,
-    borderRadius: 20,
-    margin: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 60,
-    justifyContent: "center",
-  },
-  sombraChique: {
-    elevation: 10,
-  },
-  listContainer: {
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 5,
-    elevation: 5,
-  },
+  // pageHeaderX: {
+  //   padding: 10,
+  // },
+  // containerButtons: {
+  //   flexDirection: "row",
+  //   justifyContent: "space-between",
+  // },
+  // containerInputs: {
+  //   flex: 0.25,
+  //   borderRadius: 10,
+  // },
+  // inputBox: {
+  //   flex: 1,
+  //   borderRadius: 20,
+  //   margin: 10,
+  //   paddingLeft: 20,
+  //   paddingRight: 20,
+  //   paddingBottom: 60,
+  //   justifyContent: "center",
+  // },
+  // sombraChique: {
+  //   elevation: 10,
+  // },
+  // listContainer: {
+  //   backgroundColor: "white",
+  //   borderRadius: 10,
+  //   margin: 5,
+  //   elevation: 5,
+  // },
 });
 
 const OptionListButton = styled.Pressable`
@@ -218,3 +222,4 @@ const ButtonText = styled.Text`
   color: white;
   padding-right: 10px;
 `;
+

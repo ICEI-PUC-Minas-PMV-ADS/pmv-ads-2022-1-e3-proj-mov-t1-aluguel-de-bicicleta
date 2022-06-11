@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View as SafeAreaView } from "react-native";
 import PageHeader from "../../common/pageHeader";
 import { StyledLabel, StyledInput, StyledForm, SubmitPressable, SubmitPressableText } from "../../common/styled";
 import Colors from "../../constants/Colors";
@@ -24,12 +24,12 @@ function SignupScreen({ navigation }): JSX.Element {
   
   return (
    
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
 
       <StyledSignUp behavior="padding">
         <PageHeader pageName="SignUp" navigation={navigation} />
 
-         <View style={styles.input}>
+         <SafeAreaView style={styles.input}>
            <StyledLabel>First Name</StyledLabel>
 
           <StyledInput
@@ -39,9 +39,9 @@ function SignupScreen({ navigation }): JSX.Element {
               setNewUser({ ...newUser, firstName: value })
             }
           />
-        </View>
+        </SafeAreaView>
 
-        <View style={styles.input}>
+        <SafeAreaView style={styles.input}>
            <StyledLabel>Last Name</StyledLabel>
 
           <StyledInput
@@ -51,9 +51,9 @@ function SignupScreen({ navigation }): JSX.Element {
               setNewUser({ ...newUser, lastName: value })
             }
           />
-        </View>
+        </SafeAreaView>
 
-        <View style={styles.input}>
+        <SafeAreaView style={styles.input}>
            <StyledLabel>Email</StyledLabel>
 
           <StyledInput
@@ -63,9 +63,9 @@ function SignupScreen({ navigation }): JSX.Element {
               setNewUser({ ...newUser, email: value })
             }
           />
-        </View>
+        </SafeAreaView>
 
-        <View style={styles.input}>
+        <SafeAreaView style={styles.input}>
            <StyledLabel>Password</StyledLabel>
 
           <StyledInput
@@ -76,7 +76,7 @@ function SignupScreen({ navigation }): JSX.Element {
               setNewUser({ ...newUser, password: value })
             }
           />
-        </View>
+        </SafeAreaView>
         
        
         <StyledForm>
@@ -93,7 +93,7 @@ function SignupScreen({ navigation }): JSX.Element {
           Already have an account? Login here!
         </StyledLoginLink>
       </StyledSignUp>
-    </View>
+    </SafeAreaView>
   );
 }
 
