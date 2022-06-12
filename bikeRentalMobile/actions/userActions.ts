@@ -65,7 +65,7 @@ export const createUser =
         setGlobalNotification(dispatch, `User created sucessfuly`, "success");
       }
     } catch (error) {
-        console.log("inside catch", error)
+        console.log("inside catch - verifique restrições (eg. qtd de caracteres na password) ", error)
 
       handleErrors(dispatch, error as AxiosError);
     }
