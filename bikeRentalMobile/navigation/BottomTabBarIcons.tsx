@@ -16,7 +16,7 @@ export function TabTwoBarIcon({ color }: { color: string }) {
     <FontAwesome
       size={30}
       style={{ marginBottom: -3 }}
-      name="code"
+      name="clock-o"
       color={color}
     />
   );

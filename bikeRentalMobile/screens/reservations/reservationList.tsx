@@ -44,10 +44,9 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
   );
 
   return (
-    <StyledSelectedUser>
+    <StyledReservationsList behavior="padding">
       <PageHeader
-        pageName="Reservations
-      "
+        pageName="Reservations"
         navigation={navigation}
       />
 
@@ -72,24 +71,24 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
           <ButtonText>New Booking</ButtonText>
           </OptionListButton>
           <OptionListButton
-            onPress={() => navigation.navigate("Root")}
+            style={{ elevation: 10 }}
+            onPress={() => navigation.navigate("HomeScreen")}
           >
             <ButtonText>Home</ButtonText>
           </OptionListButton>
         </View>
-    </StyledSelectedUser>
+    </StyledReservationsList>
     
   );
 }
 
 export default ReservationList;
 
-const StyledSelectedUser = styled.View`
+const StyledReservationsList = styled.View`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
-  position: relative;
-  flex: 1;
+  background-color: #f7d08a;
 `;
 
 const StyledStrong = styled.Text`

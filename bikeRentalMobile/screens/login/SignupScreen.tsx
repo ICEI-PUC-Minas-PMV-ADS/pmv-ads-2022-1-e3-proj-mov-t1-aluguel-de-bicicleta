@@ -21,16 +21,16 @@ function SignupScreen({ navigation }): JSX.Element {
     console.log(`Cadastrando usuario... ${JSON.stringify(newUser)}`);
     dispatch(createUser(newUser, navigation, isFlowLogin));
   }
-  
+
   return (
-   
+
     <SafeAreaView style={{ flex: 1 }}>
 
       <StyledSignUp behavior="padding">
         <PageHeader pageName="SignUp" navigation={navigation} />
 
-         <SafeAreaView style={styles.input}>
-           <StyledLabel>First Name</StyledLabel>
+        <SafeAreaView style={styles.input}>
+          <StyledLabel>First Name</StyledLabel>
 
           <StyledInput
             textContentType="name"
@@ -42,7 +42,7 @@ function SignupScreen({ navigation }): JSX.Element {
         </SafeAreaView>
 
         <SafeAreaView style={styles.input}>
-           <StyledLabel>Last Name</StyledLabel>
+          <StyledLabel>Last Name</StyledLabel>
 
           <StyledInput
             textContentType="name"
@@ -54,7 +54,7 @@ function SignupScreen({ navigation }): JSX.Element {
         </SafeAreaView>
 
         <SafeAreaView style={styles.input}>
-           <StyledLabel>Email</StyledLabel>
+          <StyledLabel>Email</StyledLabel>
 
           <StyledInput
             textContentType="name"
@@ -66,7 +66,7 @@ function SignupScreen({ navigation }): JSX.Element {
         </SafeAreaView>
 
         <SafeAreaView style={styles.input}>
-           <StyledLabel>Password</StyledLabel>
+          <StyledLabel>Password</StyledLabel>
 
           <StyledInput
             textContentType="password"
@@ -77,8 +77,8 @@ function SignupScreen({ navigation }): JSX.Element {
             }
           />
         </SafeAreaView>
-        
-       
+
+
         <StyledForm>
           <SubmitPressable style={{ marginTop: 50 }} onPress={handleRegisterUser}>
             <SubmitPressableText>Sign up</SubmitPressableText>

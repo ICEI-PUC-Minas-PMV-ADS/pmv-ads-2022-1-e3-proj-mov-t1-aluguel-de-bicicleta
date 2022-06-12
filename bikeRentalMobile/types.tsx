@@ -28,6 +28,7 @@ export type RootStackParamList = {
   Signup: undefined;
   AddReservation: undefined
   ReservationList: undefined
+  HomeScreen: undefined
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
