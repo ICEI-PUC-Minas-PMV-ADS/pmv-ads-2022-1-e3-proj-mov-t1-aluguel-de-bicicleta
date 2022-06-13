@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { RootStackScreenProps } from "../../types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
@@ -9,6 +9,7 @@ import { List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
 import { fetchUserReservations } from "../../services/api";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { deleteReservation } from "../../actions/reservationActions";
 
 function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">): JSX.Element {
   const { loggedUser } = useSelector(
@@ -16,6 +17,13 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
   );
   const [user, setUser] = useState(loggedUser?.result);
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
+  const dispatch = useDispatch();
+ 
+  const handleDeleteReservation = (item: IReservation) => {
+
+    console.log(`Deletando reserva... ${JSON.stringify(item)}`);
+    dispatch(deleteReservation(item));
+  }
 
   useEffect(() => {
     setUser(user);
@@ -33,12 +41,14 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
         style={styles.listContainer}
         title={item.bikeInfo.model}
         descriptionNumberOfLines={3}
+        onPress={() =>handleDeleteReservation(item)}
         description={
           `Location: ${item.bikeInfo.location}\n` +
           `From: ${new Date(item.startTimestamp).toLocaleString("pt-br")}\n` +
           `To: ${new Date(item.endTimestamp).toLocaleString("pt-br")}`
         }
-        left={(props) => <List.Icon {...props} color="#f4bd5a" icon="bike" />}
+        right={(props) => <List.Icon {...props} color="#f4bd5a" icon="delete" />}
+             
       />
     </>
   );
@@ -113,7 +123,7 @@ const BookingsTitleContainer = styled.View`
 
 const styles = StyleSheet.create({
   listContainer: {
-    backgroundColor: "grey",
+    backgroundColor: "white",
     borderRadius: 10,
     margin: 5,
     elevation: 5,
