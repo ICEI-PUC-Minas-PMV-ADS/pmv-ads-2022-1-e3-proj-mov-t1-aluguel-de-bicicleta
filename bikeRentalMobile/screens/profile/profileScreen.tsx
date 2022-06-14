@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from "styled-components/native";
 import { RootStackScreenProps } from "../../types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from '../../common/pageHeader';
 import { FAB, List, Divider } from 'react-native-paper';
 import { StyleSheet, FlatList, ListRenderItem } from 'react-native';
-import { fetchUserReservations } from "../../services/api";
+import { deleteUser, fetchUserReservations } from "../../services/api";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
@@ -17,6 +17,7 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
   );
   const [user, setUser] = useState(loggedUser?.result);
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setUser(user);
@@ -25,7 +26,7 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
       fetchUserReservations(user._id).then((response) => {
         console.log(response.data);
         let data = response.data.filter(
-            x => new Date().getDate() >= new Date(x.startTimestamp).getDate() 
+          x => new Date().getDate() >= new Date(x.startTimestamp).getDate()
             && new Date().getDate() <= new Date(x.endTimestamp).getDate()
         );
         setUserReservations(data);
@@ -37,12 +38,13 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
   const renderItem: ListRenderItem<IReservation> = ({ item }) => (
     <>
       <List.Item
+        style={styles.listContainer}
         title={item.bikeInfo.model}
-        descriptionNumberOfLines ={3}
+        descriptionNumberOfLines={3}
         description={
-        `Location: ${item.bikeInfo.location}\n` + 
-        `From: ${new Date(item.startTimestamp).toLocaleString('pt-br')}\n` + 
-        `To: ${new Date(item.endTimestamp).toLocaleString('pt-br')}`
+          `Location: ${item.bikeInfo.location}\n` +
+          `From: ${new Date(item.startTimestamp).toLocaleString('pt-br')}\n` +
+          `To: ${new Date(item.endTimestamp).toLocaleString('pt-br')}`
         }
         left={(props) => (
           <List.Icon
@@ -52,13 +54,18 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
           />
         )}
       />
-    <Divider />
     </>
   );
 
   const handleGoToEditProfile = () => {
     navigation.navigate("EditProfile");
   };
+
+  const handleDeleteProfile = () => {
+    console.log(`Deletando profile... ${JSON.stringify(loggedUser?.result)}`);
+    dispatch(deleteUser(loggedUser?.result._id))
+    navigation.navigate("Signup");
+  }
 
   return (
     <StyledSelectedUser>
@@ -89,6 +96,12 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
         icon="pencil"
         onPress={handleGoToEditProfile}
       />
+
+      {<FAB
+        style={styles.fabDelete}
+        icon="delete"
+        onPress={handleDeleteProfile}
+      />}
 
     </StyledSelectedUser>
   );
@@ -133,12 +146,29 @@ const BookingsTitleContainer = styled.View`
 `;
 
 const styles = StyleSheet.create({
+  listContainer: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    margin: 5,
+    elevation: 5,
+  },
+  containerButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   fab: {
+    position: 'absolute',
+    margin: 16,
+    left: 10,
+    bottom: 10,
+    backgroundColor: "white",
+  },
+  fabDelete: {
     position: 'absolute',
     margin: 16,
     right: 10,
     bottom: 10,
-    backgroundColor: `${Colors.dark.yellow}`,
+    backgroundColor: "white",
   }
 });
 

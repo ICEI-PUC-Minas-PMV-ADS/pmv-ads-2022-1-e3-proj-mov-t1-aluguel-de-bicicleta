@@ -18,11 +18,12 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
   const [user, setUser] = useState(loggedUser?.result);
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
   const dispatch = useDispatch();
- 
+
   const handleDeleteReservation = (item: IReservation) => {
 
     console.log(`Deletando reserva... ${JSON.stringify(item)}`);
     dispatch(deleteReservation(item));
+    navigation.navigate("ReservationList");
   }
 
   useEffect(() => {
@@ -41,20 +42,20 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
         style={styles.listContainer}
         title={item.bikeInfo.model}
         descriptionNumberOfLines={3}
-        onPress={() =>handleDeleteReservation(item)}
+        onPress={() => handleDeleteReservation(item)}
         description={
           `Location: ${item.bikeInfo.location}\n` +
           `From: ${new Date(item.startTimestamp).toLocaleString("pt-br")}\n` +
           `To: ${new Date(item.endTimestamp).toLocaleString("pt-br")}`
         }
         right={(props) => <List.Icon {...props} color="#f4bd5a" icon="delete" />}
-             
+
       />
     </>
   );
 
   return (
-    <StyledSelectedUser>
+    <StyledSelectedReservation>
       <PageHeader
         pageName="My Reservations"
         navigation={navigation}
@@ -91,13 +92,13 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
       </View>
 
 
-    </StyledSelectedUser>
+    </StyledSelectedReservation>
   );
 }
 
 export default ReservationList;
 
-const StyledSelectedUser = styled.View`
+const StyledSelectedReservation = styled.View`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
@@ -133,6 +134,25 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 });
+
+const OptionListButton = styled.Pressable`
+  flex: 1;
+  width: 175px;
+  padding: 10px;
+  background: ${Colors.light.yellow};
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 9px;
+`;
+
+const ButtonText = styled.Text`
+  font-size: 15px;
+  color: white;
+  padding-right: 10px;
+`;
 
 
 // import React, { useState, useEffect } from "react";
@@ -244,24 +264,7 @@ const styles = StyleSheet.create({
 //   margin-bottom: 20px;
 // `;
 
-const OptionListButton = styled.Pressable`
-  flex: 1;
-  width: 175px;
-  padding: 10px;
-  background: ${Colors.light.yellow};
-  border-radius: 8px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 9px;
-`;
 
-const ButtonText = styled.Text`
-  font-size: 15px;
-  color: white;
-  padding-right: 10px;
-`;
 
 // const styles = StyleSheet.create({
 //   listContainer: {
