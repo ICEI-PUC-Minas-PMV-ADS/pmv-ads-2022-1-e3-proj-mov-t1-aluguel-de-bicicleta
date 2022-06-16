@@ -7,22 +7,20 @@ import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
 import { List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
-import { fetchBikes } from "../../services/api";
-import { deleteBike } from "../../actions/bikeActions";
+import { deleteBike, fetchBikes } from "../../services/api";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-
 
 function BikeList({ navigation }: RootStackScreenProps<"BikeList">): JSX.Element {
     const { loggedUser } = useSelector(
         (state: { loggedUser: UserObject }) => state
     );
-    
+
     const [bikes, setBikes] = useState<IBike[]>([]);
     const dispatch = useDispatch();
 
     const handleDeleteBike = (item: IBike) => {
         console.log(`Deletando bike... ${JSON.stringify(item)}`);
-        dispatch(deleteBike(item));
+        dispatch(deleteBike(item._id));
         navigation.navigate("HomeScreen");
     }
 
