@@ -26,10 +26,11 @@ export type RootStackParamList = {
   EditProfile: undefined;
   AddBike: undefined;
   Signup: undefined;
-  AddReservation: undefined
-  ReservationList: undefined
-  HomeScreen: undefined
-  BikeList: undefined
+  AddReservation: undefined;
+  ReservationList: undefined;
+  HomeScreen: undefined;
+  BikeList: undefined;
+  SelectedBike: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
