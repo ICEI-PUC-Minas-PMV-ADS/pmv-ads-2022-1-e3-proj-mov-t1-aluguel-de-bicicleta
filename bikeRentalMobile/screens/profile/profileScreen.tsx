@@ -102,6 +102,7 @@ const StyledSelectedUser = styled.View`
   flex-direction: column;
   position: relative;
   flex: 1;
+  background-color: white;
 `;
 
 const StyledUserName = styled.Text`
