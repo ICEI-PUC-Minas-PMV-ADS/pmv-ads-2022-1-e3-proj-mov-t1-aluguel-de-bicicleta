@@ -26,13 +26,12 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
 
     if (user && user._id) {
       fetchUserReservations(user._id).then((response) => {
-        console.log(response.data);
-        const data = response.data.filter(
-          (x) =>
-            new Date().getDate() >= new Date(x.startTimestamp).getDate() &&
-            new Date().getDate() <= new Date(x.endTimestamp).getDate()
-        );
-        setUserReservations(data);
+        // console.log(response.data);
+        // let data = response.data.filter(
+        //   x => new Date().getDate() >= x.startTimestamp
+        //     && new Date().getDate() <= x.endTimestamp
+        // );
+        setUserReservations(response.data);
       });
     }
   }, [loggedUser]);
@@ -87,7 +86,7 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
 
 export default Perfil;
 
-const StyledSelectedUser = styled.View`
+const StyledSelectedUser = styled.SafeAreaView`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
