@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from '../../common/pageHeader';
-import { FAB, List, Divider } from 'react-native-paper';
+import { FAB, List } from 'react-native-paper';
 import { StyleSheet, FlatList, ListRenderItem } from 'react-native';
-import { deleteUser, fetchUserReservations } from "../../services/api";
+import { fetchUserReservations } from "../../services/api";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
@@ -17,8 +17,11 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
   );
   const [user, setUser] = useState(loggedUser?.result);
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
-  const dispatch = useDispatch();
 
+  const handleGoToEditProfile = () => {
+    navigation.navigate("EditProfile");
+  };
+  
   useEffect(() => {
     setUser(user);
 
@@ -57,16 +60,6 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
     </>
   );
 
-  const handleGoToEditProfile = () => {
-    navigation.navigate("EditProfile");
-  };
-
-  const handleDeleteProfile = () => {
-    console.log(`Deletando profile... ${JSON.stringify(loggedUser?.result)}`);
-    dispatch(deleteUser(loggedUser?.result._id))
-    navigation.navigate("Signup");
-  }
-
   return (
     <StyledSelectedUser>
 
@@ -96,12 +89,6 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
         icon="pencil"
         onPress={handleGoToEditProfile}
       />
-
-      {<FAB
-        style={styles.fabDelete}
-        icon="delete"
-        onPress={handleDeleteProfile}
-      />}
 
     </StyledSelectedUser>
   );
@@ -163,12 +150,5 @@ const styles = StyleSheet.create({
     bottom: 10,
     backgroundColor: "white",
   },
-  fabDelete: {
-    position: 'absolute',
-    margin: 16,
-    right: 10,
-    bottom: 10,
-    backgroundColor: "white",
-  }
 });
 

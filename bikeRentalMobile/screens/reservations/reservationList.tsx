@@ -23,7 +23,7 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
 
     console.log(`Deletando reserva... ${JSON.stringify(item)}`);
     dispatch(deleteReservation(item));
-    navigation.navigate("ReservationList");
+    navigation.navigate("HomeScreen");
   }
 
   useEffect(() => {

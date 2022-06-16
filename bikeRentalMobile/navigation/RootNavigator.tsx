@@ -12,6 +12,7 @@ import SignupScreen from "../screens/login/SignupScreen";
 import AddReservation from "../screens/reservations/addReservation";
 import ReservationList from "../screens/reservations/reservationList";
 import HomePage from "../screens/home/homeScreen";
+import BikeList from "../screens/bike/BikeList";
 
 /**
  * A root stack navigator is often used for displaying modals on top of all other content.
@@ -77,6 +78,11 @@ function RootNavigator() {
         component={AddReservation}
         options={{ headerShown: false}}
        />  
+      <Stack.Screen
+        name="BikeList"
+        component={BikeList}
+        options={{ headerShown: false}}
+       /> 
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>

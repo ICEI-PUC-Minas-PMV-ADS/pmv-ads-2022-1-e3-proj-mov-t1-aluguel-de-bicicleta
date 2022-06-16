@@ -5,11 +5,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StyledInput, StyledLabel } from "../../common/styled";
 import styled from "styled-components/native";
 import Colors from "../../constants/Colors";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { RadioButton } from "react-native-paper";
+import { FAB, RadioButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import PageHeader from "../../common/pageHeader";
+import { deleteUser } from "../../actions/userActions";
+
+
 
 //TODO:
   /* precisa descriptografar a senha pra nao ficar
@@ -22,6 +25,8 @@ export default function EditProfileScreen() {
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
+
+  const dispatch = useDispatch();
 
   useEffect(()=> {
     setUser(loggedUser?.result);
@@ -37,6 +42,13 @@ export default function EditProfileScreen() {
     console.debug(`Data updated user ${JSON.stringify(userUpdated)}`);
     return navigator.goBack();
   };
+
+  const handleDeleteProfile = () => {
+    console.log(`Deletando profile... ${JSON.stringify(loggedUser?.result)}`);
+    dispatch(deleteUser(user))
+    navigator.navigate("Login");
+  }
+
 
 
   return (
@@ -107,6 +119,13 @@ export default function EditProfileScreen() {
           </OptionListButton>
         </View>
       </View>
+
+      {<FAB
+        style={styles.fabDelete}
+        icon="delete"
+        onPress={handleDeleteProfile}
+      />}
+
     </SafeAreaView>
   );
 }
@@ -118,7 +137,14 @@ const styles = StyleSheet.create({
   containerButtons: {
     flexDirection: "row",
     justifyContent: "center",
-  },
+  },  
+  fabDelete: {
+    position: 'absolute',
+    margin: 16,
+    right: 10,
+    bottom: 10,
+    backgroundColor: "white",
+  }
 });
 
 const OptionListButton = styled.Pressable`
@@ -138,3 +164,4 @@ const ButtonText = styled.Text`
   font-size: 15px;
   color: white;
 `;
+

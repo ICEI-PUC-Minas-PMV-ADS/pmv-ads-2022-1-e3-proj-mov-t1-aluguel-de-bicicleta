@@ -66,7 +66,7 @@ function OptionsList(): JSX.Element {
 
   let listData: ItemProps[] = [
     { text: "My Profile ", to: "Perfil", icon: "person" },
-    { text: "Bikes ", to: "AddBike", icon: "pedal-bike" },
+    { text: "Bikes ", to: "BikeList", icon: "pedal-bike" },
   ];
 
   if (!userIsLogged) {
@@ -74,7 +74,7 @@ function OptionsList(): JSX.Element {
   } else if (userIsManager) {
     listData.push(
       { text: "Users", to: "users", icon: "person-search" },
-      { text: "Add new Bike", to: "AddBike", icon: "add" },
+      { text: "Add new Bike", to: "BikeList", icon: "add" },
       { text: "Add new User", to: "newUser", icon: "add" }
     );
   } else {
