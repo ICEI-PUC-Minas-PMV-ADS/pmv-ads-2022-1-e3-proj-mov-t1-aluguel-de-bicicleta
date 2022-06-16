@@ -62,27 +62,27 @@ function RootNavigator() {
         name="AddBike"
         component={AddBike}
         options={{ headerShown: false }}
-        />
+      />
       <Stack.Screen
         name="Signup"
         component={SignupScreen}
-        options={{ headerShown: false}}
-       />
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="ReservationList"
         component={ReservationList}
-        options={{ headerShown: false}}
-       />    
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="AddReservation"
         component={AddReservation}
-        options={{ headerShown: false}}
-       />  
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="BikeList"
         component={BikeList}
-        options={{ headerShown: false}}
-       /> 
+        options={{ headerShown: false }}
+      />
       <Stack.Group screenOptions={{ presentation: "modal" }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
