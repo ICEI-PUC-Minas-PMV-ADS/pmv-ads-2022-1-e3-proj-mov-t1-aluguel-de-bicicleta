@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { RootStackScreenProps } from "../../types";
-import Colors from "../../constants/Colors";
-import PageHeader from "../../common/pageHeader";
 import { StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { StyledInput, StyledLabel } from "../../common/styled";
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
+import { StyledInput, StyledLabel } from "../../common/styled";
+import PageHeader from "../../common/pageHeader";
+import Colors from "../../constants/Colors";
+import { RootStackScreenProps } from "../../types";
 import { createBike } from "../../actions/bikeActions";
 
 function AddBike({ navigation }: RootStackScreenProps<"AddBike">): JSX.Element {
@@ -20,7 +19,7 @@ function AddBike({ navigation }: RootStackScreenProps<"AddBike">): JSX.Element {
 
   const onSaveBike = () => {
     if (existEmptiesFields()) {
-      //TODO: falta mostrar mensagem pro usuario caso algum campo esteja vazio e ele clique em salvar bike.
+      // TODO: falta mostrar mensagem pro usuario caso algum campo esteja vazio e ele clique em salvar bike.
       console.error(
         "Algum campo no formulário de Add bike não foi preenchido pelo usuário."
       );
@@ -28,12 +27,12 @@ function AddBike({ navigation }: RootStackScreenProps<"AddBike">): JSX.Element {
       console.warn(`Adding new bike.... ${JSON.stringify(newBike)}`);
       newBike.isAvailable = true;
       dispatch(createBike(newBike));
-      navigation.goBack();//TODO: devemos chamar o navigator chamando a nova tela de listagem das bikes? Ainda não existe.
+      navigation.goBack(); // TODO: devemos chamar o navigator chamando a nova tela de listagem das bikes? Ainda não existe.
     }
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <StyledAddBike>
       <PageHeader pageName="New Bike" navigation={navigation} />
 
       <View style={{ flex: 1 }}>
@@ -76,7 +75,7 @@ function AddBike({ navigation }: RootStackScreenProps<"AddBike">): JSX.Element {
           </OptionListButton>
         </View>
       </View>
-    </SafeAreaView>
+    </StyledAddBike>
   );
 }
 
@@ -91,6 +90,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 });
+
+const StyledAddBike = styled.SafeAreaView`
+  flex: 1;
+  background-color: white;
+`;
 
 const OptionListButton = styled.Pressable`
   width: 175px;
