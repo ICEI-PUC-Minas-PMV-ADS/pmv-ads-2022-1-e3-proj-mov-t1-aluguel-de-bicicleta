@@ -37,12 +37,12 @@ function BikeList({
       style={styles.listContainer}
       title={item.model}
       descriptionNumberOfLines={3}
-      onPress={() => handleDeleteBike(item)}
+      onPress={() => navigation.navigate("SelectedBike", { bikeId: item._id })}
       description={
         `Location: ${item.location}\n` +
         `Bike Available: ${item.isAvailable ? "Yes" : "No"}\n`
       }
-      right={(props) => <List.Icon {...props} color="#f4bd5a" icon="delete" />}
+      right={() => <StyledAvg>{item.rateAverage || "-"}</StyledAvg>}
     />
   );
 
@@ -84,12 +84,18 @@ function BikeList({
 
 export default BikeList;
 
+const StyledAvg = styled.Text`
+  color: green;
+  font-size: 22px;
+`;
+
 const StyledSelectedBike = styled.View`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
   position: relative;
   flex: 1;
+  background-color: white;
 `;
 
 const StyledStrong = styled.Text`
