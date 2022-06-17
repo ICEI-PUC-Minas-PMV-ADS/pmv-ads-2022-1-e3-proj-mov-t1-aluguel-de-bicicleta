@@ -31,6 +31,7 @@ export type RootStackParamList = {
   HomeScreen: undefined;
   BikeList: undefined;
   SelectedBike: { bikeId: string };
+  SelectedReservation: { reservationId: string };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
