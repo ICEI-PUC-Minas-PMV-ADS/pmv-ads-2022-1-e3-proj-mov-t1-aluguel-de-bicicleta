@@ -1,4 +1,5 @@
 import React from "react";
+import { Pressable } from "react-native";
 import styled from "styled-components/native";
 import Colors from "../constants/Colors";
 import dimensions from "../constants/Layout";
@@ -15,22 +16,23 @@ function ConfirmationDialog({
   text = "",
 }: Props): JSX.Element {
   return (
-    <StyledConfirmationDialog>
-      <StyledBackdrop />
+    <StyledConfirmationDialog
+      visible
+      animationType="fade"
+      onRequestClose={onCancel}
+      transparent
+    >
       <StyledContainer>
-        <StyledText>Are you sure you want to {text}?</StyledText>
-        <StyledConfirmButton
-          onPress={onDelete}
-          title="Yes"
-          color={Colors.light.red}
-          accessibilityLabel="Yes, confirm"
-        />
-        <StyledCancelButton
-          onPress={onCancel}
-          title="Cancel"
-          color={Colors.light["dark-blue"]}
-          accessibilityLabel="Cancel"
-        />
+        <StyledBackdrop />
+        <StyledDialog>
+          <StyledText>Are you sure you want to {text}?</StyledText>
+          <Pressable onPress={onDelete} accessibilityLabel="Yes, confirm">
+            <StyledConfirmText>Yes</StyledConfirmText>
+          </Pressable>
+          <Pressable onPress={onCancel} accessibilityLabel="Cancel">
+            <StyledCancelText>Cancel</StyledCancelText>
+          </Pressable>
+        </StyledDialog>
       </StyledContainer>
     </StyledConfirmationDialog>
   );
@@ -42,8 +44,8 @@ ConfirmationDialog.defaultProps = {
 
 export default ConfirmationDialog;
 const StyledBackdrop = styled.View`
-  width: 100%;
-  height: 100%;
+  width: ${dimensions.window.width};
+  height: ${dimensions.window.height};
   background: black;
   opacity: 0.3;
   position: absolute;
@@ -51,39 +53,40 @@ const StyledBackdrop = styled.View`
   left: 0;
 `;
 const StyledContainer = styled.View`
-  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${dimensions.window.width};
+  height: ${dimensions.window.height};
+`;
+const StyledDialog = styled.View`
+  padding: 35px;
+  background-color: white;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
-  background-color: white;
-  z-index: 2;
-  width: 80%;
 `;
 const StyledText = styled.Text`
   width: 100%;
   color: ${Colors.light.black};
   margin-bottom: 40px;
 `;
-const StyledConfirmButton = styled.Button`
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
+const StyledConfirmText = styled.Text`
   color: white;
-  font-weight: bold;
-  margin-right: 8px;
+  font-weight: 600;
+  font-size: 25px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: ${Colors.light.red};
+  margin-bottom: 20px;
+  font-weight: 900;
+  text-align: center;
 `;
-const StyledCancelButton = styled.Button`
-  border: none;
-  background: transparent;
+const StyledCancelText = styled(StyledConfirmText)`
+  background: ${Colors.light["dark-blue"]};
 `;
 
-const StyledConfirmationDialog = styled.View`
+const StyledConfirmationDialog = styled.Modal`
   width: ${dimensions.window.width};
   height: ${dimensions.window.height};
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
