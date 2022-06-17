@@ -1,23 +1,32 @@
 import React, { useEffect } from "react";
+import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import styled from "styled-components";
-import { deleteBike, getBike } from "../actions/bikeActions";
-import { getBikesByDates } from "../actions/bikeByDatesActions";
-import { createReservation } from "../actions/reservationActions";
-import { rateBike } from "../api";
-import { CardRating } from "../common/listCard";
-import PageHeader from "../common/pageHeader";
-import SelectedAssetButtons from "../common/selectedAssetButtons";
-import { getLoggedInUser, ROUTES } from "../common/utils";
-import { RATING_OPTIONS } from "../reducers/searchFiltersReducer";
+import styled from "styled-components/native";
+import { AntDesign } from "@expo/vector-icons";
+import { defaultPadding } from "../../constants/Layout";
+import { deleteBike, getBike } from "../../actions/bikeActions";
+import { getBikesByDates } from "../../actions/bikeByDatesActions";
+import { createReservation } from "../../actions/reservationActions";
+// import { CardRating } from "../common/listCard";
+// import SelectedAssetButtons from "../common/selectedAssetButtons";
+import { rateBike } from "../../services/api";
+import Colors from "../../constants/Colors";
+import PageHeader from "../../common/pageHeader";
+import { RATING_OPTIONS } from "../../reducers/searchFiltersReducer";
+import { RootStackScreenProps } from "../../types";
 
-function SelectedBike(): JSX.Element {
+function SelectedBike({
+  navigation,
+  route,
+}: RootStackScreenProps<"SelectedBike">): JSX.Element {
   const { selectedBike, selectedTimestamps } = useSelector(
     (state: { selectedBike: IBike; selectedTimestamps: ITimestamps }) => state
   );
-  const params = useParams() as { bikeId: string };
-  const history = useHistory();
+  const { loggedUser } = useSelector(
+    (state: { loggedUser: UserObject }) => state
+  );
+  const params = route.params as { bikeId: string };
+  console.log(route);
   const dispatch = useDispatch();
   const userRating = selectedBike?.userRatingValue;
 
@@ -28,7 +37,7 @@ function SelectedBike(): JSX.Element {
 
   const onDelete = (): void => {
     dispatch(deleteBike(selectedBike));
-    history.push(ROUTES.BIKES);
+    navigation.navigate("BikeList");
   };
 
   const handleBikeBooking = (): void => {
@@ -37,7 +46,7 @@ function SelectedBike(): JSX.Element {
       startTimestamp: selectedTimestamps.start,
       endTimestamp: selectedTimestamps.end,
     };
-    dispatch(createReservation(reservationParams, selectedBike, history));
+    dispatch(createReservation(reservationParams, selectedBike, navigation));
   };
 
   const handleRatingClick = (
@@ -51,112 +60,127 @@ function SelectedBike(): JSX.Element {
       dispatch(getBikesByDates(selectedTimestamps));
     });
   };
-  const { isManager } = getLoggedInUser().result;
+  const { isManager } = loggedUser.result;
 
   return selectedBike ? (
-    <StyledSelectedBike className="selectedBike">
-      <PageHeader pageName={selectedBike.model} />
-      <SelectedAssetButtons onDelete={onDelete} />
-      <span className="selectedBike--color">
-        <strong>Color: </strong> {selectedBike.color}
-      </span>
-      <span className="selectedBike--location">
-        <strong>Location: </strong> {selectedBike.location}
-      </span>
-      <span className="selectedBike--rating">
-        <h3 className="selectedBike--rating__title">
-          {isManager ? "Bike Rating" : "Rate Bike"}:{" "}
-        </h3>
+    <StyledSelectedBike>
+      <PageHeader pageName={selectedBike.model} navigation={navigation} />
+      {/* <SelectedAssetButtons onDelete={onDelete} /> */}
+      <StyledBikeInfo>
+        <StyledBikeInfoTitle>Color: </StyledBikeInfoTitle>
+        <Text>{selectedBike.color}</Text>
+      </StyledBikeInfo>
+      <StyledBikeInfo>
+        <StyledBikeInfoTitle>Location: </StyledBikeInfoTitle>
+
+        <Text>{selectedBike.location}</Text>
+      </StyledBikeInfo>
+      <StyledRatingsContainer>
+        <Text>{isManager ? "Bike Rating" : "Rate Bike"}: </Text>
         {isManager ? null : (
-          <div className="selectedBike--rating__buttons">
+          <StyledStarsContainer>
             {RATING_OPTIONS.map((ratingValue) => (
-              <button
-                className={ratingValue <= userRating ? "selectedRating" : ""}
-                type="button"
-                onClick={(event) => handleRatingClick(event, ratingValue)}
+              <StyledRatingPressable
+                isSelected={ratingValue <= userRating}
+                onPress={(event) => handleRatingClick(event, ratingValue)}
                 key={ratingValue}
               >
-                <i
-                  className={`${
-                    ratingValue <= userRating ? "fas" : "far"
-                  } fa-star`}
+                <AntDesign
+                  name={ratingValue <= userRating ? "star" : "staro"}
+                  size={40}
+                  color={
+                    ratingValue <= userRating
+                      ? Colors.light.yellow
+                      : Colors.light.black
+                  }
                 />
-              </button>
+              </StyledRatingPressable>
             ))}
-          </div>
+          </StyledStarsContainer>
         )}
-        <CardRating
+        {/* <CardRating
           className={`selectedBike--rating__value rating${Math.floor(
             selectedBike.rateAverage
           )}`}
         >
           {selectedBike.rateAverage}
-        </CardRating>
-      </span>
+        </CardRating> */}
+      </StyledRatingsContainer>
       {isManager ? null : (
-        <button
-          type="button"
+        <StyledBookingButton
           disabled={!selectedBike.isAvailable}
-          className="selectedBike--bookingBtn"
-          onClick={handleBikeBooking}
+          onPress={handleBikeBooking}
         >
-          {selectedBike.isAvailable ? "Book Bike" : "Bike Unavailable"}
-        </button>
+          <StyledBookText>
+            {selectedBike.isAvailable ? "Book Bike" : "Bike Unavailable"}
+          </StyledBookText>
+        </StyledBookingButton>
       )}
     </StyledSelectedBike>
   ) : (
-    <div />
+    <Text>Not found</Text>
   );
 }
 
 export default SelectedBike;
 
-const StyledSelectedBike = styled.div`
-  padding: var(--padding);
+const StyledSelectedBike = styled.View`
+  padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
   position: relative;
-  .selectedBike {
-    &--color,
-    &--location,
-    &--isAvailable {
-      margin-bottom: 40px;
+  background-color: white;
+  height: 100%;
+`;
 
-      strong {
-        color: var(--dark-blue);
-        text-transform: uppercase;
-      }
-    }
-    &--rating {
-      position: relative;
-      &__buttons {
-        button {
-          background: transparent;
-          font-size: 30px;
-          border: none;
-          opacity: 0.2;
-          &.selectedRating {
-            color: var(--yellow);
-            opacity: 1;
-          }
-        }
-      }
-    }
-    &--bookingBtn {
-      padding: 10px 0;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 17px;
-      background: var(--red);
-      color: white;
-      margin-top: 80px;
-      text-transform: uppercase;
-      &:disabled {
-        color: black;
-        background: var(--gray);
-        opacity: 0.6;
-      }
-    }
+const StyledBikeInfoTitle = styled.Text`
+  color: ${Colors.light["dark-blue"]};
+  text-transform: uppercase;
+`;
+const StyledBookText = styled.Text`
+  color: white;
+  text-transform: uppercase;
+`;
+
+const StyledBikeInfo = styled.View`
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const StyledBookingButton = styled.Pressable`
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 17px;
+  background: ${Colors.light.red};
+  color: white;
+  margin-top: 80px;
+  text-transform: uppercase;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  &:disabled {
+    color: black;
+    background: ${Colors.light.gray};
+    opacity: 0.6;
   }
+`;
+
+const StyledRatingsContainer = styled.View`
+  position: relative;
+`;
+
+const StyledRatingPressable = styled.Pressable<{ isSelected: boolean }>`
+  background: transparent;
+  font-size: 30px;
+  border: none;
+  opacity: ${({ isSelected }) => (isSelected ? 1 : 0.2)};
+  color: ${({ isSelected }) =>
+    isSelected ? Colors.light.yellow : Colors.light.black};
+`;
+const StyledStarsContainer = styled.View`
+  display: flex;
+  flex-direction: row;
 `;
