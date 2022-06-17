@@ -9,7 +9,7 @@ interface IProps {
   pageName: string;
   navigation: NativeStackNavigationProp<
     RootStackParamList,
-    "Login" | "AddBike" | "BikeList"
+    "Login" | "AddBike" | "BikeList" | "SelectedReservation" | "AddReservation"
   >;
 }
 
