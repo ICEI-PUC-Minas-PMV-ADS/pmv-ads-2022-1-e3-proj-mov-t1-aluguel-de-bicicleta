@@ -6,7 +6,6 @@ import EditProfileScreen from "../screens/profile/editProfileScreen";
 import ProfileScreen from "../screens/profile/profileScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTagNavigator";
-import Perfil from "../screens/profile/profileScreen";
 import AddBike from "../screens/bike/AddBike";
 import SignupScreen from "../screens/login/SignupScreen";
 import AddReservation from "../screens/reservations/addReservation";
@@ -57,7 +56,7 @@ function RootNavigator() {
       />
       <Stack.Screen
         name="Perfil"
-        component={Perfil}
+        component={ProfileScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen
