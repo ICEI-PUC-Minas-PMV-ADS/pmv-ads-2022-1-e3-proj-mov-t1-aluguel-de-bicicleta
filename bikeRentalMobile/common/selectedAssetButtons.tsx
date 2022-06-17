@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Pressable } from "react-native";
 import styled from "styled-components/native";
 import { FontAwesome } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -10,10 +9,20 @@ import Colors from "../constants/Colors";
 
 interface IProps {
   onDelete: () => void;
-  navigation: NativeStackNavigationProp<RootStackParamList, "Login">;
+  navigation: NativeStackNavigationProp<
+    RootStackParamList,
+    "SelectedBike" | "SelectedReservation"
+  >;
+  asset: PostBike | PostReservation;
+  returnRoute: "AddBike" | "AddReservation";
 }
 
-function SelectedAssetButtons({ onDelete, navigation }: IProps): JSX.Element {
+function SelectedAssetButtons({
+  onDelete,
+  navigation,
+  asset,
+  returnRoute,
+}: IProps): JSX.Element {
   const [showModal, setShowModal] = useState(false);
 
   function handleDelete(): void {
@@ -25,7 +34,7 @@ function SelectedAssetButtons({ onDelete, navigation }: IProps): JSX.Element {
     <StyledSelectedAssetButtons>
       <StyledButton
         aria-label="editar"
-        onPress={() => navigation.navigate("AddBike", { edit: true })} // remover o add bike e fazer ele dinamico
+        onPress={() => navigation.navigate(returnRoute, { asset })} // remover o add bike e fazer ele dinamico
       >
         <FontAwesome name="edit" size={30} color={Colors.light["dark-blue"]} />
       </StyledButton>

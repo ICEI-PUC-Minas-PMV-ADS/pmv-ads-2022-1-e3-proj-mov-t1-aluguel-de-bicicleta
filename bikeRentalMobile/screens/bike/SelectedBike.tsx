@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
@@ -66,7 +66,12 @@ function SelectedBike({
   return selectedBike ? (
     <StyledSelectedBike>
       <PageHeader pageName={selectedBike.model} navigation={navigation} />
-      <SelectedAssetButtons onDelete={onDelete} navigation={navigation} />
+      <SelectedAssetButtons
+        onDelete={onDelete}
+        navigation={navigation}
+        asset={selectedBike}
+        returnRoute="AddBike"
+      />
       <StyledBikeInfo>
         <StyledBikeInfoTitle>Color: </StyledBikeInfoTitle>
         <Text>{selectedBike.color}</Text>
@@ -125,7 +130,7 @@ function SelectedBike({
 
 export default SelectedBike;
 
-const StyledSelectedBike = styled.View`
+const StyledSelectedBike = styled.SafeAreaView`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;

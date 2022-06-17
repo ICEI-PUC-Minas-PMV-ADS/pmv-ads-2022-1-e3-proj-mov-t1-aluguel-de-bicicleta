@@ -7,12 +7,17 @@ import { StyledInput, StyledLabel } from "../../common/styled";
 import PageHeader from "../../common/pageHeader";
 import Colors from "../../constants/Colors";
 import { RootStackScreenProps } from "../../types";
-import { createBike } from "../../actions/bikeActions";
+import { createBike, updateBike } from "../../actions/bikeActions";
+import { defaultPadding } from "../../constants/Layout";
 
-function AddBike({ navigation }: RootStackScreenProps<"AddBike">): JSX.Element {
+function AddBike({
+  navigation,
+  route,
+}: RootStackScreenProps<"AddBike">): JSX.Element {
   const dispatch = useDispatch(); // hook for to call action
+  const editedBike: IBike = route.params.asset || ({} as IBike);
 
-  const [newBike, setNewBike] = useState<PostBike>({} as PostBike);
+  const [newBike, setNewBike] = useState<PostBike>(editedBike);
 
   const existEmptiesFields = (): boolean =>
     (newBike && !newBike.model) || !newBike.color || !newBike.location;
@@ -27,8 +32,13 @@ function AddBike({ navigation }: RootStackScreenProps<"AddBike">): JSX.Element {
       console.warn(`Adding new bike.... ${JSON.stringify(newBike)}`);
       newBike.isAvailable = true;
       dispatch(createBike(newBike));
-      navigation.goBack(); // TODO: devemos chamar o navigator chamando a nova tela de listagem das bikes? Ainda não existe.
     }
+    if (editedBike._id) {
+      dispatch(updateBike(editedBike._id, newBike));
+    } else {
+      dispatch(createBike(newBike));
+    }
+    navigation.goBack(); // TODO: devemos chamar o navigator chamando a nova tela de listagem das bikes? Ainda não existe.
   };
 
   return (
@@ -94,6 +104,7 @@ const styles = StyleSheet.create({
 const StyledAddBike = styled.SafeAreaView`
   flex: 1;
   background-color: white;
+  padding: ${defaultPadding}px;
 `;
 
 const OptionListButton = styled.Pressable`
