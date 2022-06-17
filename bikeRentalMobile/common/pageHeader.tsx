@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components/native";
 import Colors from "../constants/Colors";
 import { RootStackParamList } from "../types";
+import { useColorScheme } from "react-native";
 
 interface IProps {
   pageName: string;
@@ -11,6 +12,7 @@ interface IProps {
 }
 
 function PageHeader({ pageName, navigation }: IProps): JSX.Element {
+  const scheme = useColorScheme();
   return (
     <StyledPageHeader>
       <StyledBackArrow onPress={() => navigation.goBack()}>
@@ -21,7 +23,9 @@ function PageHeader({ pageName, navigation }: IProps): JSX.Element {
           color={Colors.light.red}
         />
       </StyledBackArrow>
-      <StyledPageTitle>{pageName}</StyledPageTitle>
+      <StyledPageTitle style={{ color: scheme === "dark" ? "white" : "black" }}>
+        {pageName}
+      </StyledPageTitle>
     </StyledPageHeader>
   );
 }

@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 import { FAB, List } from "react-native-paper";
-import { StyleSheet, FlatList, ListRenderItem } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  ListRenderItem,
+  useColorScheme,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
@@ -11,6 +16,7 @@ import PageHeader from "../../common/pageHeader";
 import { fetchUserReservations } from "../../services/api";
 
 function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
+  const scheme = useColorScheme();
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
@@ -59,10 +65,14 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
       </StyledUserName>
 
       <StyledStrong>email</StyledStrong>
-      <StyledUserProp>{user.email}</StyledUserProp>
+      <StyledUserProp style={{ color: scheme === "dark" ? "white" : "black" }}>
+        {user.email}
+      </StyledUserProp>
 
       <StyledStrong>manager</StyledStrong>
-      <StyledUserProp>{user.isManager ? "Yes" : "No"}</StyledUserProp>
+      <StyledUserProp style={{ color: scheme === "dark" ? "white" : "black" }}>
+        {user.isManager ? "Yes" : "No"}
+      </StyledUserProp>
 
       <BookingsTitleContainer>
         <MaterialCommunityIcons
