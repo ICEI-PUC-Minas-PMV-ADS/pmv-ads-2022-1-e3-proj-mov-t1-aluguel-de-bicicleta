@@ -30,7 +30,7 @@ export type RootStackParamList = {
   ReservationList: undefined;
   HomeScreen: undefined;
   BikeList: undefined;
-  SelectedBike: undefined;
+  SelectedBike: { bikeId: string };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
