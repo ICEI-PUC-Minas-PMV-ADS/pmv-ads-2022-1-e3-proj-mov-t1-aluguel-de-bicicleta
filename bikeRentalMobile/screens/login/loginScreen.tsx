@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { SafeAreaView } from "react-native";
+import { Platform } from "react-native";
 import { useDispatch } from "react-redux";
 import styled from "styled-components/native";
 import { loginUser } from "../../actions/userActions";
@@ -11,32 +11,38 @@ import {
   SubmitPressable,
 } from "../../common/styled";
 import UserInfo from "../../common/userInfo";
-import { ROUTES } from "../../common/utils";
 import Colors from "../../constants/Colors";
-import { defaultPadding } from "../../constants/Layout";
+import dimensions, { defaultPadding } from "../../constants/Layout";
 import { RootStackScreenProps } from "../../types";
 import Logo from "../img/logo";
 
 function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
-
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
   const [userNotFound, setUserNotFound] = useState(false);
   const dispatch = useDispatch();
   function handleLogin(): void {
-    dispatch(loginUser({ email, password }, navigation, setUserNotFound));
+    dispatch(
+      loginUser(
+        { email: email.toLowerCase(), password },
+        navigation,
+        setUserNotFound
+      )
+    );
   }
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <StyledLoginScreen
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={50}
+    >
       <MiniBanner>
         <Logo />
       </MiniBanner>
-      <StyledLogin behavior="padding">
+      <StyledLogin>
         <PageHeader pageName="Login" navigation={navigation} />
         <StyledForm>
           <UserInfo
-
             email={email}
             setEmail={setEmail}
             password={password}
@@ -54,12 +60,12 @@ function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
         ) : null}
         <StyledSignupLink
           style={{ color: Colors.light["dark-blue"], fontSize: 15 }}
-          onPress={() => navigation.navigate('Signup')}
+          onPress={() => navigation.navigate("Signup")}
         >
           Need to create an account? Sign up here!
         </StyledSignupLink>
       </StyledLogin>
-    </SafeAreaView>
+    </StyledLoginScreen>
   );
 }
 
@@ -93,9 +99,15 @@ const StyledUserNotFound = styled.Text`
   align-self: center;
 `;
 
-const StyledLogin = styled.KeyboardAvoidingView`
+const StyledLogin = styled.ScrollView`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
   background-color: #f7d08a;
+`;
+
+const StyledLoginScreen = styled.KeyboardAvoidingView`
+  flex: 1;
+  width: ${dimensions.window.width};
+  height: ${dimensions.window.height};
 `;
