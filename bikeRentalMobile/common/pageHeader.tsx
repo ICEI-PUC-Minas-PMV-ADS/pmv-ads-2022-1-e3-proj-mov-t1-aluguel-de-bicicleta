@@ -7,7 +7,10 @@ import { RootStackParamList } from "../types";
 
 interface IProps {
   pageName: string;
-  navigation: NativeStackNavigationProp<RootStackParamList>;
+  navigation: NativeStackNavigationProp<
+    RootStackParamList,
+    "Login" | "AddBike" | "BikeList"
+  >;
 }
 
 function PageHeader({ pageName, navigation }: IProps): JSX.Element {

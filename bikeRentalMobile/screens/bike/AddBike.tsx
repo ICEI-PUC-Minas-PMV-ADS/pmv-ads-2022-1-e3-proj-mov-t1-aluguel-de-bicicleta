@@ -15,7 +15,7 @@ function AddBike({
   route,
 }: RootStackScreenProps<"AddBike">): JSX.Element {
   const dispatch = useDispatch(); // hook for to call action
-  const editedBike: IBike = route.params.asset || ({} as IBike);
+  const editedBike: IBike = route.params?.asset || ({} as IBike);
 
   const [newBike, setNewBike] = useState<PostBike>(editedBike);
 
