@@ -14,6 +14,7 @@ import Colors from "../../constants/Colors";
 import PageHeader from "../../common/pageHeader";
 import { RATING_OPTIONS } from "../../reducers/searchFiltersReducer";
 import { RootStackScreenProps } from "../../types";
+import SelectedAssetButtons from "../../common/selectedAssetButtons";
 
 function SelectedBike({
   navigation,
@@ -65,7 +66,7 @@ function SelectedBike({
   return selectedBike ? (
     <StyledSelectedBike>
       <PageHeader pageName={selectedBike.model} navigation={navigation} />
-      {/* <SelectedAssetButtons onDelete={onDelete} /> */}
+      <SelectedAssetButtons onDelete={onDelete} navigation={navigation} />
       <StyledBikeInfo>
         <StyledBikeInfoTitle>Color: </StyledBikeInfoTitle>
         <Text>{selectedBike.color}</Text>

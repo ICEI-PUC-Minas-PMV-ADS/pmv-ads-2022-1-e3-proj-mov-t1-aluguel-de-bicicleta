@@ -1,14 +1,19 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Pressable } from "react-native";
 import styled from "styled-components/native";
+import { FontAwesome } from "@expo/vector-icons";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import ConfirmationDialog from "./confirmationDialog";
+import { RootStackParamList } from "../types";
+import { defaultPadding } from "../constants/Layout";
+import Colors from "../constants/Colors";
 
 interface IProps {
   onDelete: () => void;
+  navigation: NativeStackNavigationProp<RootStackParamList, "Login">;
 }
 
-function SelectedAssetButtons({ onDelete }: IProps): JSX.Element {
-  const location = useLocation().pathname;
+function SelectedAssetButtons({ onDelete, navigation }: IProps): JSX.Element {
   const [showModal, setShowModal] = useState(false);
 
   function handleDelete(): void {
@@ -17,22 +22,16 @@ function SelectedAssetButtons({ onDelete }: IProps): JSX.Element {
   }
 
   return (
-    <StyledSelectedAssetButtons className="selectedAssetButtons">
-      <Link
-        to={`${location}/edit`}
-        className="selectedAssetButtons--edit"
+    <StyledSelectedAssetButtons>
+      <StyledButton
         aria-label="editar"
+        onPress={() => navigation.navigate("AddBike", { edit: true })} // remover o add bike e fazer ele dinamico
       >
-        <i className="far fa-edit" />
-      </Link>
-      <button
-        type="button"
-        className="selectedAssetButtons--remove"
-        onClick={() => setShowModal(true)}
-        aria-label="deletar"
-      >
-        <i className="far fa-trash-alt" />
-      </button>
+        <FontAwesome name="edit" size={30} color={Colors.light["dark-blue"]} />
+      </StyledButton>
+      <StyledButton onPress={() => setShowModal(true)} aria-label="deletar">
+        <FontAwesome name="trash" size={30} color={Colors.light.red} />
+      </StyledButton>
       {showModal ? (
         <ConfirmationDialog
           onCancel={() => setShowModal(false)}
@@ -45,30 +44,17 @@ function SelectedAssetButtons({ onDelete }: IProps): JSX.Element {
 
 export default SelectedAssetButtons;
 
-const StyledSelectedAssetButtons = styled.div`
+const StyledSelectedAssetButtons = styled.View`
   width: auto;
   display: flex;
   justify-content: flex-end;
+  flex-direction: row;
   align-items: center;
   position: absolute;
-  top: var(--padding);
-  right: var(--padding);
-  .selectedAssetButtons {
-    &--edit,
-    &--remove,
-    &--favourite {
-      padding: 15px;
-      background: transparent;
-      color: var(--dark-blue);
-      border: none;
-      font-size: 18px;
-      transform: translate(10px, -25%);
-    }
-    &--remove {
-      color: var(--red);
-    }
-    &--favourite {
-      color: var(--dark-gray);
-    }
-  }
+  top: ${defaultPadding};
+  right: ${defaultPadding};
+`;
+
+const StyledButton = styled.Pressable`
+  margin-left: 15px;
 `;
