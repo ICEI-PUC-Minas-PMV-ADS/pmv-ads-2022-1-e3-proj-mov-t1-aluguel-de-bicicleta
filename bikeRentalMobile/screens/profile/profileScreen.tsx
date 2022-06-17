@@ -16,7 +16,6 @@ import PageHeader from "../../common/pageHeader";
 import { fetchUserReservations } from "../../services/api";
 
 function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
-  const scheme = useColorScheme();
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
@@ -65,14 +64,10 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
       </StyledUserName>
 
       <StyledStrong>email</StyledStrong>
-      <StyledUserProp style={{ color: scheme === "dark" ? "white" : "black" }}>
-        {user.email}
-      </StyledUserProp>
+      <StyledUserProp>{user.email}</StyledUserProp>
 
       <StyledStrong>manager</StyledStrong>
-      <StyledUserProp style={{ color: scheme === "dark" ? "white" : "black" }}>
-        {user.isManager ? "Yes" : "No"}
-      </StyledUserProp>
+      <StyledUserProp>{user.isManager ? "Yes" : "No"}</StyledUserProp>
 
       <BookingsTitleContainer>
         <MaterialCommunityIcons
