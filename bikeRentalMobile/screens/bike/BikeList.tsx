@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -8,7 +8,7 @@ import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
-import { deleteBike, fetchBikes } from "../../services/api";
+import { fetchBikes } from "../../services/api";
 
 function BikeList({
   navigation,
@@ -18,13 +18,6 @@ function BikeList({
   );
 
   const [bikes, setBikes] = useState<IBike[]>([]);
-  const dispatch = useDispatch();
-
-  const handleDeleteBike = (item: IBike) => {
-    console.log(`Deletando bike... ${JSON.stringify(item)}`);
-    dispatch(deleteBike(item._id));
-    navigation.navigate("HomeScreen");
-  };
 
   useEffect(() => {
     fetchBikes().then((response) => {
@@ -42,6 +35,7 @@ function BikeList({
         `Location: ${item.location}\n` +
         `Bike Available: ${item.isAvailable ? "Yes" : "No"}\n`
       }
+      // eslint-disable-next-line react/no-unstable-nested-components
       right={() => <StyledAvg>{item.rateAverage || "-"}</StyledAvg>}
     />
   );
