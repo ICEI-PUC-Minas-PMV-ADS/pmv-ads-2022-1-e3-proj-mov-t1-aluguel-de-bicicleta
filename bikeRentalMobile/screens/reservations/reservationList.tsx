@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -9,7 +9,6 @@ import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
 import { fetchUserReservations } from "../../services/api";
-import { deleteReservation } from "../../actions/reservationActions";
 
 function ReservationList({
   navigation,
@@ -19,13 +18,6 @@ function ReservationList({
   );
   const [user, setUser] = useState(loggedUser?.result);
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
-  const dispatch = useDispatch();
-
-  const handleDeleteReservation = (item: IReservation) => {
-    console.log(`Deletando reserva... ${JSON.stringify(item)}`);
-    dispatch(deleteReservation(item));
-    navigation.navigate("HomeScreen");
-  };
 
   useEffect(() => {
     setUser(user);
@@ -42,13 +34,14 @@ function ReservationList({
       style={styles.listContainer}
       title={item.bikeInfo.model}
       descriptionNumberOfLines={3}
-      onPress={() => handleDeleteReservation(item)}
+      onPress={() =>
+        navigation.navigate("SelectedReservation", { reservationId: item._id })
+      }
       description={
         `Location: ${item.bikeInfo.location}\n` +
         `From: ${new Date(item.startTimestamp).toLocaleString("pt-br")}\n` +
         `To: ${new Date(item.endTimestamp).toLocaleString("pt-br")}`
       }
-      right={(props) => <List.Icon {...props} color="#f4bd5a" icon="delete" />}
     />
   );
 
