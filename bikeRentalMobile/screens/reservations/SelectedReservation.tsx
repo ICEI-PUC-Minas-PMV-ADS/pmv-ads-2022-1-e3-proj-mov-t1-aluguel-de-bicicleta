@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
+import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import {
   deleteReservation,
   getReservation,
-} from "../actions/reservationActions";
-import ConfirmationDialog from "../common/confirmationDialog";
-import PageHeader from "../common/pageHeader";
-import { ROUTES } from "../common/utils";
+} from "../../actions/reservationActions";
+import ConfirmationDialog from "../../common/confirmationDialog";
+import PageHeader from "../../common/pageHeader";
+import Colors from "../../constants/Colors";
+import { defaultPadding } from "../../constants/Layout";
+import { RootStackScreenProps } from "../../types";
 
-function SelectedReservation(): JSX.Element {
+function SelectedReservation({
+  navigation,
+  route,
+}: RootStackScreenProps<"SelectedReservation">): JSX.Element {
   const [showModal, setShowModal] = useState(false);
   const { selectedReservation } = useSelector(
     (state: {
@@ -18,8 +23,7 @@ function SelectedReservation(): JSX.Element {
       selectedTimestamps: ITimestamps;
     }) => state
   );
-  const params = useParams() as { reservationId: string };
-  const history = useHistory();
+  const params = route.params as { reservationId: string };
   const dispatch = useDispatch();
   useEffect(() => {
     if (!selectedReservation && params.reservationId) {
@@ -30,31 +34,35 @@ function SelectedReservation(): JSX.Element {
 
   function handleCancelation(): void {
     dispatch(deleteReservation(selectedReservation));
-    history.push(ROUTES.RESERVATIONS);
+    navigation.navigate("ReservationList");
     setShowModal(false);
   }
 
   return selectedReservation ? (
-    <StyledSelectedReservation className="selectedReservation">
-      <PageHeader pageName={selectedReservation.bikeInfo.model} />
-      <span className="selectedReservation--start">
-        <strong>Location: </strong> {selectedReservation.bikeInfo.location}
-      </span>
-      <span className="selectedReservation--start">
-        <strong>From: </strong>
-        {new Date(selectedReservation.startTimestamp).toLocaleString()}
-      </span>
-      <span className="selectedReservation--end">
-        <strong>To: </strong>
-        {new Date(selectedReservation.endTimestamp).toLocaleString()}
-      </span>
-      <button
-        className="selectedReservation--cancel"
-        type="button"
-        onClick={() => setShowModal(true)}
-      >
-        Cancel Reservation
-      </button>
+    <StyledSelectedReservation>
+      <PageHeader
+        pageName={selectedReservation.bikeInfo.model}
+        navigation={navigation}
+      />
+      <StyledReservationInfo>
+        <StyledBikeInfoTitle>Location: </StyledBikeInfoTitle>
+        <Text>{selectedReservation.bikeInfo.location}</Text>
+      </StyledReservationInfo>
+      <StyledReservationInfo>
+        <StyledBikeInfoTitle>From: </StyledBikeInfoTitle>
+        <Text>
+          {new Date(selectedReservation.startTimestamp).toLocaleString()}
+        </Text>
+      </StyledReservationInfo>
+      <StyledReservationInfo>
+        <StyledBikeInfoTitle>To: </StyledBikeInfoTitle>
+        <Text>
+          {new Date(selectedReservation.endTimestamp).toLocaleString()}
+        </Text>
+      </StyledReservationInfo>
+      <StyledCancelButton onPress={() => setShowModal(true)}>
+        <StyledBookText>Cancel Reservation</StyledBookText>
+      </StyledCancelButton>
       {showModal ? (
         <ConfirmationDialog
           onCancel={() => setShowModal(false)}
@@ -64,34 +72,51 @@ function SelectedReservation(): JSX.Element {
       ) : null}
     </StyledSelectedReservation>
   ) : (
-    <div />
+    <View />
   );
 }
 
 export default SelectedReservation;
 
-const StyledSelectedReservation = styled.div`
-  padding: var(--padding);
+const StyledSelectedReservation = styled.View`
+  padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
   position: relative;
-  .selectedReservation {
-    &--start,
-    &--end {
-      margin-bottom: 40px;
+  background-color: white;
+  height: 100%;
+`;
+const StyledBikeInfoTitle = styled.Text`
+  color: ${Colors.light["dark-blue"]};
+  text-transform: uppercase;
+`;
 
-      strong {
-        color: var(--dark-blue);
-        text-transform: uppercase;
-      }
-    }
-    &--cancel {
-      border: none;
-      padding: 10px;
-      background: var(--red);
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-    }
+const StyledReservationInfo = styled.View`
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const StyledCancelButton = styled.Pressable`
+  padding: 10px 0;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 17px;
+  background: ${Colors.light.red};
+  color: white;
+  margin-top: 80px;
+  text-transform: uppercase;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  &:disabled {
+    color: black;
+    background: ${Colors.light.gray};
+    opacity: 0.6;
   }
+`;
+const StyledBookText = styled.Text`
+  color: white;
+  text-transform: uppercase;
 `;
