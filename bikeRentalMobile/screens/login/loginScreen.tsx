@@ -83,9 +83,9 @@ const StyledSignupLink = styled.Text.attrs(() => ({
 `;
 
 const MiniBanner = styled.View`
-  padding-top: 5%;
+  padding: 5%;
   width: 100%;
-  height: 200px;
+  height: 300px;
   min-height: 25%;
   background-color: #f7d08a;
   display: flex;
@@ -103,7 +103,7 @@ const StyledLogin = styled.ScrollView`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
-  background-color: #f7d08a;
+  background-color: white;
 `;
 
 const StyledLoginScreen = styled.KeyboardAvoidingView`
