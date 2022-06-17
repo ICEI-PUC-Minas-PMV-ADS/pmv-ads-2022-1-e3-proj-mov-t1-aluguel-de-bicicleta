@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
-import { RootStackScreenProps } from "../../types";
 import { useDispatch, useSelector } from "react-redux";
+import { List } from "react-native-paper";
+import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
-import { List } from "react-native-paper";
-import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
 import { fetchUserReservations } from "../../services/api";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { deleteReservation } from "../../actions/reservationActions";
 
-function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">): JSX.Element {
+function ReservationList({
+  navigation,
+}: RootStackScreenProps<"ReservationList">): JSX.Element {
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
@@ -20,11 +22,10 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
   const dispatch = useDispatch();
 
   const handleDeleteReservation = (item: IReservation) => {
-
     console.log(`Deletando reserva... ${JSON.stringify(item)}`);
     dispatch(deleteReservation(item));
     navigation.navigate("HomeScreen");
-  }
+  };
 
   useEffect(() => {
     setUser(user);
@@ -37,29 +38,23 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
   }, [loggedUser]);
 
   const renderItem: ListRenderItem<IReservation> = ({ item }) => (
-    <>
-      <List.Item
-        style={styles.listContainer}
-        title={item.bikeInfo.model}
-        descriptionNumberOfLines={3}
-        onPress={() => handleDeleteReservation(item)}
-        description={
-          `Location: ${item.bikeInfo.location}\n` +
-          `From: ${new Date(item.startTimestamp).toLocaleString("pt-br")}\n` +
-          `To: ${new Date(item.endTimestamp).toLocaleString("pt-br")}`
-        }
-        right={(props) => <List.Icon {...props} color="#f4bd5a" icon="delete" />}
-
-      />
-    </>
+    <List.Item
+      style={styles.listContainer}
+      title={item.bikeInfo.model}
+      descriptionNumberOfLines={3}
+      onPress={() => handleDeleteReservation(item)}
+      description={
+        `Location: ${item.bikeInfo.location}\n` +
+        `From: ${new Date(item.startTimestamp).toLocaleString("pt-br")}\n` +
+        `To: ${new Date(item.endTimestamp).toLocaleString("pt-br")}`
+      }
+      right={(props) => <List.Icon {...props} color="#f4bd5a" icon="delete" />}
+    />
   );
 
   return (
     <StyledSelectedReservation>
-      <PageHeader
-        pageName="My Reservations"
-        navigation={navigation}
-      />
+      <PageHeader pageName="My Reservations" navigation={navigation} />
 
       <BookingsTitleContainer>
         <MaterialCommunityIcons
@@ -75,7 +70,6 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
         keyExtractor={(reservation) => reservation._id}
       />
 
-
       <View style={styles.containerButtons}>
         <OptionListButton
           style={{ elevation: 10 }}
@@ -90,8 +84,6 @@ function ReservationList({ navigation }: RootStackScreenProps<"ReservationList">
           <ButtonText>Home</ButtonText>
         </OptionListButton>
       </View>
-
-
     </StyledSelectedReservation>
   );
 }
@@ -104,6 +96,7 @@ const StyledSelectedReservation = styled.View`
   flex-direction: column;
   position: relative;
   flex: 1;
+  background-color: white;
 `;
 
 const StyledStrong = styled.Text`
@@ -153,7 +146,6 @@ const ButtonText = styled.Text`
   color: white;
   padding-right: 10px;
 `;
-
 
 // import React, { useState, useEffect } from "react";
 // import styled from "styled-components/native";
@@ -263,8 +255,6 @@ const ButtonText = styled.Text`
 //   margin-top: 20px;
 //   margin-bottom: 20px;
 // `;
-
-
 
 // const styles = StyleSheet.create({
 //   listContainer: {
