@@ -68,9 +68,7 @@ function SelectedBike({
       <PageHeader pageName={selectedBike.model} navigation={navigation} />
       <SelectedAssetButtons
         onDelete={onDelete}
-        navigation={navigation}
-        asset={selectedBike}
-        returnRoute="AddBike"
+        onEdit={() => navigation.navigate("AddBike", { asset: selectedBike })}
       />
       <StyledBikeInfo>
         <StyledBikeInfoTitle>Color: </StyledBikeInfoTitle>
