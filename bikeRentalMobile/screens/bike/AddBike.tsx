@@ -71,19 +71,10 @@ function AddBike({
           />
         </View>
 
-        <View style={styles.containerButtons}>
-          <OptionListButton onPress={onSaveBike}>
-            <ButtonText>Save</ButtonText>
-            <MaterialIcons size={30} name="save" color="white" />
-          </OptionListButton>
-
-          <OptionListButton
-            style={{ backgroundColor: "gray" }}
-            onPress={() => navigation.goBack()}
-          >
-            <ButtonText>Cancel</ButtonText>
-          </OptionListButton>
-        </View>
+        <OptionListButton onPress={onSaveBike}>
+          <ButtonText>Save</ButtonText>
+          <MaterialIcons size={30} name="save" color="white" />
+        </OptionListButton>
       </View>
     </StyledAddBike>
   );
@@ -108,15 +99,14 @@ const StyledAddBike = styled.SafeAreaView`
 `;
 
 const OptionListButton = styled.Pressable`
-  width: 175px;
   padding: 10px;
-  background: ${Colors.light.yellow};
-  border-radius: 8px;
+  background: ${Colors.light["dark-blue"]};
+  border-radius: 80px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 8px;
+  margin-top: 50px;
 `;
 
 const ButtonText = styled.Text`
