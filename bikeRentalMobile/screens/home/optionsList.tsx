@@ -76,7 +76,7 @@ function OptionsList(): JSX.Element {
     listData.push(
       { text: "Users", to: "users", icon: "person-search" },
       { text: "Add new Bike", to: "AddBike", icon: "add" },
-      { text: "Add new User", to: "newUser", icon: "add" }
+      { text: "Add new User", to: "AddUser", icon: "add" }
     );
   } else {
     listData.push({

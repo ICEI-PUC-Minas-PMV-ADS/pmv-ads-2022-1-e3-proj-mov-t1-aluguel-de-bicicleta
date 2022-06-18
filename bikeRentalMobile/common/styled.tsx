@@ -11,10 +11,10 @@ export const StyledPressable = styled.Pressable`
 
 export const StyledLabel = styled.Text`
   margin-top: 30px;
-  margin-bottom: 10px;
   display: flex;
-  width: 100%;
-  color: ${Colors.light.black};
+  color: ${Colors.light["dark-blue"]};
+  font-weight: bold;
+  font-size: 16px;
 `;
 
 export const StyledInput = styled.TextInput`

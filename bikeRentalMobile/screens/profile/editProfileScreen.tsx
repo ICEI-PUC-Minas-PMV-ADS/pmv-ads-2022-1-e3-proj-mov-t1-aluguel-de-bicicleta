@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-
-import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FAB, RadioButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 import { StyledInput, StyledLabel } from "../../common/styled";
 import PageHeader from "../../common/pageHeader";
 import { deleteUser } from "../../actions/userActions";
+import dimensions, { defaultPadding } from "../../constants/Layout";
 
 // TODO:
 /* precisa descriptografar a senha pra nao ficar
@@ -50,10 +50,10 @@ export default function EditProfileScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <StyledEditProfileScreen>
       <PageHeader pageName="Edit Profile" navigation={navigator} />
 
-      <View style={{ flex: 1 }}>
+      <StyledScrollView>
         <View style={styles.input}>
           <StyledLabel>First Name</StyledLabel>
           <StyledInput
@@ -84,46 +84,43 @@ export default function EditProfileScreen() {
             onChangeText={(value) => setUser({ ...user, password: value })}
           />
 
-          <View>
-            <StyledLabel>Is Manager?</StyledLabel>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text>Yes</Text>
-              <RadioButton
-                color={Colors.light.yellow}
-                value="yes"
-                status={isManager ? "checked" : "unchecked"}
-                onPress={() => setIsManager(!isManager)}
-              />
-              <Text>No</Text>
-              <RadioButton
-                color={Colors.light.yellow}
-                value="no"
-                status={!isManager ? "checked" : "unchecked"}
-                onPress={() => setIsManager(!isManager)}
-              />
-            </View>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 40,
+            }}
+          >
+            <StyledIsManagerLabel>Is Manager?</StyledIsManagerLabel>
+            <Text>Yes</Text>
+            <RadioButton
+              color={Colors.light.yellow}
+              value="yes"
+              status={isManager ? "checked" : "unchecked"}
+              onPress={() => setIsManager(!isManager)}
+            />
+            <Text>No</Text>
+            <RadioButton
+              color={Colors.light.yellow}
+              value="no"
+              status={!isManager ? "checked" : "unchecked"}
+              onPress={() => setIsManager(!isManager)}
+            />
           </View>
         </View>
-
-        <View style={styles.containerButtons}>
-          <OptionListButton onPress={handleUpdateUser}>
-            <ButtonText>Save</ButtonText>
-          </OptionListButton>
-          <OptionListButton
-            style={{ backgroundColor: "gray" }}
-            onPress={() => navigator.goBack()}
-          >
-            <ButtonText>Back</ButtonText>
-          </OptionListButton>
-        </View>
-      </View>
+        <OptionListButton onPress={handleUpdateUser}>
+          <ButtonText>Save</ButtonText>
+          <MaterialIcons size={30} name="save" color="white" />
+        </OptionListButton>
+      </StyledScrollView>
 
       <FAB
         style={styles.fabDelete}
         icon="delete"
         onPress={handleDeleteProfile}
       />
-    </SafeAreaView>
+    </StyledEditProfileScreen>
   );
 }
 
@@ -145,19 +142,30 @@ const styles = StyleSheet.create({
 });
 
 const OptionListButton = styled.Pressable`
-  width: 150px;
-  font-weight: bold;
   padding: 10px;
-  background: ${Colors.light.yellow};
-  border-radius: 8px;
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: center; */
+  background: ${Colors.light["dark-blue"]};
+  border-radius: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  margin: 8px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+`;
+
+const StyledScrollView = styled.ScrollView``;
+const StyledIsManagerLabel = styled(StyledLabel)`
+  margin: 0;
+  margin-right: 40px;
 `;
 
 const ButtonText = styled.Text`
   font-size: 15px;
   color: white;
+`;
+
+const StyledEditProfileScreen = styled.SafeAreaView`
+  padding: ${defaultPadding}px;
+  background-color: white;
+  height: ${dimensions.window.height}px;
 `;
