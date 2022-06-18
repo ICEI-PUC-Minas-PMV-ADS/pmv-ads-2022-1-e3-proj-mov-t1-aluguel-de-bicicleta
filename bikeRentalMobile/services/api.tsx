@@ -80,7 +80,7 @@ export const fetchUser = (userId: string): Promise<IUserResponse> =>
   API.get(`${API_PATHS.USER}/${userId}`);
 export const createUser = (
   newUser: ISignupParams
-): Promise<{ data: IlocalStorageProfile }> =>
+): Promise<{ data: UserObject }> =>
   API.post(`${API_PATHS.USER}/${API_PATHS.SIGNUP}`, newUser);
 export const loginUser = async (
   user: ILoginParams

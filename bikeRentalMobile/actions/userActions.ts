@@ -41,31 +41,33 @@ export const loginUser =
 export const createUser =
   (
     params: ISignupParams,
-    navigation: NativeStackNavigationProp<RootStackParamList, "Signup">,
+    navigation: NativeStackNavigationProp<
+      RootStackParamList,
+      "Signup" | "AddUser"
+    >,
     login?: boolean
   ) =>
   async (dispatch: Dispatch): Promise<void> => {
     try {
       const { data } = await api.createUser(params);
-      console.log(data)
-      dispatch({ type: USERS_REDUCER_OPTIONS.CREATE, payload: [data.result] });
       if (login) {
+        await setLoggedInUser(data);
         dispatch({
           type: LOGGED_USER_REDUCER_OPTIONS.LOGIN_USER,
           payload: data,
         });
-        navigation.replace("Root");
-        setGlobalNotification(
-          dispatch,
-          `Welcome ${data.result.firstName}`,
-          "success"
-        );
+        navigation.navigate("HomeScreen");
+        setGlobalNotification(dispatch, `Welcome ${data.result}`, "success");
       } else {
-        navigation.replace("Root");
+        dispatch({
+          type: USERS_REDUCER_OPTIONS.CREATE,
+          payload: [data.result],
+        });
+        navigation.navigate("AddUser");
         setGlobalNotification(dispatch, `User created sucessfuly`, "success");
       }
     } catch (error) {
-        console.log("inside catch", error)
+      console.log("inside catch", error);
 
       handleErrors(dispatch, error as AxiosError);
     }
