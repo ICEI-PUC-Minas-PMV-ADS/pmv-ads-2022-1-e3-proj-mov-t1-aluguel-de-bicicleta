@@ -66,7 +66,7 @@ function OptionsList(): JSX.Element {
   }
 
   let listData: ItemProps[] = [
-    { text: "My Profile ", to: "Perfil", icon: "person" },
+    { text: "My Profile ", to: "Profile", icon: "person" },
     { text: "Bikes ", to: "BikeList", icon: "pedal-bike" },
   ];
 
