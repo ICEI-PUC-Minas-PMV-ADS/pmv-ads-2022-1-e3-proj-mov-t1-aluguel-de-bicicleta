@@ -108,6 +108,6 @@ const StyledLogin = styled.ScrollView`
 
 const StyledLoginScreen = styled.KeyboardAvoidingView`
   flex: 1;
-  width: ${dimensions.window.width};
-  height: ${dimensions.window.height};
+  width: ${dimensions.window.width}px;
+  height: ${dimensions.window.height}px;
 `;
