@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
-import { useSelector } from "react-redux";
-import { FAB, List } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
+import { List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RootStackScreenProps } from "../../types";
@@ -9,6 +9,8 @@ import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
 import { fetchUserReservations } from "../../services/api";
+import SelectedAssetButtons from "../../common/selectedAssetButtons";
+import { deleteUser } from "../../actions/userActions";
 
 function Perfil({
   navigation,
@@ -21,10 +23,6 @@ function Perfil({
   const selectedUser = route?.params?.user;
   const user = selectedUser || loggedUser?.result;
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
-
-  const handleGoToEditProfile = () => {
-    navigation.navigate("EditProfile", { user });
-  };
 
   useEffect(() => {
     if (user && user._id) {
@@ -54,6 +52,12 @@ function Perfil({
       left={(props) => <List.Icon {...props} color="#f4bd5a" icon="bike" />}
     />
   );
+  const dispatch = useDispatch();
+
+  const onDelete = (): void => {
+    dispatch(deleteUser(user));
+    navigation.navigate("UsersList");
+  };
 
   return (
     <StyledSelectedUser>
@@ -61,7 +65,12 @@ function Perfil({
         pageName={selectedUser ? user.firstName : "My Profile"}
         navigation={navigation}
       />
-
+      {route.name === "Profile" ? null : (
+        <SelectedAssetButtons
+          onDelete={onDelete}
+          onEdit={() => navigation.navigate("EditProfile", { user })}
+        />
+      )}
       <StyledUserName>
         {user.firstName} {user.lastName}
       </StyledUserName>
@@ -86,9 +95,6 @@ function Perfil({
         renderItem={renderItem}
         keyExtractor={(reservation) => reservation._id}
       />
-      {loggedUser.result?.isManager ? (
-        <FAB style={styles.fab} icon="pencil" onPress={handleGoToEditProfile} />
-      ) : null}
     </StyledSelectedUser>
   );
 }
