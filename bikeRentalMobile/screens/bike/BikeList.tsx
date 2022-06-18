@@ -9,7 +9,6 @@ import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
 import { getBikes, setBikeRatingFilter } from "../../actions/bikeActions";
 import { checkIfFilterMatchesBike } from "../../common/utils";
-import { StyledInput } from "../../common/styled";
 import DateSelector from "../../common/dateSelector";
 
 function BikeList({
@@ -80,7 +79,7 @@ function BikeList({
   return (
     <StyledSelectedBike>
       <PageHeader pageName="All Bikes" navigation={navigation} />
-      <StyledInput
+      <StyledFilterInput
         textContentType="name"
         value={filter}
         onChangeText={(value: string) => setFilter(value)}
@@ -156,4 +155,16 @@ const ButtonText = styled.Text`
   font-size: 15px;
   color: white;
   padding-right: 10px;
+`;
+
+export const StyledFilterInput = styled.TextInput`
+  font-size: 20px;
+  line-height: 22px;
+  height: 60px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: 1px solid ${Colors.light.gray};
+  padding: 8px 25px;
+  width: 100%;
+  border-radius: 60px;
 `;
