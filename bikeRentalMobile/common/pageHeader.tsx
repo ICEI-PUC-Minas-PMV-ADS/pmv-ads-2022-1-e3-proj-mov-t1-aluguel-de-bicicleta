@@ -22,6 +22,7 @@ interface IProps {
     | "UsersList"
     | "Profile"
     | "SelectedUser"
+    | "ReservationList"
   >;
   addOption?: "AddBike" | "AddUser";
 }

@@ -25,6 +25,7 @@ function ReservationList({
         setUserReservations(response.data);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedUser]);
 
   const renderItem: ListRenderItem<IReservation> = ({ item }) => (

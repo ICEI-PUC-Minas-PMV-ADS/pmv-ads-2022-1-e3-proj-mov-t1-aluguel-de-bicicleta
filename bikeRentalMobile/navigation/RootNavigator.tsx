@@ -6,7 +6,6 @@ import ProfileScreen from "../screens/profile/profileScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTagNavigator";
 import AddBike from "../screens/bike/AddBike";
-import AddReservation from "../screens/reservations/addReservation";
 import ReservationList from "../screens/reservations/reservationList";
 import HomePage from "../screens/home/homeScreen";
 import BikeList from "../screens/bike/BikeList";
