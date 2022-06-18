@@ -11,6 +11,7 @@ import {
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import GlobalNotification from "../common/globalNotification";
 import { LOGGED_USER_REDUCER_OPTIONS } from "../reducers/loggedUser";
 import { getLoggedInUser } from "../services/loggedInServices";
 import LinkingConfiguration from "./LinkingConfiguration";
@@ -24,6 +25,11 @@ export default function Navigation({
   const dispatch = useDispatch();
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
+  );
+
+  const { message, type } = useSelector(
+    (state: { globalNotification: IGlobalNotification }) =>
+      state.globalNotification
   );
   React.useEffect(() => {
     if (!loggedUser) {
@@ -45,6 +51,7 @@ export default function Navigation({
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
+      <GlobalNotification message={message} type={type} />
     </NavigationContainer>
   );
 }
