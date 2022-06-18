@@ -73,6 +73,5 @@ export const setBikeRatingFilter =
   (dispatch: Dispatch): void => {
     const { BIKE_RATING } = SEARCH_FILTERS_REDUCER_OPTIONS;
 
-    window.sessionStorage.setItem(BIKE_RATING, rating.toString());
     dispatch({ type: BIKE_RATING, payload: { bikeRating: rating } });
   };
