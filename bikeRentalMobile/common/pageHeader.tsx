@@ -20,8 +20,6 @@ function PageHeader({ pageName, navigation, addOption }: IProps): JSX.Element {
     (state: { loggedUser: UserObject }) => state
   );
 
-  const { isManager } = loggedUser.result;
-
   return (
     <StyledPageHeader>
       <StyledBackArrow onPress={() => navigation.goBack()}>
@@ -33,7 +31,7 @@ function PageHeader({ pageName, navigation, addOption }: IProps): JSX.Element {
         />
       </StyledBackArrow>
       <StyledPageTitle style={{ color: "black" }}>{pageName}</StyledPageTitle>
-      {isManager && addOption ? (
+      {loggedUser?.result.isManager && addOption ? (
         <StyledAddButton onPress={() => navigation.navigate(addOption)}>
           <Entypo name="plus" size={50} color={Colors.light.yellow} />
         </StyledAddButton>
