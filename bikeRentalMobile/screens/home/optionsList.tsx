@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { View } from "react-native";
 import { SELECTED_BIKE_REDUCER_OPTIONS } from "../../reducers/selectedBikeReducer";
 import { LOGGED_USER_REDUCER_OPTIONS } from "../../reducers/loggedUser";
 import { SELECTED_USER_REDUCER_OPTIONS } from "../../reducers/selectedUserReducer";
@@ -74,7 +75,7 @@ function OptionsList(): JSX.Element {
   } else if (userIsManager) {
     listData.push(
       { text: "Users", to: "users", icon: "person-search" },
-      { text: "Add new Bike", to: "BikeList", icon: "add" },
+      { text: "Add new Bike", to: "AddBike", icon: "add" },
       { text: "Add new User", to: "newUser", icon: "add" }
     );
   } else {
@@ -85,14 +86,16 @@ function OptionsList(): JSX.Element {
     });
   }
   return (
-    <>
+    <View style={{ marginBottom: 50 }}>
       {listData.map((item) => (
         <OptionListItem item={item} key={item.text} />
       ))}
       {user && (
         <OptionListButton onPress={() => setShowDialog(true)}>
+          <ButtonIcon>
+            <MaterialIcons size={40} name="logout" color="white" />
+          </ButtonIcon>
           <ButtonText>Logout </ButtonText>
-          <MaterialIcons size={20} name="logout" color="white" />
         </OptionListButton>
       )}
       {showDialog ? (
@@ -102,7 +105,7 @@ function OptionsList(): JSX.Element {
           text="logout"
         />
       ) : null}
-    </>
+    </View>
   );
 }
 
@@ -111,8 +114,10 @@ function OptionListItem({ item }: { item: ItemProps }) {
   const navigation = useNavigation();
   return (
     <OptionListButton onPress={() => navigation.navigate(item.to)}>
+      <ButtonIcon>
+        <MaterialIcons size={40} name={item.icon} color="white" />
+      </ButtonIcon>
       <ButtonText>{item.text}</ButtonText>
-      <MaterialIcons size={20} name={item.icon} color="white" />
     </OptionListButton>
   );
 }
@@ -127,71 +132,20 @@ const OptionListButton = styled.Pressable`
   border-radius: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 20px;
-  margin-bottom: 20px;
 `;
 
 const ButtonText = styled.Text`
-  font-size: 20px;
+  font-size: 22px;
   color: white;
+  font-weight: bold;
 `;
 
-// const StyledOptionsList = styled.View`
-//   padding: 0;
-//   .optionsList {
-//     &--item {
-//       list-style: none;
-//       &__button {
-//         width: 300px;
-//         padding: 20px;
-//         background: var(--yellow);
-//         font-weight: 600;
-//         border-radius: 8px;
-//         display: flex;
-//         justify-content: center;
-//         align-items: center;
-//         font-size: 20px;
-//         margin-top: 20px;
-//         &,
-//         &:visited {
-//           color: white;
-//         }
-//         i {
-//           margin-right: 8px;
-//         }
-//         &:hover {
-//           background: var(--red);
-//         }
-//       }
-//     }
-//   }
-//   &.isNav {
-//     .optionsList {
-//       &--item {
-//         &__button {
-//           padding: 10px;
-//           border-radius: 10px;
-//           padding: 18px 0;
-//           border: none;
-//           background: white;
-//           text-decoration: none;
-//           font-size: 18px;
-//           justify-content: flex-start;
-
-//           &,
-//           &:visited {
-//             color: var(--dark-blue);
-//           }
-//           i {
-//             color: var(--yellow);
-//           }
-//           &:hover {
-//             background: lightblue;
-//           }
-//         }
-//       }
-//     }
-//   }
-// `;
+const ButtonIcon = styled.View`
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+`;
