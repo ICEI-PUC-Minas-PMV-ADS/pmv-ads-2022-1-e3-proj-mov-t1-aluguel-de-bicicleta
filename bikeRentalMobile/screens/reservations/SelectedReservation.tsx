@@ -34,7 +34,7 @@ function SelectedReservation({
 
   function handleCancelation(): void {
     dispatch(deleteReservation(selectedReservation));
-    navigation.navigate("ReservationList");
+    navigation.navigate("HomeScreen");
     setShowModal(false);
   }
 

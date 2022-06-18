@@ -80,13 +80,14 @@ function RootNavigator() {
       />
 
       <Stack.Screen
-        name="ReservationList"
-        component={ReservationList}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="SelectedReservation"
         component={SelectedReservation}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="ReservationList"
+        component={ReservationList}
         options={{ headerShown: false }}
       />
       <Stack.Screen
