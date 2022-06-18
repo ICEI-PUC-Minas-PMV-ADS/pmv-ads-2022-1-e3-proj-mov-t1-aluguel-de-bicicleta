@@ -43,7 +43,7 @@ function AddBike({
   return (
     <StyledAddBike>
       <PageHeader
-        pageName={editedBike ? "Edit Bike" : "New Bike"}
+        pageName={editedBike._id ? "Edit Bike" : "New Bike"}
         navigation={navigation}
       />
 
