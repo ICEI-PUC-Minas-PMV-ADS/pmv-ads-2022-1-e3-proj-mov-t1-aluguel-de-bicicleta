@@ -62,7 +62,7 @@ export const createUser =
           type: USERS_REDUCER_OPTIONS.CREATE,
           payload: [data.result],
         });
-        navigation.navigate("AddUser");
+        navigation.navigate("UsersList");
         setGlobalNotification(dispatch, `User created sucessfuly`, "success");
       }
     } catch (error) {
