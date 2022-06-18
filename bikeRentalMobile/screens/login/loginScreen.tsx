@@ -14,7 +14,6 @@ import UserInfo from "../../common/userInfo";
 import Colors from "../../constants/Colors";
 import dimensions, { defaultPadding } from "../../constants/Layout";
 import { RootStackScreenProps } from "../../types";
-import Logo from "../img/logo";
 
 function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
   const [email, setEmail] = useState(``);
@@ -77,17 +76,6 @@ const StyledSignupLink = styled.Text.attrs(() => ({
   padding-bottom: 40px;
   width: 100%;
   height: 100%;
-`;
-
-const MiniBanner = styled.View`
-  padding: 5%;
-  width: 100%;
-  height: 300px;
-  min-height: 25%;
-  background-color: #f7d08a;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const StyledUserNotFound = styled.Text`
