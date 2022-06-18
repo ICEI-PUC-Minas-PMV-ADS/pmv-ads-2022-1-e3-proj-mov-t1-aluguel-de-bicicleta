@@ -36,9 +36,6 @@ function Login({ navigation }: RootStackScreenProps<"Login">): JSX.Element {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={50}
     >
-      <MiniBanner>
-        <Logo />
-      </MiniBanner>
       <StyledLogin>
         <PageHeader pageName="Login" navigation={navigation} />
         <StyledForm>
