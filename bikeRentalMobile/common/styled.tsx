@@ -73,6 +73,7 @@ export const SubmitPressable = styled.Pressable`
   align-items: center;
   justify-content: center;
   padding: 16px;
+  margin-top: 30px;
 `;
 
 export const SubmitPressableText = styled.Text`

@@ -3,9 +3,8 @@ import { StyleSheet, View } from "react-native";
 import styled from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useDispatch } from "react-redux";
-import { StyledInput, StyledLabel } from "../../common/styled";
+import { StyledInput, StyledLabel, SubmitPressable } from "../../common/styled";
 import PageHeader from "../../common/pageHeader";
-import Colors from "../../constants/Colors";
 import { RootStackScreenProps } from "../../types";
 import { createBike, updateBike } from "../../actions/bikeActions";
 import { defaultPadding } from "../../constants/Layout";
@@ -71,10 +70,10 @@ function AddBike({
           />
         </View>
 
-        <OptionListButton onPress={onSaveBike}>
+        <SubmitPressable onPress={onSaveBike}>
           <ButtonText>Save</ButtonText>
           <MaterialIcons size={30} name="save" color="white" />
-        </OptionListButton>
+        </SubmitPressable>
       </View>
     </StyledAddBike>
   );
@@ -96,17 +95,6 @@ const StyledAddBike = styled.SafeAreaView`
   flex: 1;
   background-color: white;
   padding: ${defaultPadding}px;
-`;
-
-const OptionListButton = styled.Pressable`
-  padding: 10px;
-  background: ${Colors.light["dark-blue"]};
-  border-radius: 80px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
 `;
 
 const ButtonText = styled.Text`
