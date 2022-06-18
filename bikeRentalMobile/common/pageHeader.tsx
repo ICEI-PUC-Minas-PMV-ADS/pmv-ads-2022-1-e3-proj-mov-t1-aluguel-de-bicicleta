@@ -1,6 +1,7 @@
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components/native";
 import Colors from "../constants/Colors";
 import { RootStackParamList } from "../types";
@@ -11,9 +12,16 @@ interface IProps {
     RootStackParamList,
     "Login" | "AddBike" | "BikeList" | "SelectedReservation" | "AddReservation"
   >;
+  addOption?: "AddBike" | "AddUser";
 }
 
-function PageHeader({ pageName, navigation }: IProps): JSX.Element {
+function PageHeader({ pageName, navigation, addOption }: IProps): JSX.Element {
+  const { loggedUser } = useSelector(
+    (state: { loggedUser: UserObject }) => state
+  );
+
+  const { isManager } = loggedUser.result;
+
   return (
     <StyledPageHeader>
       <StyledBackArrow onPress={() => navigation.goBack()}>
@@ -25,6 +33,11 @@ function PageHeader({ pageName, navigation }: IProps): JSX.Element {
         />
       </StyledBackArrow>
       <StyledPageTitle style={{ color: "black" }}>{pageName}</StyledPageTitle>
+      {isManager && addOption ? (
+        <StyledAddButton onPress={() => navigation.navigate(addOption)}>
+          <Entypo name="plus" size={50} color={Colors.light.yellow} />
+        </StyledAddButton>
+      ) : null}
     </StyledPageHeader>
   );
 }
@@ -38,9 +51,15 @@ const StyledPageHeader = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 30px;
+  width: 100%;
 `;
 
 const StyledPageTitle = styled.Text`
   font-size: 25px;
   margin-left: 15px;
+`;
+
+const StyledAddButton = styled.Pressable`
+  margin-left: auto;
 `;

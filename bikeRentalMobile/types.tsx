@@ -26,6 +26,7 @@ export type RootStackParamList = {
   EditProfile: undefined;
   AddBike: { asset?: IBike } | undefined;
   Signup: undefined;
+  AddUser: undefined;
   AddReservation: { asset?: IReservation } | undefined;
   ReservationList: undefined;
   HomeScreen: undefined;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 import { List } from "react-native-paper";
-import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
+import { StyleSheet, FlatList, ListRenderItem } from "react-native";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
@@ -78,7 +78,11 @@ function BikeList({
 
   return (
     <StyledSelectedBike>
-      <PageHeader pageName="All Bikes" navigation={navigation} />
+      <PageHeader
+        pageName="All Bikes"
+        navigation={navigation}
+        addOption="AddBike"
+      />
       <StyledFilterInput
         textContentType="name"
         value={filter}
@@ -90,21 +94,6 @@ function BikeList({
         renderItem={renderItem}
         keyExtractor={(bike) => bike._id}
       />
-
-      <View style={styles.containerButtons}>
-        <OptionListButton
-          style={{ elevation: 10 }}
-          onPress={() => navigation.navigate("AddBike")}
-        >
-          <ButtonText>New Bike</ButtonText>
-        </OptionListButton>
-        <OptionListButton
-          style={{ elevation: 10 }}
-          onPress={() => navigation.navigate("HomeScreen")}
-        >
-          <ButtonText>Home</ButtonText>
-        </OptionListButton>
-      </View>
     </StyledSelectedBike>
   );
 }
@@ -116,7 +105,7 @@ const StyledAvg = styled.Text`
   font-size: 22px;
 `;
 
-const StyledSelectedBike = styled.View`
+const StyledSelectedBike = styled.SafeAreaView`
   padding: ${defaultPadding}px;
   display: flex;
   flex-direction: column;
@@ -137,25 +126,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 });
-
-const OptionListButton = styled.Pressable`
-  flex: 1;
-  width: 175px;
-  padding: 10px;
-  background: ${Colors.light.yellow};
-  border-radius: 8px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 9px;
-`;
-
-const ButtonText = styled.Text`
-  font-size: 15px;
-  color: white;
-  padding-right: 10px;
-`;
 
 export const StyledFilterInput = styled.TextInput`
   font-size: 20px;
