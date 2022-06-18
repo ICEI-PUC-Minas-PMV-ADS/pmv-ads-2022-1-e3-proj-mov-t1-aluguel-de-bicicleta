@@ -42,7 +42,10 @@ function AddBike({
 
   return (
     <StyledAddBike>
-      <PageHeader pageName="New Bike" navigation={navigation} />
+      <PageHeader
+        pageName={editedBike ? "Edit Bike" : "New Bike"}
+        navigation={navigation}
+      />
 
       <View style={{ flex: 1 }}>
         <View style={styles.input}>
