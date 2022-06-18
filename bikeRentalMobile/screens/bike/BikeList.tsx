@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 import { List } from "react-native-paper";
-import { StyleSheet, FlatList, ListRenderItem } from "react-native";
+import { StyleSheet, FlatList, ListRenderItem, Text, View } from "react-native";
+import ModalSelector from "react-native-modal-selector";
+import { AntDesign } from "@expo/vector-icons";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
@@ -61,20 +63,34 @@ function BikeList({
     dispatch(setBikeRatingFilter(Number(value)));
   };
 
-  const renderItem: ListRenderItem<IBike> = ({ item }) => (
-    <List.Item
-      style={styles.listContainer}
-      title={item.model}
-      descriptionNumberOfLines={3}
-      onPress={() => navigation.navigate("SelectedBike", { bikeId: item._id })}
-      description={
-        `Location: ${item.location}\n` +
-        `Bike Available: ${item.isAvailable ? "Yes" : "No"}\n`
-      }
-      // eslint-disable-next-line react/no-unstable-nested-components
-      right={() => <StyledAvg>{item.rateAverage || "-"}</StyledAvg>}
-    />
-  );
+  const RATING_OPTIONS = [
+    { key: "0", label: 0 },
+    { key: "1", label: 1 },
+    { key: "2", label: 2 },
+    { key: "3", label: 3 },
+    { key: "4", label: 4 },
+    { key: "5", label: 5 },
+  ];
+
+  const renderItem: ListRenderItem<IBike> = ({ item }) => {
+    if (item.rateAverage < bikeRating) return null;
+    return (
+      <List.Item
+        style={styles.listContainer}
+        title={item.model}
+        descriptionNumberOfLines={3}
+        onPress={() =>
+          navigation.navigate("SelectedBike", { bikeId: item._id })
+        }
+        description={
+          `Location: ${item.location}\n` +
+          `Bike Available: ${item.isAvailable ? "Yes" : "No"}\n`
+        }
+        // eslint-disable-next-line react/no-unstable-nested-components
+        right={() => <StyledAvg>{item.rateAverage || "-"}</StyledAvg>}
+      />
+    );
+  };
 
   return (
     <StyledSelectedBike>
@@ -83,11 +99,37 @@ function BikeList({
         navigation={navigation}
         addOption="AddBike"
       />
-      <StyledFilterInput
-        textContentType="name"
-        value={filter}
-        onChangeText={(value: string) => setFilter(value)}
-      />
+      <View
+        style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+      >
+        <StyledFilterInput
+          textContentType="name"
+          value={filter}
+          onChangeText={(value: string) => setFilter(value)}
+        />
+        <ModalSelector
+          data={RATING_OPTIONS}
+          initValue="Rating"
+          onChange={(option) => {
+            handleRatingFilterClick(option.key);
+          }}
+        >
+          <View
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 10,
+            }}
+          >
+            <Text style={{ fontSize: 15 }}>Rating</Text>
+            <Text style={{ fontSize: 25 }}>
+              {bikeRating} &nbsp;
+              <AntDesign name="caretdown" size={10} color="black" />
+            </Text>
+          </View>
+        </ModalSelector>
+      </View>
       <DateSelector />
       <FlatList
         data={filteredList}
@@ -135,6 +177,6 @@ export const StyledFilterInput = styled.TextInput`
   margin-bottom: 20px;
   border: 1px solid ${Colors.light.gray};
   padding: 8px 25px;
-  width: 100%;
+  flex-grow: 1;
   border-radius: 60px;
 `;
