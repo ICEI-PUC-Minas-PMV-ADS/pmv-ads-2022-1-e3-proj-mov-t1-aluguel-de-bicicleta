@@ -27,7 +27,6 @@ function SelectedBike({
     (state: { loggedUser: UserObject }) => state
   );
   const params = route.params as { bikeId: string };
-  console.log(route);
   const dispatch = useDispatch();
   const userRating = selectedBike?.userRatingValue;
 
@@ -50,12 +49,7 @@ function SelectedBike({
     dispatch(createReservation(reservationParams, selectedBike, navigation));
   };
 
-  const handleRatingClick = (
-    event: React.MouseEvent<HTMLElement>,
-    value: number
-  ): void => {
-    event.preventDefault();
-
+  const handleRatingClick = (value: number): void => {
     rateBike(selectedBike._id, value).then(() => {
       dispatch(getBike(params.bikeId));
       dispatch(getBikesByDates(selectedTimestamps));
@@ -86,7 +80,7 @@ function SelectedBike({
             {RATING_OPTIONS.map((ratingValue) => (
               <StyledRatingPressable
                 isSelected={ratingValue <= userRating}
-                onPress={(event) => handleRatingClick(event, ratingValue)}
+                onPress={() => handleRatingClick(ratingValue)}
                 key={ratingValue}
               >
                 <AntDesign

@@ -13,6 +13,7 @@ interface IProps {
     | "Login"
     | "AddBike"
     | "BikeList"
+    | "SelectedBike"
     | "SelectedReservation"
     | "AddReservation"
     | "Signup"
