@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem, View } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
-import { fetchBikes } from "../../services/api";
+import { getBikes, setBikeRatingFilter } from "../../actions/bikeActions";
+import { checkIfFilterMatchesBike } from "../../common/utils";
+import { StyledInput } from "../../common/styled";
+import DateSelector from "../../common/dateSelector";
 
 function BikeList({
   navigation,
@@ -17,13 +19,48 @@ function BikeList({
     (state: { loggedUser: UserObject }) => state
   );
 
-  const [bikes, setBikes] = useState<IBike[]>([]);
+  const { bikes, bikesByDates } = useSelector(
+    (state: { bikes: IBike[]; bikesByDates: IBike[] }) => state
+  );
+  const { bikeRating } = useSelector(
+    (state: { searchFilters: ISearchFilters }) => state.searchFilters
+  );
+
+  const { isManager } = loggedUser.result;
+  const bikesData = isManager ? bikesByDates || bikes : bikesByDates;
+  const [filter, setFilter] = useState("");
+  const [filteredList, setFilteredList] = useState(bikesData);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchBikes().then((response) => {
-      setBikes(response.data);
-    });
-  }, [loggedUser]);
+    if (isManager) {
+      dispatch(getBikes());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const filtered = bikesData?.reduce(
+      (acc: IBike[], bike: IBike) =>
+        checkIfFilterMatchesBike(bike, filter) ? [...acc, bike] : acc,
+      []
+    );
+
+    setFilteredList(filtered);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filter, bikes, bikesByDates, bikeRating]);
+
+  useEffect(() => {
+    const sessionValue = bikeRating || "0";
+    if (sessionValue !== bikeRating?.toString()) {
+      dispatch(setBikeRatingFilter(Number(sessionValue)));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bikeRating]);
+
+  const handleRatingFilterClick = (value: string): void => {
+    dispatch(setBikeRatingFilter(Number(value)));
+  };
 
   const renderItem: ListRenderItem<IBike> = ({ item }) => (
     <List.Item
@@ -43,17 +80,14 @@ function BikeList({
   return (
     <StyledSelectedBike>
       <PageHeader pageName="All Bikes" navigation={navigation} />
-
-      <BookingsTitleContainer>
-        <MaterialCommunityIcons
-          name="calendar-check"
-          size={18}
-          color="#457B9D"
-        />
-        <StyledStrong> All Bikes</StyledStrong>
-      </BookingsTitleContainer>
+      <StyledInput
+        textContentType="name"
+        value={filter}
+        onChangeText={(value: string) => setFilter(value)}
+      />
+      <DateSelector />
       <FlatList
-        data={bikes}
+        data={filteredList}
         renderItem={renderItem}
         keyExtractor={(bike) => bike._id}
       />
@@ -90,22 +124,6 @@ const StyledSelectedBike = styled.View`
   position: relative;
   flex: 1;
   background-color: white;
-`;
-
-const StyledStrong = styled.Text`
-  color: ${Colors.dark["dark-blue"]};
-  text-transform: uppercase;
-  font-weight: bold;
-`;
-
-const BookingsTitleContainer = styled.View`
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  margin-top: 20px;
-  margin-bottom: 20px;
 `;
 
 const styles = StyleSheet.create({
