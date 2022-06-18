@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { useDispatch, useSelector } from "react-redux";
 import { FAB, List } from "react-native-paper";
-import {
-  StyleSheet,
-  FlatList,
-  ListRenderItem,
-  useColorScheme,
-} from "react-native";
+import { StyleSheet, FlatList, ListRenderItem } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
@@ -83,8 +78,9 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
         renderItem={renderItem}
         keyExtractor={(reservation) => reservation._id}
       />
-
-      <FAB style={styles.fab} icon="pencil" onPress={handleGoToEditProfile} />
+      {loggedUser.result?.isManager ? (
+        <FAB style={styles.fab} icon="pencil" onPress={handleGoToEditProfile} />
+      ) : null}
     </StyledSelectedUser>
   );
 }
