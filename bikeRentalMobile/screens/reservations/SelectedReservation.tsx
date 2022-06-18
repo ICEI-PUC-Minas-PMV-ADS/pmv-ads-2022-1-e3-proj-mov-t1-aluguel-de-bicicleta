@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
@@ -25,12 +26,11 @@ function SelectedReservation({
   );
   const params = route.params as { reservationId: string };
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (!selectedReservation && params.reservationId) {
+  useFocusEffect(() => {
+    if (params.reservationId) {
       dispatch(getReservation(params.reservationId));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   function handleCancelation(): void {
     dispatch(deleteReservation(selectedReservation));
@@ -110,11 +110,6 @@ const StyledCancelButton = styled.Pressable`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  &:disabled {
-    color: black;
-    background: ${Colors.light.gray};
-    opacity: 0.6;
-  }
 `;
 const StyledBookText = styled.Text`
   color: white;

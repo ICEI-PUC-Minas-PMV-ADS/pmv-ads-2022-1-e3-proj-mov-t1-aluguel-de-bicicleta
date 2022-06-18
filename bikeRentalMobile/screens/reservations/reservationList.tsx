@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
 import { List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { RootStackScreenProps } from "../../types";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
@@ -14,19 +15,16 @@ function ReservationList({
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
-  const [user, setUser] = useState(loggedUser?.result);
+  const user = loggedUser?.result;
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
 
-  useEffect(() => {
-    setUser(user);
-
+  useFocusEffect(() => {
     if (user && user._id) {
       fetchUserReservations(user._id).then((response) => {
         setUserReservations(response.data);
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedUser]);
+  });
 
   const renderItem: ListRenderItem<IReservation> = ({ item }) => (
     <List.Item
