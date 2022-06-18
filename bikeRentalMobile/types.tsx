@@ -21,12 +21,13 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Login: undefined;
-  Perfil: undefined;
   Profile: undefined;
+  SelectedUser: undefined;
   EditProfile: undefined;
   AddBike: { asset?: IBike } | undefined;
   Signup: undefined;
   AddUser: undefined;
+  UsersList: undefined;
   AddReservation: { asset?: IReservation } | undefined;
   ReservationList: undefined;
   HomeScreen: undefined;

@@ -6,12 +6,12 @@ import { StyleSheet, FlatList, ListRenderItem, Text, View } from "react-native";
 import ModalSelector from "react-native-modal-selector";
 import { AntDesign } from "@expo/vector-icons";
 import { RootStackScreenProps } from "../../types";
-import Colors from "../../constants/Colors";
 import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
 import { getBikes, setBikeRatingFilter } from "../../actions/bikeActions";
 import { checkIfFilterMatchesBike } from "../../common/utils";
 import DateSelector from "../../common/dateSelector";
+import { StyledFilterInput } from "../../common/styled";
 
 function BikeList({
   navigation,
@@ -169,14 +169,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export const StyledFilterInput = styled.TextInput`
-  font-size: 20px;
-  line-height: 22px;
-  height: 60px;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  border: 1px solid ${Colors.light.gray};
-  padding: 8px 25px;
-  flex-grow: 1;
-  border-radius: 60px;
-`;

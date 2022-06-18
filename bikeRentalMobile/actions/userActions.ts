@@ -129,19 +129,3 @@ export const deleteUser =
       handleErrors(dispatch, error as AxiosError);
     }
   };
-
-export const setShowUsersWithReservations =
-  (status: boolean) =>
-  (dispatch: Dispatch): void => {
-    const { SHOW_USERS_WITH_RESERVATIONS } = SEARCH_FILTERS_REDUCER_OPTIONS;
-
-    if (status) {
-      window.sessionStorage.removeItem(SHOW_USERS_WITH_RESERVATIONS);
-    } else {
-      window.sessionStorage.setItem(SHOW_USERS_WITH_RESERVATIONS, "true");
-    }
-    dispatch({
-      type: SHOW_USERS_WITH_RESERVATIONS,
-      payload: { showUserWithReservation: status },
-    });
-  };

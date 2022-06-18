@@ -81,3 +81,15 @@ export const SubmitPressableText = styled.Text`
   font-size: 20px;
   margin-right: 8px;
 `;
+
+export const StyledFilterInput = styled.TextInput`
+  font-size: 20px;
+  line-height: 22px;
+  height: 60px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  border: 1px solid ${Colors.light.gray};
+  padding: 8px 25px;
+  flex-grow: 1;
+  border-radius: 60px;
+`;

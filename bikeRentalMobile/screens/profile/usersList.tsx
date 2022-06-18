@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import styled from "styled-components";
-import { SELECTED_USER_REDUCER_OPTIONS } from "../reducers/selectedUserReducer";
+import styled from "styled-components/native";
+import { FlatList, ListRenderItem, StyleSheet } from "react-native";
+import { List } from "react-native-paper";
+import { SELECTED_USER_REDUCER_OPTIONS } from "../../reducers/selectedUserReducer";
 
-import PageHeader from "../common/pageHeader";
-import { CardHeading, CardLink, CardSpan, ListCard } from "../common/listCard";
-import { FilterInput } from "../common/styled";
-import {
-  fetchUsers,
-  setShowUsersWithReservations,
-} from "../actions/userActions";
-import { getLoggedInUser, ROUTES } from "../common/utils";
-import { SEARCH_FILTERS_REDUCER_OPTIONS } from "../reducers/searchFiltersReducer";
-import UserReservationList from "./userReservationList";
+import PageHeader from "../../common/pageHeader";
+import { StyledFilterInput } from "../../common/styled";
+import { fetchUsers } from "../../actions/userActions";
+import { RootStackScreenProps } from "../../types";
+import { defaultPadding } from "../../constants/Layout";
 
-function UsersList(): JSX.Element {
+function UsersList({
+  navigation,
+}: RootStackScreenProps<"UsersList">): JSX.Element {
   const usersData = useSelector(
     (state: { users: IStorageResult[] }) => state.users
   );
   const { showUserWithReservation } = useSelector(
     (state: { searchFilters: ISearchFilters }) => state.searchFilters
   );
+  const { loggedUser } = useSelector(
+    (state: { loggedUser: UserObject }) => state
+  );
   const [filter, setFilter] = useState("");
   const [filteredList, setFilteredList] = useState(usersData);
-  const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({
@@ -55,113 +55,72 @@ function UsersList(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter, usersData]);
 
-  const placeLink =
-    history.location.pathname === "/" ? "" : history.location.pathname;
-
-  useEffect(() => {
-    const { SHOW_USERS_WITH_RESERVATIONS } = SEARCH_FILTERS_REDUCER_OPTIONS;
-
-    const sessionValue = window.sessionStorage.getItem(
-      SHOW_USERS_WITH_RESERVATIONS
+  const renderItem: ListRenderItem<IStorageResult> = ({ item }) => {
+    const isManagersOwnProfile = item._id === loggedUser.result._id;
+    const userDoesntHaveReservations = !item.reservations.length;
+    if (
+      isManagersOwnProfile ||
+      (showUserWithReservation && userDoesntHaveReservations)
+    )
+      return null;
+    return (
+      <List.Item
+        style={styles.listContainer}
+        title={`${item.firstName} ${item.lastName}`}
+        descriptionNumberOfLines={3}
+        onPress={() => {
+          dispatch({
+            type: SELECTED_USER_REDUCER_OPTIONS.SET_SELECTED_USER,
+            payload: item,
+          });
+          navigation.navigate("SelectedUser");
+        }}
+        description={item.email}
+      />
     );
-    if (!!sessionValue !== showUserWithReservation) {
-      dispatch(setShowUsersWithReservations(!sessionValue));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showUserWithReservation]);
-
-  const handleShowUsersWithReservations = (): void => {
-    dispatch(setShowUsersWithReservations(!showUserWithReservation));
   };
 
-  const { isManager } = getLoggedInUser().result;
   return (
-    <StyledUsersList className="usersList">
-      <PageHeader pageName="Users" />
-      {isManager ? (
-        <Link to={ROUTES.NEW_USER} className="usersList--AddBikeBtn">
-          <i className="fas fa-plus" />
-        </Link>
-      ) : null}
-      <FilterInput
-        className="usersList--searchInput"
-        type="text"
-        value={filter}
-        onChange={(event) => setFilter(event.target.value)}
+    <StyledUsersList>
+      <PageHeader
+        pageName="Users"
+        navigation={navigation}
+        addOption="AddUser"
       />
-      <button
-        type="button"
-        onClick={handleShowUsersWithReservations}
-        className="usersList--filterBtn"
-      >
-        {showUserWithReservation
-          ? "Show all users"
-          : "Show users with reservations"}
-      </button>
-      {filteredList.map((user: IStorageResult) => {
-        const isManagersOwnProfile = user._id === getLoggedInUser().result._id;
-        const userDoesntHaveReservations = !user.reservations.length;
-        if (
-          isManagersOwnProfile ||
-          (showUserWithReservation && userDoesntHaveReservations)
-        )
-          return null;
-        return (
-          <ListCard className="usersList--card" key={user._id}>
-            <CardLink
-              className="usersList--card__link"
-              to={`${placeLink}/${user._id}`}
-              onClick={() =>
-                dispatch({
-                  type: SELECTED_USER_REDUCER_OPTIONS.SET_SELECTED_USER,
-                  payload: user,
-                })
-              }
-            >
-              <CardHeading className="usersList--card__link--model">{`${user.firstName} ${user.lastName}`}</CardHeading>
-              <CardSpan className="usersList--card__link--color">
-                {user.email}
-              </CardSpan>
-            </CardLink>
-            {showUserWithReservation ? (
-              <UserReservationList reservations={user.reservations} />
-            ) : null}
-          </ListCard>
-        );
-      })}
+      <StyledFilterInput
+        textContentType="name"
+        value={filter}
+        onChangeText={(value: string) => setFilter(value)}
+      />
+      <FlatList
+        data={filteredList}
+        renderItem={renderItem}
+        keyExtractor={(bike) => bike._id}
+      />
     </StyledUsersList>
   );
 }
 
 export default UsersList;
 
-const StyledUsersList = styled.div`
-  padding: var(--padding);
+const StyledUsersList = styled.View`
+  padding: ${defaultPadding}px;
   flex-grow: 1;
   width: 100%;
-  list-style: none;
+  height: 100%;
   margin: 0;
-
-  .usersList {
-    &--filterBtn {
-      padding: 10px 0;
-      width: 100%;
-      max-width: 500px;
-      display: flex;
-      justify-content: center;
-      border: none;
-      background: var(--dark-blue);
-      color: white;
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-    &--AddBikeBtn {
-      color: var(--yellow);
-      font-size: 35px;
-      position: absolute;
-      right: var(--padding);
-      top: var(--padding);
-    }
-  }
+  background-color: white;
 `;
+
+const styles = StyleSheet.create({
+  listContainer: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    margin: 5,
+    elevation: 5,
+  },
+  containerButtons: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+});
