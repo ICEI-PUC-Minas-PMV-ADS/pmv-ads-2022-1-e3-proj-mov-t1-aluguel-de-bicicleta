@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { FAB, List } from "react-native-paper";
 import { StyleSheet, FlatList, ListRenderItem } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -10,20 +10,23 @@ import { defaultPadding } from "../../constants/Layout";
 import PageHeader from "../../common/pageHeader";
 import { fetchUserReservations } from "../../services/api";
 
-function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
+function Perfil({
+  navigation,
+  route,
+}: RootStackScreenProps<"Profile" | "SelectedUser">): JSX.Element {
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
-  const [user, setUser] = useState(loggedUser?.result);
+
+  const selectedUser = route?.params?.user;
+  const user = selectedUser || loggedUser?.result;
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
 
   const handleGoToEditProfile = () => {
-    navigation.navigate("EditProfile");
+    navigation.navigate("EditProfile", { user });
   };
 
   useEffect(() => {
-    setUser(user);
-
     if (user && user._id) {
       fetchUserReservations(user._id).then((response) => {
         // console.log(response.data);
@@ -34,6 +37,7 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
         setUserReservations(response.data);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedUser]);
 
   const renderItem: ListRenderItem<IReservation> = ({ item }) => (
@@ -46,13 +50,17 @@ function Perfil({ navigation }: RootStackScreenProps<"Perfil">): JSX.Element {
         `From: ${new Date(item.startTimestamp).toLocaleString("pt-br")}\n` +
         `To: ${new Date(item.endTimestamp).toLocaleString("pt-br")}`
       }
+      // eslint-disable-next-line react/no-unstable-nested-components, react/jsx-props-no-spreading
       left={(props) => <List.Icon {...props} color="#f4bd5a" icon="bike" />}
     />
   );
 
   return (
     <StyledSelectedUser>
-      <PageHeader pageName="My Profile" navigation={navigation} />
+      <PageHeader
+        pageName={selectedUser ? user.firstName : "My Profile"}
+        navigation={navigation}
+      />
 
       <StyledUserName>
         {user.firstName} {user.lastName}

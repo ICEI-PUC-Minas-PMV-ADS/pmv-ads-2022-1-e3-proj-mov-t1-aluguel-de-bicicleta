@@ -69,11 +69,7 @@ function UsersList({
         title={`${item.firstName} ${item.lastName}`}
         descriptionNumberOfLines={3}
         onPress={() => {
-          dispatch({
-            type: SELECTED_USER_REDUCER_OPTIONS.SET_SELECTED_USER,
-            payload: item,
-          });
-          navigation.navigate("SelectedUser");
+          navigation.navigate("SelectedUser", { user: item });
         }}
         description={item.email}
       />

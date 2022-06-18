@@ -22,8 +22,8 @@ export type RootStackParamList = {
   NotFound: undefined;
   Login: undefined;
   Profile: undefined;
-  SelectedUser: undefined;
-  EditProfile: undefined;
+  SelectedUser: { user: IStorageResult };
+  EditProfile: { user: IStorageResult };
   AddBike: { asset?: IBike } | undefined;
   Signup: undefined;
   AddUser: undefined;

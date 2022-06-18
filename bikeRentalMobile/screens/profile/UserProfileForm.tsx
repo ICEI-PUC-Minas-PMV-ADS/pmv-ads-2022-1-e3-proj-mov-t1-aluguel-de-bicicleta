@@ -12,7 +12,7 @@ import {
   StyledLabel,
 } from "../../common/styled";
 import UserInfo from "../../common/userInfo";
-import { createUser, fetchUser, updateUser } from "../../actions/userActions";
+import { createUser, updateUser } from "../../actions/userActions";
 import { RootStackScreenProps } from "../../types";
 import Colors from "../../constants/Colors";
 import dimensions, { defaultPadding } from "../../constants/Layout";
@@ -23,22 +23,14 @@ export const OCASIONS = {
   EDIT: "EditProfile",
 } as const;
 
-type IOcasions = typeof OCASIONS;
-
 function UserProfileForm({
   navigation,
   route,
-  ocasion,
-}: RootStackScreenProps<"Signup" | "AddUser" | "EditProfile"> & {
-  ocasion: keyof IOcasions;
-}): JSX.Element {
-  const { selectedUser } = useSelector(
-    (state: { selectedUser?: IStorageResult }) => state
-  );
-
+}: RootStackScreenProps<"Signup" | "AddUser" | "EditProfile">): JSX.Element {
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
+  const selectedUser = route.params?.user;
   const [isLoggedIn] = useState(loggedUser);
   const [firstName, setFirstName] = useState(selectedUser?.firstName || ``);
   const [lastName, setLastName] = useState(selectedUser?.lastName || ``);
@@ -47,7 +39,6 @@ function UserProfileForm({
   const [password, setPassword] = useState(``);
 
   const dispatch = useDispatch();
-  const params = route?.params || ({} as { userId: string });
 
   function handleSubmit(): void {
     const postParams = {
@@ -66,19 +57,6 @@ function UserProfileForm({
     }
   }
 
-  //   useEffect(() => {
-  //     const user = getLoggedInUser();
-  //     if (user) setIsLoggedIn(true);
-  //   }, []);
-
-  useEffect(() => {
-    if (!selectedUser && params?.userId) {
-      dispatch(fetchUser(params.userId));
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   useEffect(() => {
     if (selectedUser) {
       setFirstName(selectedUser.firstName);
@@ -95,7 +73,7 @@ function UserProfileForm({
   };
   return (
     <StyledEditProfileScreen>
-      <PageHeader pageName={pageName[route.name]} navigation={navigator} />
+      <PageHeader pageName={pageName[route.name]} navigation={navigation} />
 
       <StyledScrollView>
         <View>

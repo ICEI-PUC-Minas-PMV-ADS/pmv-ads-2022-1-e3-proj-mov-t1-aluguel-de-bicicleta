@@ -5,9 +5,8 @@ import * as api from "../services/api";
 import { LOGGED_USER_REDUCER_OPTIONS } from "../reducers/loggedUser";
 import { USERS_REDUCER_OPTIONS } from "../reducers/usersReducer";
 import { SELECTED_USER_REDUCER_OPTIONS } from "../reducers/selectedUserReducer";
-import { SEARCH_FILTERS_REDUCER_OPTIONS } from "../reducers/searchFiltersReducer";
 import setGlobalNotification from "./globalNotificationActions";
-import { handleErrors, ROUTES } from "../common/utils";
+import { handleErrors } from "../common/utils";
 import { RootStackParamList } from "../types";
 import { setLoggedInUser } from "../services/loggedInServices";
 
@@ -43,7 +42,7 @@ export const createUser =
     params: ISignupParams,
     navigation: NativeStackNavigationProp<
       RootStackParamList,
-      "Signup" | "AddUser"
+      "Signup" | "AddUser" | "EditProfile"
     >,
     login?: boolean
   ) =>
@@ -101,17 +100,16 @@ export const fetchUser =
 export const updateUser =
   (
     updatedUser: IUpdateUserParams,
-    navigation: NativeStackNavigationProp<RootStackParamList, "Login">
+    navigation: NativeStackNavigationProp<
+      RootStackParamList,
+      "Signup" | "AddUser" | "EditProfile"
+    >
   ) =>
   async (dispatch: Dispatch): Promise<void> => {
     try {
       const { data } = await api.updateUser(updatedUser);
       dispatch({ type: USERS_REDUCER_OPTIONS.UPDATE, payload: [data] });
-      dispatch({
-        type: SELECTED_USER_REDUCER_OPTIONS.SET_SELECTED_USER,
-        payload: data,
-      });
-      navigation.replace(`${ROUTES.USERS}/${updatedUser.userId}`);
+      navigation.navigate("SelectedUser", { user: data });
       setGlobalNotification(dispatch, `User updated sucessfuly`, "success");
     } catch (error) {
       handleErrors(dispatch, error as AxiosError);

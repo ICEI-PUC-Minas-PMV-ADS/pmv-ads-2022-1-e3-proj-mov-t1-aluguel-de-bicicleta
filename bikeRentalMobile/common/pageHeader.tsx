@@ -19,6 +19,8 @@ interface IProps {
     | "AddUser"
     | "EditProfile"
     | "UsersList"
+    | "Profile"
+    | "SelectedUser"
   >;
   addOption?: "AddBike" | "AddUser";
 }
