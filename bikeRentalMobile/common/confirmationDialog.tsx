@@ -56,8 +56,8 @@ const StyledContainer = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: ${dimensions.window.width};
-  height: ${dimensions.window.height};
+  width: ${dimensions.window.width}px;
+  height: ${dimensions.window.height}px;
 `;
 const StyledDialog = styled.View`
   padding: 35px;
