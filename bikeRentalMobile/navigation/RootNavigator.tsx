@@ -86,11 +86,6 @@ function RootNavigator() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="AddReservation"
-        component={AddReservation}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
         name="SelectedReservation"
         component={SelectedReservation}
         options={{ headerShown: false }}
