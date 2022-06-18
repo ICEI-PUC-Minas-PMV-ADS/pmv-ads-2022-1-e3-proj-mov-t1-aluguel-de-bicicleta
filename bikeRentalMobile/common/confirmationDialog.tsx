@@ -44,8 +44,8 @@ ConfirmationDialog.defaultProps = {
 
 export default ConfirmationDialog;
 const StyledBackdrop = styled.View`
-  width: ${dimensions.window.width};
-  height: ${dimensions.window.height};
+  width: ${dimensions.window.width}px;
+  height: ${dimensions.window.height}px;
   background: black;
   opacity: 0.3;
   position: absolute;
