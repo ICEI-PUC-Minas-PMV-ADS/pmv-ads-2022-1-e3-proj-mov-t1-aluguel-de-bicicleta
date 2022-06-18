@@ -2,54 +2,52 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StyledInput, StyledLabel } from "../../common/styled";
 import styled from "styled-components/native";
-import Colors from "../../constants/Colors";
 import { useDispatch, useSelector } from "react-redux";
 
 import { FAB, RadioButton } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import Colors from "../../constants/Colors";
+import { StyledInput, StyledLabel } from "../../common/styled";
 import PageHeader from "../../common/pageHeader";
 import { deleteUser } from "../../actions/userActions";
 
-
-
-//TODO:
-  /* precisa descriptografar a senha pra nao ficar
-  ** gigante e o usuario achar estranho o tamanho de caracteres
-  */
+// TODO:
+/* precisa descriptografar a senha pra nao ficar
+ ** gigante e o usuario achar estranho o tamanho de caracteres
+ */
 export default function EditProfileScreen() {
   const navigator = useNavigation();
 
-  //Using Redux for to recovery user
+  // Using Redux for to recovery user
   const { loggedUser } = useSelector(
     (state: { loggedUser: UserObject }) => state
   );
 
   const dispatch = useDispatch();
 
-  useEffect(()=> {
+  useEffect(() => {
     setUser(loggedUser?.result);
   }, [loggedUser]);
-  
+
   const [user, setUser] = useState(loggedUser?.result);
   const [showPassword, setShowPassword] = useState(false);
-  const [isManager, setIsManager] = useState(loggedUser?.result?.isManager || false);
+  const [isManager, setIsManager] = useState(
+    loggedUser?.result?.isManager || false
+  );
 
-  //TODO: falta chamar o redux para atualizar os dados do usuario logado.
+  // TODO: falta chamar o redux para atualizar os dados do usuario logado.
   const handleUpdateUser = () => {
-    const userUpdated = { ...user, isManager: isManager };
+    const userUpdated = { ...user, isManager };
     console.debug(`Data updated user ${JSON.stringify(userUpdated)}`);
     return navigator.goBack();
   };
 
   const handleDeleteProfile = () => {
     console.log(`Deletando profile... ${JSON.stringify(loggedUser?.result)}`);
-    dispatch(deleteUser(user))
+    dispatch(deleteUser(user));
     navigator.navigate("Login");
-  }
-
-
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -61,21 +59,21 @@ export default function EditProfileScreen() {
           <StyledInput
             textContentType="name"
             value={user?.firstName}
-            onChangeText={(value) => setUser({...user, firstName: value})}
+            onChangeText={(value) => setUser({ ...user, firstName: value })}
           />
 
           <StyledLabel>Last Name</StyledLabel>
           <StyledInput
             textContentType="name"
             value={user?.lastName}
-            onChangeText={(value) => setUser({...user, lastName: value})}
+            onChangeText={(value) => setUser({ ...user, lastName: value })}
           />
 
           <StyledLabel>Email</StyledLabel>
           <StyledInput
             textContentType="emailAddress"
             value={user?.email}
-            onChangeText={(value) => setUser({...user, email: value})}
+            onChangeText={(value) => setUser({ ...user, email: value })}
           />
 
           <StyledLabel>Password</StyledLabel>
@@ -83,7 +81,7 @@ export default function EditProfileScreen() {
             textContentType="password"
             secureTextEntry={!showPassword}
             value={user?.password}
-            onChangeText={(value) => setUser({...user, password: value})}
+            onChangeText={(value) => setUser({ ...user, password: value })}
           />
 
           <View>
@@ -120,12 +118,11 @@ export default function EditProfileScreen() {
         </View>
       </View>
 
-      {<FAB
+      <FAB
         style={styles.fabDelete}
         icon="delete"
         onPress={handleDeleteProfile}
-      />}
-
+      />
     </SafeAreaView>
   );
 }
@@ -137,14 +134,14 @@ const styles = StyleSheet.create({
   containerButtons: {
     flexDirection: "row",
     justifyContent: "center",
-  },  
+  },
   fabDelete: {
-    position: 'absolute',
+    position: "absolute",
     margin: 16,
     right: 10,
     bottom: 10,
     backgroundColor: "white",
-  }
+  },
 });
 
 const OptionListButton = styled.Pressable`
@@ -164,4 +161,3 @@ const ButtonText = styled.Text`
   font-size: 15px;
   color: white;
 `;
-
