@@ -56,7 +56,11 @@ export const createUser =
           payload: data,
         });
         navigation.navigate("HomeScreen");
-        setGlobalNotification(dispatch, `Welcome ${data.result}`, "success");
+        setGlobalNotification(
+          dispatch,
+          `Welcome ${data.result.firstName}`,
+          "success"
+        );
       } else {
         dispatch({
           type: USERS_REDUCER_OPTIONS.CREATE,
