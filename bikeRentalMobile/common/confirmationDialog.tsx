@@ -87,6 +87,6 @@ const StyledCancelText = styled(StyledConfirmText)`
 `;
 
 const StyledConfirmationDialog = styled.Modal`
-  width: ${dimensions.window.width};
-  height: ${dimensions.window.height};
+  width: ${dimensions.window.width}px;
+  height: ${dimensions.window.height}px;
 `;
