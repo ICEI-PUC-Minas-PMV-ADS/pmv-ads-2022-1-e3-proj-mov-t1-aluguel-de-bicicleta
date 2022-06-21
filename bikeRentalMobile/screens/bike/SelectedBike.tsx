@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
 import { defaultPadding } from "../../constants/Layout";
 import { deleteBike, getBike } from "../../actions/bikeActions";
 import { getBikesByDates } from "../../actions/bikeByDatesActions";
@@ -30,10 +31,9 @@ function SelectedBike({
   const dispatch = useDispatch();
   const userRating = selectedBike?.userRatingValue;
 
-  useEffect(() => {
+  useFocusEffect(() => {
     dispatch(getBike(params.bikeId));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const onDelete = (): void => {
     dispatch(deleteBike(selectedBike));
