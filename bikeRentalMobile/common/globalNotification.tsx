@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, View } from "react-native";
+import { useDispatch } from "react-redux";
 import styled from "styled-components/native";
+import setGlobalNotification from "../actions/globalNotificationActions";
 
 interface IProps {
   message: string;
@@ -8,15 +10,21 @@ interface IProps {
 }
 function GlobalNotification({ message, type }: IProps): JSX.Element {
   const [show, setShow] = useState(false);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     if (message) setShow(true);
-    const timer1 = setTimeout(() => setShow(false), 2 * 1000);
+    const timer1 = setTimeout(() => handleFadeOut(), 2 * 1000);
 
     return () => {
       clearTimeout(timer1);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [message, type]);
+
+  function handleFadeOut() {
+    setGlobalNotification(dispatch, ``, "success");
+    setShow(false);
+  }
   return (
     <Modal
       visible={show}
