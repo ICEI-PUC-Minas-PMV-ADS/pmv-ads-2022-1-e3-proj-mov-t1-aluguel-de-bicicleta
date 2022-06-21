@@ -28,7 +28,6 @@ function AddBike({
         "Algum campo no formulário de Add bike não foi preenchido pelo usuário."
       );
     } else {
-      console.warn(`Adding new bike.... ${JSON.stringify(newBike)}`);
       newBike.isAvailable = true;
       dispatch(createBike(newBike));
     }
