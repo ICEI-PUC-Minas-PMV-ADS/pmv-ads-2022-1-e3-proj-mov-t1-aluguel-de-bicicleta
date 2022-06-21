@@ -76,7 +76,7 @@ function BikeList({
     if (item.rateAverage < bikeRating) return null;
     return (
       <List.Item
-        style={styles.listContainer}
+        style={{ ...styles.listContainer, opacity: item.isAvailable ? 1 : 0.2 }}
         title={item.model}
         descriptionNumberOfLines={3}
         onPress={() =>
