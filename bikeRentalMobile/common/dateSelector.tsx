@@ -48,6 +48,7 @@ function DateSelector(): JSX.Element {
         <DateTimePickerModal
           date={new Date(selectedTimestamps.start)}
           isVisible={openStart}
+          mode="datetime"
           onConfirm={(date) => {
             setOpenStart(false);
             dispatch({
@@ -65,6 +66,7 @@ function DateSelector(): JSX.Element {
         </StyledDatesContainer>
         <DateTimePickerModal
           date={new Date(selectedTimestamps.end)}
+          mode="datetime"
           isVisible={openEnd}
           onConfirm={(date) => {
             setOpenEnd(false);
