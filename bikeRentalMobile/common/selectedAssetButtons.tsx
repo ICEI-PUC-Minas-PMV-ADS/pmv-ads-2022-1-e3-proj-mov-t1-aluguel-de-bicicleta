@@ -56,8 +56,8 @@ const StyledSelectedAssetButtons = styled.View`
   flex-direction: row;
   align-items: center;
   position: absolute;
-  top: ${defaultPadding + 30};
-  right: ${defaultPadding};
+  top: ${defaultPadding + 30}px;
+  right: ${defaultPadding}px;
 `;
 
 const StyledButton = styled.Pressable`
