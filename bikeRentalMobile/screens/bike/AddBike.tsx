@@ -27,13 +27,11 @@ function AddBike({
       console.error(
         "Algum campo no formulário de Add bike não foi preenchido pelo usuário."
       );
-    } else {
-      newBike.isAvailable = true;
-      dispatch(createBike(newBike));
     }
     if (editedBike._id) {
       dispatch(updateBike(editedBike._id, newBike));
     } else {
+      newBike.isAvailable = true;
       dispatch(createBike(newBike));
     }
     navigation.goBack(); // TODO: devemos chamar o navigator chamando a nova tela de listagem das bikes? Ainda não existe.
