@@ -86,6 +86,7 @@ export const StyledFilterInput = styled.TextInput`
   font-size: 20px;
   line-height: 22px;
   height: 60px;
+  max-height: 60px;
   margin-top: 30px;
   margin-bottom: 20px;
   border: 1px solid ${Colors.light.gray};
