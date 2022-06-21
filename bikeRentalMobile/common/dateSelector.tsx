@@ -3,6 +3,7 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/native";
 import { View } from "react-native";
+import moment from "moment";
 import { getBikesByDates } from "../actions/bikeByDatesActions";
 import { BIKES_BY_DATES_REDUCER_OPTIONS } from "../reducers/bikesByDatesReducer";
 import { SELECTED_TIMESTAMPS_REDUCER_OPTIONS } from "../reducers/selectedTimestamps";
@@ -41,7 +42,7 @@ function DateSelector(): JSX.Element {
         <StyledDatesContainer onPress={() => setOpenStart(true)}>
           <StyledDatesTitle>Start:</StyledDatesTitle>
           <StyledDates>
-            {new Date(selectedTimestamps.start).toDateString()}
+            {moment(selectedTimestamps.start).format("DD-MM-YY HH:mm")}
           </StyledDates>
         </StyledDatesContainer>
         <DateTimePickerModal
@@ -59,7 +60,7 @@ function DateSelector(): JSX.Element {
         <StyledDatesContainer onPress={() => setOpenEnd(true)}>
           <StyledDatesTitle>End:</StyledDatesTitle>
           <StyledDates>
-            {new Date(selectedTimestamps.end).toDateString()}
+            {moment(selectedTimestamps.end).format("DD-MM-YY HH:mm")}
           </StyledDates>
         </StyledDatesContainer>
         <DateTimePickerModal
