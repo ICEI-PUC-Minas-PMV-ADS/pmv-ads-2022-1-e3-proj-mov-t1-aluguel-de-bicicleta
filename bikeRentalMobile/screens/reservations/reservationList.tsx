@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
 import { List } from "react-native-paper";
@@ -18,13 +18,16 @@ function ReservationList({
   const user = loggedUser?.result;
   const [userReservations, setUserReservations] = useState<IReservation[]>([]);
 
-  useFocusEffect(() => {
-    if (user && user._id) {
-      fetchUserReservations(user._id).then((response) => {
-        setUserReservations(response.data);
-      });
-    }
-  });
+  useFocusEffect(
+    useCallback(() => {
+      if (user && user._id) {
+        fetchUserReservations(user._id).then((response) => {
+          setUserReservations(response.data);
+        });
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user._id])
+  );
 
   const renderItem: ListRenderItem<IReservation> = ({ item }) => (
     <List.Item
