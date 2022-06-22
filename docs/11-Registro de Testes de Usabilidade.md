@@ -61,6 +61,18 @@
 |Registro do teste | ![image](https://user-images.githubusercontent.com/82478643/174934048-e17fc8b4-9d00-4878-91a5-3e61b41a73c2.png)
 |Comentários | Todos os campos foram criados de forma clara e objetiva para que o suuário entenda de rapidamente quais informações são necessárias para o preenchimento.
 
+|Caso de teste   | CTU-012 Usuário entende porque o fomulário não foi enviado
+|------|-----------------------------------------|
+|Objetivo do teste | Verificar se o sistema informa ao usuário porque o formulário não foi enviado
+|Registro do teste | ![image](https://user-images.githubusercontent.com/82478643/174935863-88320e38-ac1e-4b08-a689-21f81821097a.png)
+|Comentários | Foi realizado um teste com uma senha curta na hora do cadastro. O sistema informa o porquê o cadastro não pôde ser finalizado.
+
+|Caso de teste   | CTU-013 Usuário entende que o formulário foi enviado
+|------|-----------------------------------------|
+|Objetivo do teste | VVerificar se o sistema informa ao usuário que o formulário foi enviado.
+|Registro do teste | ![image](https://user-images.githubusercontent.com/82478643/174936150-d877759e-a4d0-4769-b7e6-7849dae18793.png)
+|Comentários | Foi realizado um teste de criação de novo usuário, e assim que finalizado, o sistema mostra uma mensagem verde na parte superior da tela "Welcome, nome cadastrado".
+
 |Caso de teste   | CTU-014 Usuário entende onde criar uma reserva
 |------|-----------------------------------------|
 |Objetivo do teste | Verificar se o usuário identifica a opção de criar reserva.
