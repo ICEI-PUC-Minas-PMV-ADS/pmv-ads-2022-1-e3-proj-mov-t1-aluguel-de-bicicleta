@@ -14,50 +14,50 @@
 
 |Caso de teste   | CTU-004 Menu intuitivo ao usuário
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verificar se botões do menu são claros quanto ao seu propósito
 |Registro do teste | 
 |Comentários | 
 
 |Caso de teste   | CTU-005 Usuário entende o propósito do sistema
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verificar se a página Home é clara quanto ao propósito do sistema
 |Registro do teste | 
 |Comentários | 
 
 |Caso de teste   | CTU-006 Usuário entende a função dos botões do sistema
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verificar se os botões do sistema são claros quanto ao seu propósito
 |Registro do teste | 
 |Comentários | 
 
 
 |Caso de teste   | CTU-008 Identificar botão de login
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verificar se o usuário consegue identificar onde fazer login
 |Registro do teste | 
 |Comentários | 
 
 |Caso de teste   | CTU-009 Realizar cadastro caso ainda não possua
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verificar se o sistema deixa evidente a função de cadastro
 |Registro do teste | 
 |Comentários | 
 
 
 |Caso de teste   | CTU-010 Usuário selecionando perfil de cadastro correto
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verificar se o sistema elucida o usuário quanto ao seu papel no sistema.
 |Registro do teste | 
 |Comentários | 
 
 |Caso de teste   | CTU-011 Usuário entende o que pede cada campo dos formulários do sistema
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verifica se o sistema deixa claro para o usuário o que se pede em cada campo do formulário
 |Registro do teste | 
 |Comentários | 
 
 |Caso de teste   | CTU-014 Usuário entende onde criar uma reserva
 |------|-----------------------------------------|
-|Objetivo do teste | 
+|Objetivo do teste | Verificar se o usuário identifica a opção de criar reserva.
 |Registro do teste | 
 |Comentários | 
