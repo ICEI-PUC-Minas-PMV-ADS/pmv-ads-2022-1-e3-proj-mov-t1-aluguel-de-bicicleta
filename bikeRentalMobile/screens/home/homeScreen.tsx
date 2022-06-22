@@ -22,15 +22,9 @@ function HomePage(): JSX.Element {
             <LampContainer>
               <Lamp />
               <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Plataforma de empréstimo de bicicletas como alternativa de transporte nos grandes centros urbanos.
               </Text>
             </LampContainer>
-            <TimeContainer>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </Text>
-              <MaterialIcons name="attach-money" size={84} color="black" />
-            </TimeContainer>
           </>
         )}
         <OptionsList />
@@ -70,6 +64,7 @@ const LampContainer = styled.View`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 `;
 const TimeContainer = styled(LampContainer)``;
