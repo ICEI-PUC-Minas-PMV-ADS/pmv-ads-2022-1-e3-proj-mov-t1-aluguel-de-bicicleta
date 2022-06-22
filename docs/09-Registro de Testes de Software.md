@@ -6,13 +6,11 @@ Relatório com as evidências dos testes de software realizados na aplicação p
 
 ### <span style="color:green"> CT-001 - Sistema deve permitir que usuários se cadastrem </span>
 
-- Mensagem de êxito com erro no nome do usuário
-
+<br>
 <p>
 <img src="img/teste-funcional/ct001-1.png" width="300px" hspace="40">
-<img src="img/teste-funcional/ct001-2.png" width="300px" hspace="40">
 <img src="img/teste-funcional/ct001-3.png" width="300px" hspace="40">
-<img src="img/teste-funcional/ct001-4.png" width="300px" hspace="40">
+<!-- <img src="img/teste-funcional/ct001-4.png" width="300px" hspace="40"> -->
 </p>
 
 <strong>Resultado:</strong> Critérios de êxito atendidos
@@ -195,5 +193,4 @@ Deletar
 
 ## Avaliação
 
-Obtivemos sucesso em 91,7% dos testes realizados, dos bugs encontrados e apresentados neste relatório apenas 1 (CT-005) pode ser considerado crítico.
-Todos os bugs encontrados serão corrigidos na próxima versão.
+Obtivemos sucesso em 91,7% dos testes realizados, o bug encontrado e apresentado neste relatório (CT-005) será corrigido na próxima versão.
